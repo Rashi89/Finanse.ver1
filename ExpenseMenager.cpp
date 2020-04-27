@@ -203,6 +203,7 @@ void ExpenseMenager::wyswietlItemZTegoMiesiaca(Expense expense)
     cout<<"Data: "<< expense.pobierzDate()<<endl;
     cout<<"Nazwa itemu: "<< expense.pobierzItem()<<endl;
     cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
+    cout << endl;
     }
 }
 
@@ -251,6 +252,7 @@ void ExpenseMenager::wyswietlItemZPoprzedniegoMiesiaca(Expense expense)
     cout<<"Data: "<< expense.pobierzDate()<<endl;
     cout<<"Nazwa itemu: "<< expense.pobierzItem()<<endl;
     cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
+    cout << endl;
     }
 }
 
@@ -355,6 +357,7 @@ void ExpenseMenager::wyswietlItemyZZakresu(string dataPoczatkowa,string dataKonc
                 cout<<"Data: "<< itr->pobierzDate()<<endl;
                 cout<<"Nazwa itemu: "<< itr->pobierzItem()<<endl;
                 cout<<"Koszt: "<< itr->pobierzAmount()<<endl;
+                cout << endl;
             }
         }
         cout << endl;

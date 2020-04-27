@@ -3,6 +3,7 @@
 #include "ExpenseMenager.h"
 #include "DataMenager.h"
 #include "IncomeMenager.h"
+#include "MetodyPomocnicze.h"
 
 void Finanse::rejestracjaUzytkownika()
 {
@@ -79,8 +80,6 @@ void Finanse::wyswietlWszystkieItemy()
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
         float bilans = incomeMenager->obliczPrzychodyZObecnegoMiesiaca()-expenseMenager->obliczWydatkiZObecnegoMiesiaca();
-        //expenseMenager->obliczWydatkiZObecnegoMiesiaca();
-       // incomeMenager->obliczPrzychodyZObecnegoMiesiaca();
        cout<<"Bilans z obecnego miesiaca: "<<bilans<<endl;
     }
  }
@@ -115,6 +114,10 @@ void Finanse::wyswietlWszystkieItemy()
  {
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
+        float przychodyZTegoOkresu=incomeMenager->obliczPrzychodyZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
+       cout<<"Suma przychodow w podanym okresie: "<<przychodyZTegoOkresu<<endl;
+       float wydatkiZTegoOkresu=expenseMenager->obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
+       cout<<"Suma wydatkow w podanym okresie: "<<wydatkiZTegoOkresu<<endl;
         float bilans = incomeMenager->obliczPrzychodyZPodanegoOkresu(dataPoczatkowa,dataKoncowa)-expenseMenager->obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
         cout<<"Bilans z wybranego okresu: "<<bilans<<endl;
     }
@@ -147,4 +150,33 @@ void Finanse::dodajIncome()
         cout<<"Aby dodac item nalezy sie zalogowac!"<<endl;
         system("pause");
     }
+}
+
+bool Finanse::czyUzytkownikJestZalogowany()
+{
+    if(usersMenager.czyUzytkownikJestZalogowany())
+        return true;
+    else
+        return false;
+}
+
+char Finanse::wybierzOpcjeZMenuGlownego()
+{
+    char wybor;
+
+    system("cls");
+    cout << "    >>> MENU  GLOWNE <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Rejestracja" << endl;
+    cout << "2. Logowanie" << endl;
+    cout << "9. Koniec programu" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Twoj wybor: ";
+    wybor = MetodyPomocnicze::wczytajZnak();
+
+    return wybor;
+}
+char Finanse::wybierzOpcjeZMenuUzytkownika()
+{
+    usersMenager.wybierzOpcjeZMenuUzytkownika();
 }

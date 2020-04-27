@@ -157,6 +157,7 @@ void IncomeMenager::wyswietlIncomeZTegoMiesiaca(Income income)
     cout<<"Data: "<< income.pobierzDate()<<endl;
     cout<<"Nazwa itemu: "<< income.pobierzItem()<<endl;
     cout<<"Koszt: "<< income.pobierzAmount()<<endl;
+    cout << endl;
     }
 }
 
@@ -206,6 +207,7 @@ void IncomeMenager::wyswietlItemZPoprzedniegoMiesiaca(Income income)
     cout<<"Data: "<< income.pobierzDate()<<endl;
     cout<<"Nazwa itemu: "<< income.pobierzItem()<<endl;
     cout<<"Koszt: "<< income.pobierzAmount()<<endl;
+    cout << endl;
     }
 }
 
@@ -307,10 +309,10 @@ void IncomeMenager::wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKonc
                 cout<<"Data: "<< itr->pobierzDate()<<endl;
                 cout<<"Nazwa itemu: "<< itr->pobierzItem()<<endl;
                 cout<<"Koszt: "<< itr->pobierzAmount()<<endl;
+                cout << endl;
             }
         }
-        //int wydatkiZTegoOkresu=obliczWydatkiZPodanegoOkresu(dataPoczatkowaJakoInt,dataKoncowaJakoInt);
-       //cout<<"Suma wydatkow w podanym okresie: "<<wydatkiZTegoOkresu<<endl;
+
         cout << endl;
     } else {
         cout << endl << "Brak produktow." << endl << endl;
@@ -323,17 +325,17 @@ float IncomeMenager::obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string
     int dataPoczatkowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
     string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
     int dataKoncowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataKoncowaBezMyslnikow);
-    float sumaWydatkowZPodanegoOkresu=0;
+    float sumaPrzychodowZPodanegoOkresu=0;
     if (!incomes.empty()) {
         //cout<<incomes.size()<<endl;
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
             //itr->pobierzDataJakoInt();
             if(dataPoczatkowaJakoInt<=itr->pobierzDataJakoInt()&&itr->pobierzDataJakoInt()<=dataKoncowaJakoInt)
             {
-                sumaWydatkowZPodanegoOkresu+=itr->pobierzAmount();
+                sumaPrzychodowZPodanegoOkresu+=itr->pobierzAmount();
             }
         }
-        return sumaWydatkowZPodanegoOkresu;
+        return sumaPrzychodowZPodanegoOkresu;
 
         cout << endl;
 }

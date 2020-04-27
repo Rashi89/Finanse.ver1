@@ -50,6 +50,9 @@ public:
     void obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
     void wyswietlItemyZPodanegoZakresu();
     void sortowanie();
+    bool czyUzytkownikJestZalogowany();
+    char wybierzOpcjeZMenuGlownego();
+    char wybierzOpcjeZMenuUzytkownika();
 
 
 };

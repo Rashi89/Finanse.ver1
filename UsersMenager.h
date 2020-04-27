@@ -9,6 +9,7 @@
 #include "DataMenager.h"
 #include "Markup.h"
 #include "IncomeMenager.h"
+#include "MetodyPomocnicze.h"
 
 using namespace std;
 
@@ -34,10 +35,7 @@ public:
     void wylogowanieZalogowanegoUzytkownika();
     bool czyUzytkownikJestZalogowany();
     int pobierzIdZalogowanegoUzytkownika();
-
-
-
-    string wczytajLinie();
+    char wybierzOpcjeZMenuUzytkownika();
     bool czyIstniejeLogin(string login);
 
 };

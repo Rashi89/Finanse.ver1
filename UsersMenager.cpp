@@ -16,14 +16,14 @@ void UsersMenager::logowanieUzytkownika() {
     string login="", haslo="";
 
     cout<<"Podaj login: ";
-    login=wczytajLinie();
+    login=MetodyPomocnicze::wczytajLinie();
 
     vector <User>::iterator itr = users.begin();
     while (itr != users.end()) {
         if (itr -> pobierzLogin() == login) {
             for (int iloscProb = 3; iloscProb > 0; iloscProb--) {
                 cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
-                haslo = wczytajLinie();
+                haslo = MetodyPomocnicze::wczytajLinie();
 
                 if (itr -> pobierzHaslo() == haslo) {
                     idZalogowanegoUzytkownika=itr -> pobierzID();
@@ -52,7 +52,7 @@ void UsersMenager::zmianaHaslaZalogowanegoUzytkownika() {
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
     cin.sync();
-    noweHaslo = wczytajLinie();
+    noweHaslo = MetodyPomocnicze::wczytajLinie();
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
         if (itr -> pobierzID() == idZalogowanegoUzytkownika) {
@@ -75,20 +75,20 @@ User UsersMenager::podajDaneNowegoUzytkownika() {
     do {
         cout << "Podaj imie: ";
         cin.sync();
-        imie=wczytajLinie();
+        imie=MetodyPomocnicze::wczytajLinie();
         user.ustawImie(imie);
         cout << "Podaj nazwisko: ";
         cin.sync();
-        nazwisko=wczytajLinie();
+        nazwisko=MetodyPomocnicze::wczytajLinie();
         user.ustawNazwisko(nazwisko);
         cout << "Podaj login: ";
         cin.sync();
-        login=wczytajLinie();
+        login=MetodyPomocnicze::wczytajLinie();
         user.ustawLogin(login);
     } while (czyIstniejeLogin(user.pobierzLogin()) == true);
     cout << "Podaj haslo: ";
     cin.sync();
-    haslo=wczytajLinie();
+    haslo=MetodyPomocnicze::wczytajLinie();
     user.ustawHaslo(haslo);
 
     return user;
@@ -149,10 +149,25 @@ bool UsersMenager::czyIstniejeLogin(string login) {
     return false;
 }
 
-string UsersMenager::wczytajLinie() {
-    string wejscie;
-    getline(cin, wejscie);
-    //cin.ignore();
-    //cin.get();
-    return wejscie;
+char UsersMenager::wybierzOpcjeZMenuUzytkownika()
+{
+
+    char wybor;
+
+    system("cls");
+    cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Dodaj przychod" << endl;
+    cout << "2. Dodaj wydatek" << endl;
+    cout << "3. Bilans z tego miesiaca" << endl;
+    cout << "4. Bilans z poprzedniego miesiaca" << endl;
+    cout << "5. Bilans z wybranego okresu" << endl;
+    cout << "---------------------------" << endl;
+    cout << "6. Zmien haslo" << endl;
+    cout << "7. Wyloguj sie" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Twoj wybor: ";
+    wybor = MetodyPomocnicze::wczytajZnak();
+
+    return wybor;
 }
