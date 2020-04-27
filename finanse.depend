@@ -175,10 +175,10 @@
 	<algorithm>
 	"data.h"
 
-1588002826 source:c:\users\rashi\desktop\new\expense.cpp
+1588005728 source:c:\users\rashi\desktop\new\expense.cpp
 	"Expense.h"
 
-1588002826 c:\users\rashi\desktop\new\expense.h
+1588005722 c:\users\rashi\desktop\new\expense.h
 	<iostream>
 
 1586492720 source:c:\users\rashi\desktop\new\markup.cpp
@@ -200,7 +200,7 @@
 	"Expense.h"
 	"ExpenseMenager.h"
 
-1588003536 c:\users\rashi\desktop\new\expensemenager.h
+1588005830 c:\users\rashi\desktop\new\expensemenager.h
 	<iostream>
 	<vector>
 	"Expense.h"
@@ -215,7 +215,7 @@
 	"Expense.h"
 	"Markup.h"
 
-1588004925 c:\users\rashi\desktop\new\datamenager.h
+1588005223 c:\users\rashi\desktop\new\datamenager.h
 	<iostream>
 	<vector>
 	<sstream>
@@ -236,7 +236,7 @@
 1588003930 source:c:\users\rashi\desktop\new\data.cpp
 	"Data.h"
 
-1588003930 source:c:\users\rashi\desktop\new\datamenager.cpp
+1588005296 source:c:\users\rashi\desktop\new\datamenager.cpp
 	<iostream>
 	<vector>
 	<stdlib.h>
@@ -245,7 +245,10 @@
 	<winbase.h>
 	<windows.h>
 	"DataMenager.h"
+	"ExpenseMenager.h"
 	"data.h"
+	"Expense.h"
+	"Markup.h"
 
 1588003930 source:c:\users\rashi\desktop\new\plikizusers.cpp
 	"Markup.h"
@@ -274,19 +277,19 @@
 	"ExpenseMenager.h"
 	"Markup.h"
 
-1588003930 source:c:\users\rashi\desktop\new\main.cpp
+1588005886 source:c:\users\rashi\desktop\new\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
 	"Finanse.h"
 	"DataMenager.h"
 
-1588004631 c:\users\rashi\desktop\new\finanse.h
+1588005928 c:\users\rashi\desktop\new\finanse.h
 	<iostream>
 	"UsersMenager.h"
 	"ExpenseMenager.h"
 
-1588004859 source:c:\users\rashi\desktop\new\expensemenager.cpp
+1588005845 source:c:\users\rashi\desktop\new\expensemenager.cpp
 	<iostream>
 	<vector>
 	"Expense.h"
@@ -294,7 +297,7 @@
 	"DataMenager.h"
 	"Markup.h"
 
-1588004869 source:c:\users\rashi\desktop\new\finanse.cpp
+1588005972 source:c:\users\rashi\desktop\new\finanse.cpp
 	"Finanse.h"
 	"UsersMenager.h"
 	"ExpenseMenager.h"

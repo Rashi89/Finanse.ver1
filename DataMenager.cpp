@@ -7,9 +7,13 @@
 
 #include <windows.h>
 #include "DataMenager.h"
+#include "ExpenseMenager.h"
 #include "data.h"
+#include "Expense.h"
+#include "Markup.h"
 
-Data DataMenager::podajDate(string wpisanaData) {
+bool DataMenager::podajDate(string wpisanaData) {
+    vector <Data> daty;
     Data data;
     //string wpisanaData;
     int id,rok,miesiac,dzien;
@@ -33,6 +37,7 @@ Data DataMenager::podajDate(string wpisanaData) {
 
 Data DataMenager::pobierzDzisiejszaDate()
 {
+    vector <Data> daty;
     Data data;
     SYSTEMTIME st;
     GetSystemTime(&st);
@@ -65,42 +70,15 @@ Data DataMenager::pobierzDzisiejszaDate()
         data.ustawDataZMyslnikami(wpisanaData);
         data.ustawDataBezMyslnikow(konwersjaStringNaInt(zamienDateNaNapisBezMyslnikow(wpisanaData)));
         daty.push_back(data);
+        return data;
 }
 
 int DataMenager::pobierzIDNowejDaty() {
+    vector <Data> daty;
     if (daty.empty() == true)
         return 1;
     else
         return daty.back().pobierzID() + 1;
-}
-void DataMenager::wyswietlDaty() {
-    if (!daty.empty()) {
-        cout << "             >>> DATY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout<<daty.size()<<endl;
-        for (vector <Data> :: iterator itr = daty.begin(); itr != daty.end(); itr++) {
-            wyswietlDate(*itr);
-        }
-        cout << endl;
-    } else {
-        cout << endl << "Brak dat." << endl << endl;
-    }
-    //system("pause");
-}
-void DataMenager::wyswietlDate(Data data) {
-    if(data.pobierzMiesiac()<10&&data.pobierzDzien()<10) {
-        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-0"<<data.pobierzMiesiac()<<"-0"<<data.pobierzDzien();
-        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
-    } else if(data.pobierzMiesiac()<10) {
-        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-0"<<data.pobierzMiesiac()<<"-"<<data.pobierzDzien();
-        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
-    } else if(data.pobierzDzien()<10) {
-        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-"<<data.pobierzMiesiac()<<"-0"<<data.pobierzDzien();
-        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
-    } else{
-        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-"<<data.pobierzMiesiac()<<"-"<<data.pobierzDzien();
-        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
-    }
 }
 
 bool DataMenager::czyRokJestPrzestepny(int rok) {
@@ -217,14 +195,18 @@ string DataMenager::zamienDateNaNapisBezMyslnikow(string wpisanaData) {
 }
 
 string DataMenager::dzisiejszaData() {
-
+    //vector <Data> daty;
     Data data;
     data=pobierzDzisiejszaDate();
+    string dataZMyslnikami="";
+    dataZMyslnikami=data.pobierzDataZMyslnikami();
 
-    vector <Data> :: iterator itr = daty.end()-1;
-    pobierzDzisiejszaDateJakoString(*itr);
-    cout <<pobierzDzisiejszaDateJakoString(*itr)<<endl;
-    return pobierzDzisiejszaDateJakoString(*itr);
+    return dataZMyslnikami;
+
+    //vector <Data> :: iterator itr = daty.end()-1;
+    //pobierzDzisiejszaDateJakoString(*itr);
+    //cout <<pobierzDzisiejszaDateJakoString(*itr)<<endl;
+    //return pobierzDzisiejszaDateJakoString(*itr);
 
 }
 string DataMenager::pobierzDzisiejszaDateJakoString(Data data)
@@ -235,11 +217,45 @@ string DataMenager::pobierzDzisiejszaDateJakoString(Data data)
     return dataZMyslnikami;
 }
 
+vector <Data> DataMenager::wczytajDaty(int idZalogowanegoUzytkownika)
+{
+    vector <Data> daty;
+    Data data;
 
+    int id,rok,miesiac,dzien;
 
-
-
-
+    CMarkup xml;
+    xml.Load( "Income.xml" );
+    xml.FindElem("INCOMES"); // root ORDER element
+    xml.IntoElem(); // inside ORDER
+    while ( xml.FindElem("INCOME") ) {
+        xml.IntoElem();
+        xml.FindElem( "USERID" );
+        int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
+        //cout<<"id uzytkownika: "<<nUserID<<endl;
+        if(nUserID==idZalogowanegoUzytkownika){
+        xml.FindElem( "INCOMEID" );
+        int nIncomeID =atoi( MCD_2PCSZ(xml.GetData()) );
+        //data.ustawIncomeID(nIncomeID);
+        xml.FindElem("DATE");
+        MCD_STR strDate = xml.GetData();
+        rok=zamienDateNaRok(strDate);
+        miesiac=zamienDateNaMiesiac(strDate);
+        dzien=zamienDateNaDzien(strDate);
+        data.ustawID(nIncomeID);
+        data.ustawRok(rok);
+        data.ustawMiesiac(miesiac);
+        data.ustawDzien(dzien);
+        data.ustawDataZMyslnikami(strDate);
+        data.ustawDataBezMyslnikow(konwersjaStringNaInt(zamienDateNaNapisBezMyslnikow(strDate)));
+        xml.OutOfElem();
+        daty.push_back(data);
+        //incomes.push_back(income);
+        }
+        else xml.OutOfElem();
+    }
+    return daty;
+}
 
 
 int DataMenager::konwersjaStringNaInt(string liczba)
@@ -257,7 +273,9 @@ string DataMenager::konwersjaIntNaString(int liczba)
     string str = ss.str();
     return str;
 }
-void DataMenager::sortowanie()
+
+void DataMenager::sortowanie(vector <Data> &daty)
 {
-    sort(daty.begin(),daty.end());
+
+    //sort(daty.begin(),daty.end());
 }

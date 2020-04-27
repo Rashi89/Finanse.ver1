@@ -18,13 +18,13 @@ void ExpenseMenager::dodajItem() {
 }
 
 Expense ExpenseMenager::podajNowyItem() {
+	vector <Data> daty;
     Expense expense;
+	Data data;
 	char znak;
-    int amount;
-    string data1,item;
+    int amount,dataJakoInt;
+    string data1,item,dataJakoString;
 
-    expense.ustawExpenseID(pobierzIdNowegoItemu());
-    expense.ustawUserID(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     cout<<"Czy chcesz dodac nowy produkt z dzisiejsza data? <t/n>"<<endl;
     cin>>znak;
     if(znak=='n')
@@ -32,24 +32,38 @@ Expense ExpenseMenager::podajNowyItem() {
         cout << "Podaj date: ";
         cin.sync();
         data1=wczytajLinie();
-        dataMenager.podajDate(data1);
-        dataMenager.wyswietlDaty();
-        expense.ustawDate(data1);
-        cout << "Podaj nazwe produktu: ";
-        cin.sync();
-        item=wczytajLinie();
-        expense.ustawItem(item);
-        cout << "Podaj kwote: ";
-        cin.sync();
-        cin>>amount;
-        expense.ustawAmount(amount);
+        if(dataMenager.podajDate(data1)==true)
+        {
+            expense.ustawExpenseID(pobierzIdNowegoItemu());
+            expense.ustawUserID(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+            expense.ustawDate(data1);
+            dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(data1);
+            dataJakoInt=konwersjaStringNaInt(dataJakoString);
+            expense.ustawDataJakoInt(dataJakoInt);
+            cout << "Podaj nazwe produktu: ";
+            cin.sync();
+            item=wczytajLinie();
+            expense.ustawItem(item);
+            cout << "Podaj kwote: ";
+            cin.sync();
+            cin>>amount;
+            expense.ustawAmount(amount);
+        }
+
+        else cout<<"Zle dane!"<<endl;
     }
     else if(znak=='t')
     {
         cout<<"Dzisiejsza data: "<<endl;
-        data1=dataMenager.dzisiejszaData();
-        //cout<<data1<<endl;
+        data =dataMenager.pobierzDzisiejszaDate();
+
+        data1=data.pobierzDataZMyslnikami();
+        cout<<data1<<endl;
         expense.ustawDate(data1);
+        dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(data1);
+        dataJakoInt=konwersjaStringNaInt(dataJakoString);
+        cout<<dataJakoInt<<endl;
+        //expense.ustawDataJakoInt(dataJakoInt);
         cout << "Podaj nazwe produktu: ";
         cin.sync();
         item=wczytajLinie();
@@ -61,6 +75,7 @@ Expense ExpenseMenager::podajNowyItem() {
     }
     else
         cout<<"Zly znak"<<endl;
+
 
     return expense;
 }
@@ -87,6 +102,37 @@ void ExpenseMenager::wyswietlWszystkieItemy()
     }
 }
 
+void ExpenseMenager::wyswietlWszystkieDaty()
+{
+    if (!daty.empty()) {
+        cout << "             >>> DATY <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout<<daty.size()<<endl;
+        for (vector <Data> :: iterator itr = daty.begin(); itr != daty.end(); itr++) {
+            wyswietlDate(*itr);
+        }
+        cout << endl;
+    } else {
+        cout << endl << "Brak dat." << endl << endl;
+    }
+}
+
+void ExpenseMenager::wyswietlDate(Data data) {
+    if(data.pobierzMiesiac()<10&&data.pobierzDzien()<10) {
+        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-0"<<data.pobierzMiesiac()<<"-0"<<data.pobierzDzien();
+        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
+    } else if(data.pobierzMiesiac()<10) {
+        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-0"<<data.pobierzMiesiac()<<"-"<<data.pobierzDzien();
+        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
+    } else if(data.pobierzDzien()<10) {
+        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-"<<data.pobierzMiesiac()<<"-0"<<data.pobierzDzien();
+        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
+    } else{
+        cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-"<<data.pobierzMiesiac()<<"-"<<data.pobierzDzien();
+        cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
+    }
+}
+
 void ExpenseMenager::wyswietlItem(Expense expense)
 {
     cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
@@ -96,10 +142,32 @@ void ExpenseMenager::wyswietlItem(Expense expense)
     cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
 }
 
+void ExpenseMenager::sortowanie()
+{
+    //vector <Data> daty;
+    sortowanieItemow(expenses);
+    //dataMenager.sortowanie(daty);
+   //sort(daty.begin(),daty.end());
+}
+
+
+void ExpenseMenager::sortowanieItemow(vector <Expense> &expenses)
+{
+    sort(expenses.begin(),expenses.end());
+
+}
+
 string ExpenseMenager::wczytajLinie() {
     string wejscie;
     getline(cin, wejscie);
     //cin.ignore();
     //cin.get();
     return wejscie;
+}
+int ExpenseMenager::konwersjaStringNaInt(string liczba)
+{
+    int liczbaInt;
+    istringstream iss(liczba);
+    iss >> liczbaInt;
+    return liczbaInt;
 }

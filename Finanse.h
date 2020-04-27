@@ -33,4 +33,6 @@ public:
     void zmianaHaslaZalogowanegoUzytkownika();
     void dodajItem();
     void wyswietlWszystkieItemy();
+    void wyswietlWszystkieDaty();
+    void sortowanie();
 };

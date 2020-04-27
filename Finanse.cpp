@@ -51,3 +51,19 @@ void Finanse::wyswietlWszystkieItemy()
         expenseMenager->wyswietlWszystkieItemy();
     }
 }
+
+
+void Finanse::wyswietlWszystkieDaty()
+{
+    if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->wyswietlWszystkieDaty();
+    }
+}
+void Finanse::sortowanie()
+{
+    if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->sortowanie();
+    }
+}
