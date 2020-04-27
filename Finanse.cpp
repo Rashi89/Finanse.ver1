@@ -109,3 +109,15 @@ void Finanse::sortowanie()
     }
 }
 
+void Finanse::dodajIncome()
+{
+    if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        incomeMenager->dodajIncome();
+    }
+    else
+    {
+        cout<<"Aby dodac item nalezy sie zalogowac!"<<endl;
+        system("pause");
+    }
+}

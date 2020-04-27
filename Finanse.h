@@ -45,4 +45,6 @@ public:
     void obliczWydatkiZPoprzedniegoMiesiaca();
     void wyswietlItemyZPodanegoZakresu();
     void sortowanie();
+
+    void dodajIncome();
 };
