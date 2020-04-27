@@ -25,7 +25,10 @@ class IncomeMenager{
     int konwersjaStringNaInt(string liczba);
     void wyswietlItem(Income income);
     void wyswietlIncomeZTegoMiesiaca(Income income);
+    void wyswietlItemZPoprzedniegoMiesiaca(Income income);
     int pobierzbiezacyMiesiac();
+
+    void wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKoncowa);
 
 public:
     IncomeMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
@@ -36,10 +39,20 @@ public:
     void dodajIncome();
     void wyswietlWszystkieIncome();
     void wyswietlIncomeZBiezacegoMiesiaca();
+    void wyswietlIncomeZPoprzedniegoMiesiaca();
+    void wyswietlIncomeZPodanegoZakresu(string dataPoczatkowa, string dataKoncowa);
+    int obliczPrzychodyZObecnegoMiesiaca();
+    int obliczPrzychodyZPoprzedniegoMiesiaca();
+    int obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
+
+    bool czyWpisanaDataJestPoprawna(string data);
+
 
 
 
     string wczytajLinie();
+    float zamianaStringNaFloat(string liczba);
+    string zamienKropkeNaPrzecinek(string liczba);
 
 
 

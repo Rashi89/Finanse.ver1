@@ -2,6 +2,8 @@
 #define PLIKIZEXPENSES_H
 #include <iostream>
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 //
 #include "Expense.h"
 #include "Markup.h"
@@ -18,5 +20,6 @@ public:
     vector <Expense> wczytajItemyZPliku(int idZalogowanegoUzytkownika);
     vector <Data> wczytajDatyZPliku(int idZalogowanegoUzytkownika);
     void dopiszItemDoPliku(Expense expense);
+    float zamianaStringNaFloat(string liczba);
 };
 #endif

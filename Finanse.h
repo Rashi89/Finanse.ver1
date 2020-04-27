@@ -43,6 +43,7 @@ public:
     void wyswietlItemyZPoprzedniegoMiesiaca();
     void obliczWydatkiZObecnegoMiesiaca();
     void obliczWydatkiZPoprzedniegoMiesiaca();
+    void obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
     void wyswietlItemyZPodanegoZakresu();
     void sortowanie();
 

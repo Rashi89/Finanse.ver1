@@ -14,13 +14,17 @@ void Expense::ustawDate(string newDate) {
 void Expense::ustawItem(string newItem) {
     item=newItem;
 }
-void Expense::ustawAmount(int newAmount) {
+void Expense::ustawAmount(float newAmount) {
     if(newAmount>=0)
     amount=newAmount;
 }
 void Expense::ustawDataJakoInt(int newDataJakoInt)
 {
     dataJakoInt=newDataJakoInt;
+}
+void Expense::ustawAmountJakoString(string newAmountJakoString)
+{
+    amountJakoString=newAmountJakoString;
 }
 
     bool Expense::operator<(const Expense &other)
@@ -41,10 +45,13 @@ string Expense::pobierzDate() {
 string Expense::pobierzItem() {
     return item;
 }
-int Expense::pobierzAmount() {
+float Expense::pobierzAmount() {
     return amount;
 }
 
 int Expense::pobierzDataJakoInt() {
     return dataJakoInt;
+}
+string Expense::pobierzAmountJakoString() {
+    return amountJakoString;
 }

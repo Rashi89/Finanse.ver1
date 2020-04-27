@@ -36,8 +36,10 @@ vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownik
         MCD_STR strItem = xml.GetData();
         expense.ustawItem(strItem);
         xml.FindElem( "AMOUNT" );
-        int nAmount =atoi( MCD_2PCSZ(xml.GetData()) );
-        expense.ustawAmount(nAmount);
+        MCD_STR strAmount = xml.GetData();
+        expense.ustawAmountJakoString(strAmount);
+        float amountJakoFloat = zamianaStringNaFloat(strAmount);
+        expense.ustawAmount(amountJakoFloat);
         xml.OutOfElem();
         expenses.push_back(expense);
         }
@@ -58,7 +60,7 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
         xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
         xml.AddElem( "DATE", expense.pobierzDate() );
         xml.AddElem( "ITEM", expense.pobierzItem() );
-        xml.AddElem( "AMOUNT", expense.pobierzAmount() );
+        xml.AddElem( "AMOUNT", expense.pobierzAmountJakoString() );
 
         xml.OutOfElem();
         xml.Save( "Expense.xml" );
@@ -71,7 +73,7 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
         xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
         xml.AddElem( "DATE", expense.pobierzDate() );
         xml.AddElem( "ITEM", expense.pobierzItem() );
-        xml.AddElem( "AMOUNT", expense.pobierzAmount() );
+        xml.AddElem( "AMOUNT", expense.pobierzAmountJakoString() );
         xml.OutOfElem();
         xml.Save( "Expense.xml" );
     }
@@ -83,4 +85,42 @@ int PlikiZExpenses::konwersjaStringNaInt(string liczba)
     istringstream iss(liczba);
     iss >> liczbaInt;
     return liczbaInt;
+}
+
+float PlikiZExpenses::zamianaStringNaFloat(string liczba)
+{
+    string calosc="",ulamek="";
+    int pozycjaPrzecinka=0;
+    for(int i=0;i<liczba.length();i++)
+    {
+        if(liczba[i]!=','&&liczba[i]!='.')
+        {
+            calosc+=liczba[i];
+            pozycjaPrzecinka+=1;
+        }
+        else if(liczba[i]==',')
+        {
+            i=liczba.length()-1;
+        }
+        else if(liczba[i]=='.')
+        {
+             i=liczba.length()-1;
+        }
+    }
+    for(int i = pozycjaPrzecinka+1;i<liczba.length();i++)
+    {
+        ulamek+=liczba[i];
+    }
+
+    int caloscLiczby = konwersjaStringNaInt(calosc);
+    float ulamkowaLiczby = konwersjaStringNaInt(ulamek);
+    float wpisanaLiczbaJakoFloat;
+    if(ulamek[0]=='0'){
+    wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
+    }
+    else
+    {
+        wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
+    }
+    return wpisanaLiczbaJakoFloat;
 }

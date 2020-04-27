@@ -36,8 +36,10 @@ vector <Income> PlikiZIncomes::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
         MCD_STR strItem = xml.GetData();
         income.ustawItem(strItem);
         xml.FindElem( "AMOUNT" );
-        int nAmount =atoi( MCD_2PCSZ(xml.GetData()) );
-        income.ustawAmount(nAmount);
+        MCD_STR strAmount = xml.GetData();
+        income.ustawAmountJakoString(strAmount);
+        float amountJakoFloat = zamianaStringNaFloat(strAmount);
+        income.ustawAmount(amountJakoFloat);
         xml.OutOfElem();
         incomes.push_back(income);
         }
@@ -58,7 +60,7 @@ void PlikiZIncomes::dopiszItemDoPliku(Income income)
         xml.AddElem( "INCOMEID", income.pobierzIncomeID() );
         xml.AddElem( "DATE", income.pobierzDate() );
         xml.AddElem( "ITEM", income.pobierzItem() );
-        xml.AddElem( "AMOUNT", income.pobierzAmount() );
+        xml.AddElem( "AMOUNT", income.pobierzAmountJakoString() );
 
         xml.OutOfElem();
         xml.Save( "Income.xml" );
@@ -71,7 +73,7 @@ void PlikiZIncomes::dopiszItemDoPliku(Income income)
         xml.AddElem( "INCOMEID", income.pobierzIncomeID() );
         xml.AddElem( "DATE", income.pobierzDate() );
         xml.AddElem( "ITEM", income.pobierzItem() );
-        xml.AddElem( "AMOUNT", income.pobierzAmount() );
+        xml.AddElem( "AMOUNT", income.pobierzAmountJakoString() );
         xml.OutOfElem();
         xml.Save( "Income.xml" );
     }
@@ -83,4 +85,41 @@ int PlikiZIncomes::konwersjaStringNaInt(string liczba)
     istringstream iss(liczba);
     iss >> liczbaInt;
     return liczbaInt;
+}
+float PlikiZIncomes::zamianaStringNaFloat(string liczba)
+{
+    string calosc="",ulamek="";
+    int pozycjaPrzecinka=0;
+    for(int i=0;i<liczba.length();i++)
+    {
+        if(liczba[i]!=','&&liczba[i]!='.')
+        {
+            calosc+=liczba[i];
+            pozycjaPrzecinka+=1;
+        }
+        else if(liczba[i]==',')
+        {
+            i=liczba.length()-1;
+        }
+        else if(liczba[i]=='.')
+        {
+             i=liczba.length()-1;
+        }
+    }
+    for(int i = pozycjaPrzecinka+1;i<liczba.length();i++)
+    {
+        ulamek+=liczba[i];
+    }
+
+    int caloscLiczby = konwersjaStringNaInt(calosc);
+    float ulamkowaLiczby = konwersjaStringNaInt(ulamek);
+    float wpisanaLiczbaJakoFloat;
+    if(ulamek[0]=='0'){
+    wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
+    }
+    else
+    {
+        wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
+    }
+    return wpisanaLiczbaJakoFloat;
 }

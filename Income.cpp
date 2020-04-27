@@ -14,7 +14,7 @@ void Income::ustawDate(string newDate) {
 void Income::ustawItem(string newItem) {
     item=newItem;
 }
-void Income::ustawAmount(int newAmount) {
+void Income::ustawAmount(float newAmount) {
     if(newAmount>=0)
     amount=newAmount;
 }
@@ -41,10 +41,17 @@ string Income::pobierzDate() {
 string Income::pobierzItem() {
     return item;
 }
-int Income::pobierzAmount() {
+float Income::pobierzAmount() {
     return amount;
 }
 
 int Income::pobierzDataJakoInt() {
     return dataJakoInt;
+}
+string Income::pobierzAmountJakoString() {
+    return amountJakoString;
+}
+void Income::ustawAmountJakoString(string newAmountJakoString)
+{
+    amountJakoString=newAmountJakoString;
 }

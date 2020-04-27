@@ -18,5 +18,6 @@ public:
     vector <Income> wczytajItemyZPliku(int idZalogowanegoUzytkownika);
     vector <Data> wczytajDatyZPliku(int idZalogowanegoUzytkownika);
     void dopiszItemDoPliku(Income income);
+    float zamianaStringNaFloat(string liczba);
 };
 #endif

@@ -61,14 +61,15 @@ void Finanse::wyswietlWszystkieItemy()
  {
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
-        expenseMenager->wyswietlItemyZBiezacegoMiesiaca();
         incomeMenager->wyswietlIncomeZBiezacegoMiesiaca();
+        expenseMenager->wyswietlItemyZBiezacegoMiesiaca();
     }
  }
   void Finanse::wyswietlItemyZPoprzedniegoMiesiaca()
  {
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
+        incomeMenager->wyswietlIncomeZPoprzedniegoMiesiaca();
         expenseMenager->wyswietlItemyZPoprzedniegoMiesiaca();
     }
  }
@@ -77,14 +78,18 @@ void Finanse::wyswietlWszystkieItemy()
  {
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
-        expenseMenager->obliczWydatkiZObecnegoMiesiaca();
+        float bilans = incomeMenager->obliczPrzychodyZObecnegoMiesiaca()-expenseMenager->obliczWydatkiZObecnegoMiesiaca();
+        //expenseMenager->obliczWydatkiZObecnegoMiesiaca();
+       // incomeMenager->obliczPrzychodyZObecnegoMiesiaca();
+       cout<<"Bilans z obecnego miesiaca: "<<bilans<<endl;
     }
  }
  void Finanse::obliczWydatkiZPoprzedniegoMiesiaca()
  {
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
-        expenseMenager->obliczWydatkiZPoprzedniegoMiesiaca();
+        float bilans = incomeMenager->obliczPrzychodyZPoprzedniegoMiesiaca()-expenseMenager->obliczWydatkiZPoprzedniegoMiesiaca();
+        cout<<"Bilans z poprzedniego miesiaca: "<<bilans<<endl;
     }
  }
 
@@ -92,7 +97,26 @@ void Finanse::wyswietlWszystkieItemy()
  {
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
-        expenseMenager->wyswietlItemyZPodanegoZakresu();
+        string dataPoczatkowa;
+        string dataKoncowa;
+        cout<<"Podaj date poczatkowa: ";
+        cin>>dataPoczatkowa;
+        cout<<"Podaj date koncowa: ";
+        cin>>dataKoncowa;
+        incomeMenager->wyswietlIncomeZPodanegoZakresu(dataPoczatkowa,dataKoncowa);
+        expenseMenager->wyswietlItemyZPodanegoZakresu(dataPoczatkowa,dataKoncowa);
+        if(incomeMenager->czyWpisanaDataJestPoprawna(dataPoczatkowa)==true && incomeMenager->czyWpisanaDataJestPoprawna(dataKoncowa)==true)
+        {
+           obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
+        }
+    }
+ }
+ void Finanse::obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa)
+ {
+     if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        float bilans = incomeMenager->obliczPrzychodyZPodanegoOkresu(dataPoczatkowa,dataKoncowa)-expenseMenager->obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
+        cout<<"Bilans z wybranego okresu: "<<bilans<<endl;
     }
  }
 
