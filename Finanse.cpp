@@ -54,6 +54,7 @@ void Finanse::wyswietlWszystkieItemy()
     if(usersMenager.czyUzytkownikJestZalogowany())
     {
         expenseMenager->wyswietlWszystkieItemy();
+        incomeMenager->wyswietlWszystkieIncome();
     }
 }
  void Finanse::wyswietlItemyZTegoMiesiaca()

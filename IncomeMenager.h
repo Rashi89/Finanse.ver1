@@ -23,6 +23,7 @@ class IncomeMenager{
     Income podajNowyItem(char znak, string wpisanaData);
     int pobierzIdNowegoItemu();
     int konwersjaStringNaInt(string liczba);
+    void wyswietlItem(Income income);
 
 public:
     IncomeMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
@@ -31,6 +32,7 @@ public:
         };
 
     void dodajIncome();
+    void wyswietlWszystkieIncome();
 
 
 

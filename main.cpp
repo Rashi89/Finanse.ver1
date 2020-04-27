@@ -10,12 +10,12 @@ using namespace std;
 int main() {
     Finanse finanse;
 
-    //finanse.logowanieUzytownika();
+    finanse.logowanieUzytownika();
 
     //finanse.dodajIncome();
 
     //finanse.dodajItem();
-    //finanse.wyswietlWszystkieItemy();
+    finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
    // finanse.sortowanie();
    // finanse.wyswietlItemyZTegoMiesiaca();

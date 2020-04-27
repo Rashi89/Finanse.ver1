@@ -116,7 +116,7 @@
 	<vector>
 	<algorithm>
 
-1587381384 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
+1587381778 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>
@@ -127,7 +127,7 @@
 	"DataMenager.h"
 	"Markup.h"
 
-1587381376 d:\programowanie\projekty c++\finanse\incomemenager.h
+1587381771 d:\programowanie\projekty c++\finanse\incomemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -143,7 +143,7 @@
 	"DataMenager.h"
 	"IncomeMenager.h"
 
-1587381443 source:d:\programowanie\projekty c++\finanse\finanse.cpp
+1587381833 source:d:\programowanie\projekty c++\finanse\finanse.cpp
 	"Finanse.h"
 	"UsersMenager.h"
 	"ExpenseMenager.h"
@@ -240,186 +240,4 @@
 	"PlikiZExpenses.h"
 	"data.h"
 	"DataMenager.h"
-
-1586492720 source:c:\users\rashi\desktop\new\markup.cpp
-	<stdio.h>
-	"Markup.h"
-	<errno.h>
-	<iconv.h>
-	<windows.h>
-	<mbstring.h>
-
-1586149176 c:\users\rashi\desktop\new\markup.h
-	<stdlib.h>
-	<string.h>
-	<string>
-	<afx.h>
-
-1586492720 source:c:\users\rashi\desktop\new\user.cpp
-	"User.h"
-
-1588007633 c:\users\rashi\desktop\new\user.h
-	<iostream>
-
-1588007633 source:c:\users\rashi\desktop\new\data.cpp
-	"Data.h"
-
-1588007633 c:\users\rashi\desktop\new\data.h
-	<iostream>
-	<vector>
-	<algorithm>
-
-1588007633 source:c:\users\rashi\desktop\new\datamenager.cpp
-	<iostream>
-	<vector>
-	<stdlib.h>
-	<algorithm>
-	<windows.h>
-	<winbase.h>
-	<windows.h>
-	"DataMenager.h"
-	"ExpenseMenager.h"
-	"IncomeMenager.h"
-	"data.h"
-	"Expense.h"
-	"Markup.h"
-
-1588007633 c:\users\rashi\desktop\new\datamenager.h
-	<iostream>
-	<vector>
-	<sstream>
-	<algorithm>
-	"data.h"
-	"Expense.h"
-	"Income.h"
-
-1588007633 c:\users\rashi\desktop\new\expense.h
-	<iostream>
-	<vector>
-	<algorithm>
-
-1588007633 c:\users\rashi\desktop\new\income.h
-	<iostream>
-	<vector>
-	<algorithm>
-
-1588007633 c:\users\rashi\desktop\new\expensemenager.h
-	<iostream>
-	<vector>
-	<algorithm>
-	"Expense.h"
-	"PlikiZExpenses.h"
-	"DataMenager.h"
-	"Markup.h"
-	"data.h"
-
-1588007633 c:\users\rashi\desktop\new\plikizexpenses.h
-	<iostream>
-	<vector>
-	"Expense.h"
-	"Markup.h"
-	"data.h"
-	"DataMenager.h"
-
-1588007633 c:\users\rashi\desktop\new\incomemenager.h
-	<iostream>
-	<vector>
-	<algorithm>
-	"Income.h"
-	"data.h"
-	"DataMenager.h"
-	"PlikiZIncomes.h"
-
-1588007633 c:\users\rashi\desktop\new\plikizincomes.h
-	<iostream>
-	<vector>
-	"Income.h"
-	"Markup.h"
-	"data.h"
-	"DataMenager.h"
-
-1588007633 source:c:\users\rashi\desktop\new\expense.cpp
-	"Expense.h"
-
-1588007633 source:c:\users\rashi\desktop\new\expensemenager.cpp
-	<iostream>
-	<vector>
-	<windows.h>
-	<winbase.h>
-	"Expense.h"
-	"data.h"
-	"ExpenseMenager.h"
-	"DataMenager.h"
-	"Markup.h"
-
-1588007633 source:c:\users\rashi\desktop\new\finanse.cpp
-	"Finanse.h"
-	"UsersMenager.h"
-	"ExpenseMenager.h"
-	"DataMenager.h"
-	"IncomeMenager.h"
-
-1588007633 c:\users\rashi\desktop\new\finanse.h
-	<iostream>
-	"UsersMenager.h"
-	"ExpenseMenager.h"
-	"DataMenager.h"
-	"IncomeMenager.h"
-
-1588007633 c:\users\rashi\desktop\new\usersmenager.h
-	<iostream>
-	<vector>
-	"User.h"
-	"PlikiZUsers.h"
-	"ExpenseMenager.h"
-	"DataMenager.h"
-	"Markup.h"
-	"IncomeMenager.h"
-
-1588007633 c:\users\rashi\desktop\new\plikizusers.h
-	<iostream>
-	<vector>
-	"User.h"
-	"Markup.h"
-
-1588007633 source:c:\users\rashi\desktop\new\income.cpp
-	"Income.h"
-
-1588007633 source:c:\users\rashi\desktop\new\incomemenager.cpp
-	<iostream>
-	<vector>
-	<windows.h>
-	<winbase.h>
-	"Income.h"
-	"data.h"
-	"IncomeMenager.h"
-	"DataMenager.h"
-	"Markup.h"
-
-1588007633 source:c:\users\rashi\desktop\new\plikizexpenses.cpp
-	"Markup.h"
-	"Expense.h"
-	"PlikiZExpenses.h"
-	"data.h"
-	"DataMenager.h"
-
-1588007633 source:c:\users\rashi\desktop\new\plikizincomes.cpp
-	"Markup.h"
-	"Income.h"
-	"PlikiZIncomes.h"
-	"data.h"
-	"DataMenager.h"
-
-1588007633 source:c:\users\rashi\desktop\new\plikizusers.cpp
-	"Markup.h"
-	"User.h"
-	"PlikiZUsers.h"
-
-1588007633 source:c:\users\rashi\desktop\new\usersmenager.cpp
-	<iostream>
-	<vector>
-	"User.h"
-	"UsersMenager.h"
-	"Markup.h"
-	"PlikiZUsers.h"
 

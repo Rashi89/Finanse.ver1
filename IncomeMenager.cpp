@@ -97,6 +97,37 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
         return income;
 }
 
+void IncomeMenager::wyswietlWszystkieIncome()
+{
+    if (!incomes.empty()) {
+        cout << "             >>>PRODUKTY<<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        //cout<<incomes.size()<<endl;
+        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
+            wyswietlItem(*itr);
+        }
+        cout << endl;
+    } else {
+        cout << endl << "Brak produktow." << endl << endl;
+    }
+}
+void IncomeMenager::wyswietlItem(Income income)
+{
+    cout<<"ID uzytkownika: "<< income.pobierzUserID()<<endl;
+    cout<<"ID itemu: "<< income.pobierzIncomeID()<<endl;
+    cout<<"Data: "<< income.pobierzDate()<<endl;
+    cout<<"Nazwa itemu: "<< income.pobierzItem()<<endl;
+    cout<<"Koszt: "<< income.pobierzAmount()<<endl;
+    cout<<"Data jako int: "<<income.pobierzDataJakoInt()<<endl;
+}
+
+
+
+
+
+
+
+
 int IncomeMenager::pobierzIdNowegoItemu() {
     if (incomes.empty() == true)
         return 1;
