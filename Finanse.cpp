@@ -19,9 +19,9 @@ void Finanse::logowanieUzytownika()
     usersMenager.logowanieUzytkownika();
     if(usersMenager.czyUzytkownikJestZalogowany())
     {
-        expenseMenager = new ExpenseMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
+        expenseMenager = new ExpenseMenager(NAZWA_PLIKU_Z_EXPENSES,usersMenager.pobierzIdZalogowanegoUzytkownika());
         //dataMenager = new DataMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
-        incomeMenager =  new IncomeMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
+        incomeMenager =  new IncomeMenager(NAZWA_PLIKU_Z_INCOMES,usersMenager.pobierzIdZalogowanegoUzytkownika());
 
     }
 }

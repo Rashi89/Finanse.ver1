@@ -35,7 +35,7 @@ class ExpenseMenager
     void wyswietlDate(Data data);
 
 public:
-    ExpenseMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
+    ExpenseMenager(string nazwaPlikuZExpenses,int idZalogowanegoUzytkownika): plikiZExpenses(nazwaPlikuZExpenses),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
         expenses = plikiZExpenses.wczytajItemyZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
         daty = dataMenager.wczytajDaty(ID_ZALOGOWANEGO_UZYTKOWNIKA);
         };

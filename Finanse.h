@@ -12,10 +12,13 @@ class Finanse
     UsersMenager usersMenager;
     ExpenseMenager *expenseMenager;
     IncomeMenager   *incomeMenager;
-    //DataMenager *dataMenager;
+    const string NAZWA_PLIKU_Z_INCOMES;
+    const string NAZWA_PLIKU_Z_EXPENSES;
+
+
 
 public:
-    Finanse()
+    Finanse(string nazwaPlikuZUzytkownikami,string nazwaPlikuZIncomes, string nazwaPlikuZExpenses) : usersMenager(nazwaPlikuZUzytkownikami),NAZWA_PLIKU_Z_INCOMES(nazwaPlikuZIncomes), NAZWA_PLIKU_Z_EXPENSES(nazwaPlikuZExpenses)
     {
         expenseMenager=NULL;
         incomeMenager=NULL;

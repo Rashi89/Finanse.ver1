@@ -10,9 +10,10 @@ using namespace std;
 
 class PlikiZUsers {
 
+    const string NAZWA_PLIKU_Z_UZYTKOWNIKAMI;
 
 public:
-
+    PlikiZUsers(string nazwaPlikuZUzytkownikami): NAZWA_PLIKU_Z_UZYTKOWNIKAMI(nazwaPlikuZUzytkownikami){};
     vector <User> wczytajUzytkownikowZPliku();
     void dopiszUzytkownikaDoPliku(User user);
     void zapiszWszystkichUzytkownikowDoPliku(vector <User> &users);

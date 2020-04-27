@@ -14,7 +14,7 @@ vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownik
     int dataJakoInt;
 
     CMarkup xml;
-    xml.Load( "Expense.xml" );
+    xml.Load( NAZWA_PLIKU_Z_EXPENSES );
     xml.FindElem("EXPENSES"); // root ORDER element
     xml.IntoElem(); // inside ORDER
     while ( xml.FindElem("EXPENSE") ) {
@@ -51,7 +51,7 @@ vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownik
 void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
 {
     CMarkup xml;
-    if(xml.Load( "Expense.xml" )==false) {
+    if(xml.Load( NAZWA_PLIKU_Z_EXPENSES )==false) {
         xml.AddElem( "EXPENSES" );
         xml.IntoElem();
         xml.AddElem( "EXPENSE" );
@@ -63,7 +63,7 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
         xml.AddElem( "AMOUNT", expense.pobierzAmountJakoString() );
 
         xml.OutOfElem();
-        xml.Save( "Expense.xml" );
+        xml.Save( NAZWA_PLIKU_Z_EXPENSES );
     } else {
         xml.FindElem();
         xml.IntoElem();
@@ -75,7 +75,7 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
         xml.AddElem( "ITEM", expense.pobierzItem() );
         xml.AddElem( "AMOUNT", expense.pobierzAmountJakoString() );
         xml.OutOfElem();
-        xml.Save( "Expense.xml" );
+        xml.Save( NAZWA_PLIKU_Z_EXPENSES );
     }
 }
 

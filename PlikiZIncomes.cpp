@@ -14,7 +14,7 @@ vector <Income> PlikiZIncomes::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
     int dataJakoInt;
 
     CMarkup xml;
-    xml.Load( "Income.xml" );
+    xml.Load( NAZWA_PLIKU_Z_INCOMES );
     xml.FindElem("INCOMES"); // root ORDER element
     xml.IntoElem(); // inside ORDER
     while ( xml.FindElem("INCOME") ) {
@@ -51,7 +51,7 @@ vector <Income> PlikiZIncomes::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
 void PlikiZIncomes::dopiszItemDoPliku(Income income)
 {
     CMarkup xml;
-    if(xml.Load( "Income.xml" )==false) {
+    if(xml.Load( NAZWA_PLIKU_Z_INCOMES )==false) {
         xml.AddElem( "INCOMES" );
         xml.IntoElem();
         xml.AddElem( "INCOME" );
@@ -63,7 +63,7 @@ void PlikiZIncomes::dopiszItemDoPliku(Income income)
         xml.AddElem( "AMOUNT", income.pobierzAmountJakoString() );
 
         xml.OutOfElem();
-        xml.Save( "Income.xml" );
+        xml.Save( NAZWA_PLIKU_Z_INCOMES );
     } else {
         xml.FindElem();
         xml.IntoElem();
@@ -75,7 +75,7 @@ void PlikiZIncomes::dopiszItemDoPliku(Income income)
         xml.AddElem( "ITEM", income.pobierzItem() );
         xml.AddElem( "AMOUNT", income.pobierzAmountJakoString() );
         xml.OutOfElem();
-        xml.Save( "Income.xml" );
+        xml.Save( NAZWA_PLIKU_Z_INCOMES );
     }
 }
 

@@ -31,7 +31,7 @@ class IncomeMenager{
     void wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKoncowa);
 
 public:
-    IncomeMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
+    IncomeMenager(string nazwaPlikuZIncomes,int idZalogowanegoUzytkownika): plikiZIncomes(nazwaPlikuZIncomes),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
         incomes= plikiZIncomes.wczytajItemyZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
         daty = dataMenager.wczytajDaty(ID_ZALOGOWANEGO_UZYTKOWNIKA);
         };

@@ -23,7 +23,7 @@ class UsersMenager {
     User podajDaneNowegoUzytkownika();
 
 public:
-    UsersMenager() {
+    UsersMenager(string nazwaPlikuZUzytkownikami) : plikiZUsers(nazwaPlikuZUzytkownikami) {
         idZalogowanegoUzytkownika=0;
         users = plikiZUsers.wczytajUzytkownikowZPliku();
     };

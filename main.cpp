@@ -8,14 +8,14 @@
 using namespace std;
 
 int main() {
-    Finanse finanse;
+    Finanse finanse("Users.xml","Income.xml","Expense.xml");
 
     finanse.logowanieUzytownika();
 
-    //finanse.dodajIncome();
+    finanse.dodajIncome();
 
     finanse.dodajItem();
-    finanse.wyswietlWszystkieItemy();
+    //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
     //finanse.sortowanie();
     //finanse.wyswietlWszystkieItemy();

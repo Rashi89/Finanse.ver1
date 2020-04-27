@@ -6,7 +6,7 @@ vector <User> PlikiZUsers::wczytajUzytkownikowZPliku() {
     User user;
     vector <User> users;
     CMarkup xml;
-    xml.Load( "Sample.xml" );
+    xml.Load( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
     xml.FindElem("USERS"); // root ORDER element
     xml.IntoElem(); // inside ORDER
     while ( xml.FindElem("USER") ) {
@@ -33,7 +33,7 @@ vector <User> PlikiZUsers::wczytajUzytkownikowZPliku() {
 }
 void PlikiZUsers::dopiszUzytkownikaDoPliku(User user) {
     CMarkup xml;
-    if(xml.Load( "Sample.xml" )==false) {
+    if(xml.Load( NAZWA_PLIKU_Z_UZYTKOWNIKAMI )==false) {
         xml.AddElem( "USERS" );
         xml.IntoElem();
         xml.AddElem( "USER" );
@@ -45,7 +45,7 @@ void PlikiZUsers::dopiszUzytkownikaDoPliku(User user) {
         xml.AddElem( "PASSWORD", user.pobierzHaslo() );
 
         xml.OutOfElem();
-        xml.Save( "Sample.xml" );
+        xml.Save( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
     } else {
         xml.FindElem();
         xml.IntoElem();
@@ -57,7 +57,7 @@ void PlikiZUsers::dopiszUzytkownikaDoPliku(User user) {
         xml.AddElem( "LOGIN", user.pobierzLogin() );
         xml.AddElem( "PASSWORD", user.pobierzHaslo() );
         xml.OutOfElem();
-        xml.Save( "Sample.xml" );
+        xml.Save( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
     }
 }
 
@@ -76,5 +76,5 @@ void PlikiZUsers::zapiszWszystkichUzytkownikowDoPliku(vector <User> &users) {
         xml.AddElem( "PASSWORD", itr ->pobierzHaslo() );
         xml.OutOfElem();
     }
-    xml.Save( "Sample.xml" );
+    xml.Save( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
 }
