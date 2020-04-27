@@ -18,17 +18,20 @@ void ExpenseMenager::dodajItem() {
 
 Expense ExpenseMenager::podajNowyItem() {
     Expense expense;
+	char znak;
+    int amount;
+    string data1,item;
 
     expense.ustawExpenseID(pobierzIdNowegoItemu());
     expense.ustawUserID(ID_ZALOGOWANEGO_UZYTKOWNIKA);
-
-    int amount;
-    string data,item;
-
+    cout<<"Czy chcesz dodac nowy produkt z dzisiejsza data? <t/n>"<<endl;
+    cin>>znak;
+    if(znak=='n')
+    {
         cout << "Podaj date: ";
         cin.sync();
-        data=wczytajLinie();
-        expense.ustawDate(data);
+        data1=wczytajLinie();
+        expense.ustawDate(data1);
         cout << "Podaj nazwe produktu: ";
         cin.sync();
         item=wczytajLinie();
@@ -37,6 +40,22 @@ Expense ExpenseMenager::podajNowyItem() {
         cin.sync();
         cin>>amount;
         expense.ustawAmount(amount);
+    }
+    else{
+        cout<<"Dzisiejsza data: "<<endl;
+        data1=dataMenager.dzisiejszaData();
+        cout<<data1<<endl;
+        expense.ustawDate(data1);
+        cout << "Podaj nazwe produktu: ";
+        cin.sync();
+        item=wczytajLinie();
+        expense.ustawItem(item);
+        cout << "Podaj kwote: ";
+        cin.sync();
+        cin>>amount;
+        expense.ustawAmount(amount);
+    }
+
 
     return expense;
 }

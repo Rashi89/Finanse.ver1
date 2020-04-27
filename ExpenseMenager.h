@@ -7,6 +7,7 @@
 #include "ExpenseMenager.h"
 #include "PlikiZExpenses.h"
 #include "Markup.h"
+#include "DataMenager.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class ExpenseMenager
 
     vector <Expense> expenses;
     PlikiZExpenses plikiZExpenses;
+    DataMenager dataMenager;
 
     Expense podajNowyItem();
     int pobierzIdNowegoItemu();
