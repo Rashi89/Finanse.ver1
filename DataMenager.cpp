@@ -31,8 +31,9 @@ bool DataMenager::podajDate(string wpisanaData) {
         data.ustawDataZMyslnikami(wpisanaData);
         data.ustawDataBezMyslnikow(konwersjaStringNaInt(zamienDateNaNapisBezMyslnikow(wpisanaData)));
         daty.push_back(data);
-    } else
-        cout<<"Bledna data!"<<endl;
+        return true;
+    } else return false;
+        //cout<<"Bledna data!"<<endl;
 }
 
 Data DataMenager::pobierzDzisiejszaDate()
@@ -217,6 +218,40 @@ string DataMenager::pobierzDzisiejszaDateJakoString(Data data)
     return dataZMyslnikami;
 }
 
+int DataMenager::dzisiejszaDataJakoInt()
+{
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+
+    string dzisiejszaDataJakoString;
+        dzisiejszaDataJakoString+=konwersjaIntNaString(st.wYear);
+        dzisiejszaDataJakoString+="-";
+        if(st.wMonth<10)
+        {
+            dzisiejszaDataJakoString+="0";
+            dzisiejszaDataJakoString+=konwersjaIntNaString(st.wMonth);
+            dzisiejszaDataJakoString+="-";
+        }
+        else{
+            dzisiejszaDataJakoString+=konwersjaIntNaString(st.wMonth);
+            dzisiejszaDataJakoString+="-";
+        }
+        if(st.wDay<10)
+        {
+            dzisiejszaDataJakoString+="0";
+            dzisiejszaDataJakoString+=konwersjaIntNaString(st.wDay);
+        }
+        else{
+           dzisiejszaDataJakoString+=konwersjaIntNaString(st.wDay);
+        }
+
+        dzisiejszaDataJakoString=zamienDateNaNapisBezMyslnikow(dzisiejszaDataJakoString);
+        //cout<<dzisiejszaDataJakoString<<endl;
+
+        int dzisiejszaDataJakoInt = konwersjaStringNaInt(dzisiejszaDataJakoString);
+        return dzisiejszaDataJakoInt;
+}
+
 vector <Data> DataMenager::wczytajDaty(int idZalogowanegoUzytkownika)
 {
     vector <Data> daty;
@@ -225,16 +260,16 @@ vector <Data> DataMenager::wczytajDaty(int idZalogowanegoUzytkownika)
     int id,rok,miesiac,dzien;
 
     CMarkup xml;
-    xml.Load( "Income.xml" );
-    xml.FindElem("INCOMES"); // root ORDER element
+    xml.Load( "Expense.xml" );
+    xml.FindElem("EXPENSES"); // root ORDER element
     xml.IntoElem(); // inside ORDER
-    while ( xml.FindElem("INCOME") ) {
+    while ( xml.FindElem("EXPENSE") ) {
         xml.IntoElem();
         xml.FindElem( "USERID" );
         int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
         //cout<<"id uzytkownika: "<<nUserID<<endl;
         if(nUserID==idZalogowanegoUzytkownika){
-        xml.FindElem( "INCOMEID" );
+        xml.FindElem( "EXPENSEID" );
         int nIncomeID =atoi( MCD_2PCSZ(xml.GetData()) );
         //data.ustawIncomeID(nIncomeID);
         xml.FindElem("DATE");
@@ -274,8 +309,66 @@ string DataMenager::konwersjaIntNaString(int liczba)
     return str;
 }
 
-void DataMenager::sortowanie(vector <Data> &daty)
+int DataMenager::obliczIleDniMaObecnyMiesiac()
+{
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    int obecnyMiesiac=st.wMonth;
+    int obecnyRok =st.wYear;
+
+    if(obecnyMiesiac==1||obecnyMiesiac==3||obecnyMiesiac==5||obecnyMiesiac==7||obecnyMiesiac==8||obecnyMiesiac==10||obecnyMiesiac==12) return 31;
+    else if(obecnyMiesiac==2)
+    {
+        if(czyRokJestPrzestepny(obecnyRok)==true) return 29;
+            else return 28;
+    }
+    else if(obecnyMiesiac==4||obecnyMiesiac==6||obecnyMiesiac==9||obecnyMiesiac==11) return 30;
+
+}
+
+int DataMenager::ostatniaDataWObecnymMiesiacuJakoInt()
+{
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    int maxymalnyDzien=obliczIleDniMaObecnyMiesiac();
+    int maxymalnaDataJakoInt = maxymalnyDzien+st.wMonth*100+st.wYear*10000;
+    //cout<<maxymalnaDataJakoInt<<endl;
+    return maxymalnaDataJakoInt;
+}
+
+bool DataMenager::czyDataJestZPrzedzialu(string wpisanaData)
+{
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    int maxData=ostatniaDataWObecnymMiesiacuJakoInt();
+    string wpisanaDataBezMyslnikow=zamienDateNaNapisBezMyslnikow(wpisanaData);
+    int wpisanaDataJakoInt = konwersjaStringNaInt(wpisanaDataBezMyslnikow);
+    int minData= 20000101;
+    if(wpisanaDataJakoInt>maxData||wpisanaDataJakoInt<minData)
+        {
+            if(st.wMonth<10&&st.wDay<10){
+                cout<<"Minimalna data: 2000-01-01"<<endl;
+                cout<<"Maksymalna data: "<<st.wYear<<"-0"<<st.wMonth<<"-0"<<obliczIleDniMaObecnyMiesiac()<<endl;
+            }
+            else if(st.wMonth<10&&st.wDay>=10){
+                cout<<"Minimalna data: 2000-01-01"<<endl;
+                cout<<"Maksymalna data: "<<st.wYear<<"-0"<<st.wMonth<<"-"<<obliczIleDniMaObecnyMiesiac()<<endl;
+            }
+            else if(st.wMonth>=10&&st.wDay>=10){
+                cout<<"Minimalna data: 2000-01-01"<<endl;
+                cout<<"Maksymalna data: "<<st.wYear<<"-"<<st.wMonth<<"-"<<obliczIleDniMaObecnyMiesiac()<<endl;
+            }
+                return false;
+        }
+    else return true;
+}
+
+
+
+
+
+/*void DataMenager::sortowanie(vector <Data> &daty)
 {
 
-    //sort(daty.begin(),daty.end());
-}
+    sort(daty.begin(),daty.end());
+}*/

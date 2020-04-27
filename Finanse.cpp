@@ -1,6 +1,7 @@
 #include "Finanse.h"
 #include "UsersMenager.h"
 #include "ExpenseMenager.h"
+#include "DataMenager.h"
 
 void Finanse::rejestracjaUzytkownika()
 {
@@ -18,6 +19,8 @@ void Finanse::logowanieUzytownika()
     if(usersMenager.czyUzytkownikJestZalogowany())
     {
         expenseMenager = new ExpenseMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
+        //dataMenager = new DataMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
+
     }
 }
 
@@ -51,7 +54,43 @@ void Finanse::wyswietlWszystkieItemy()
         expenseMenager->wyswietlWszystkieItemy();
     }
 }
+ void Finanse::wyswietlItemyZTegoMiesiaca()
+ {
+     if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->wyswietlItemyZBiezacegoMiesiaca();
+    }
+ }
+  void Finanse::wyswietlItemyZPoprzedniegoMiesiaca()
+ {
+     if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->wyswietlItemyZPoprzedniegoMiesiaca();
+    }
+ }
 
+ void Finanse::obliczWydatkiZObecnegoMiesiaca()
+ {
+     if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->obliczWydatkiZObecnegoMiesiaca();
+    }
+ }
+ void Finanse::obliczWydatkiZPoprzedniegoMiesiaca()
+ {
+     if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->obliczWydatkiZPoprzedniegoMiesiaca();
+    }
+ }
+
+  void Finanse::wyswietlItemyZPodanegoZakresu()
+ {
+     if(usersMenager.czyUzytkownikJestZalogowany())
+    {
+        expenseMenager->wyswietlItemyZPodanegoZakresu();
+    }
+ }
 
 void Finanse::wyswietlWszystkieDaty()
 {
@@ -67,3 +106,4 @@ void Finanse::sortowanie()
         expenseMenager->sortowanie();
     }
 }
+

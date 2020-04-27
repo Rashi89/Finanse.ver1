@@ -2,7 +2,7 @@
 
 #include "UsersMenager.h"
 #include "ExpenseMenager.h"
-//#include "DataMenager.h"
+#include "DataMenager.h"
 
 using namespace std;
 
@@ -34,5 +34,10 @@ public:
     void dodajItem();
     void wyswietlWszystkieItemy();
     void wyswietlWszystkieDaty();
+    void wyswietlItemyZTegoMiesiaca();
+    void wyswietlItemyZPoprzedniegoMiesiaca();
+    void obliczWydatkiZObecnegoMiesiaca();
+    void obliczWydatkiZPoprzedniegoMiesiaca();
+    void wyswietlItemyZPodanegoZakresu();
     void sortowanie();
 };

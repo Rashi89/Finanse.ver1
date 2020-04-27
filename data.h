@@ -28,7 +28,7 @@ public:
         this->dataBezMyslnikow = dataBezMyslnikow;
     }
 
-    bool operator<(const Data &other);
+    //bool operator<(const Data &other);
     //setery
     void ustawDataZMyslnikami(string nowaData);
     void ustawID(int noweId);

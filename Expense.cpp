@@ -29,7 +29,6 @@ void Expense::ustawDataJakoInt(int newDataJakoInt)
 }
 
 
-
 int Expense::pobierzExpenseID() {
     return expenseID;
 }

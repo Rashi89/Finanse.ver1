@@ -54,7 +54,7 @@
         return dataBezMyslnikow;
     }
 
-        bool Data::operator<(const Data &other)
-{
-    return dataBezMyslnikow < other.dataBezMyslnikow;
-}
+    //bool Data::operator<(const Data &other)
+//{
+   // return dataBezMyslnikow < other.dataBezMyslnikow;
+//}
