@@ -17,8 +17,8 @@ int main() {
     //finanse.dodajItem();
     //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
-    finanse.sortowanie();
-    finanse.wyswietlWszystkieItemy();
+    //finanse.sortowanie();
+    //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlItemyZTegoMiesiaca();
     //finanse.obliczWydatkiZObecnegoMiesiaca();
     //finanse.obliczWydatkiZPoprzedniegoMiesiaca();

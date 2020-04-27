@@ -22,7 +22,7 @@ void ExpenseMenager::dodajItem() {
     {
         cout << "Podaj date: ";
         cin.sync();
-        string wpisanaData=wczytajLinie();
+        string wpisanaData=MetodyPomocnicze::wczytajLinie();
         if(dataMenager.czyDataJestZPrzedzialu(wpisanaData)==true)
         {
             expense=podajNowyItem(znak,wpisanaData);
@@ -65,7 +65,7 @@ Expense ExpenseMenager::podajNowyItem(char znak, string wpisanaData) {
             expense.ustawDataJakoInt(dataJakoInt);
             cout << "Podaj nazwe produktu: ";
             cin.sync();
-            item=wczytajLinie();
+            item=MetodyPomocnicze::wczytajLinie();
             expense.ustawItem(item);
             cout << "Podaj kwote: ";
             cin.sync();
@@ -90,7 +90,7 @@ Expense ExpenseMenager::podajNowyItem(char znak, string wpisanaData) {
 
         cout << "Podaj nazwe produktu: ";
         cin.sync();
-        item=wczytajLinie();
+        item=MetodyPomocnicze::wczytajLinie();
         expense.ustawItem(item);
         cout << "Podaj kwote: ";
         cin.sync();
@@ -405,15 +405,6 @@ float ExpenseMenager::obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string 
         cout << endl;
 }
 }
-
-string ExpenseMenager::wczytajLinie() {
-    string wejscie;
-    getline(cin, wejscie);
-    //cin.ignore();
-    //cin.get();
-    return wejscie;
-}
-
 
 int ExpenseMenager::konwersjaStringNaInt(string liczba)
 {

@@ -9,6 +9,7 @@
 #include "DataMenager.h"
 #include "Markup.h"
 #include "data.h"
+#include "MetodyPomocnicze.h"
 
 using namespace std;
 
@@ -50,7 +51,6 @@ public:
     float obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
 
 
-    string wczytajLinie();
     float zamianaStringNaFloat(string liczba);
     string zamienKropkeNaPrzecinek(string liczba);
 

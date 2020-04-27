@@ -9,6 +9,7 @@
 #include "data.h"
 #include "DataMenager.h"
 #include "PlikiZIncomes.h"
+#include "MetodyPomocnicze.h"
 
 using namespace std;
 
@@ -50,7 +51,6 @@ public:
 
 
 
-    string wczytajLinie();
     float zamianaStringNaFloat(string liczba);
     string zamienKropkeNaPrzecinek(string liczba);
 

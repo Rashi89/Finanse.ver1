@@ -22,7 +22,7 @@ void IncomeMenager::dodajIncome() {
     {
         cout << "Podaj date: ";
         cin.sync();
-        string wpisanaData=wczytajLinie();
+        string wpisanaData=MetodyPomocnicze::wczytajLinie();
         if(dataMenager.czyDataJestZPrzedzialu(wpisanaData)==true)
         {
             income=podajNowyItem(znak,wpisanaData);
@@ -64,7 +64,7 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
             income.ustawDataJakoInt(dataJakoInt);
             cout << "Podaj nazwe produktu: ";
             cin.sync();
-            item=wczytajLinie();
+            item=MetodyPomocnicze::wczytajLinie();
             income.ustawItem(item);
             cout << "Podaj kwote: ";
             cin.sync();
@@ -87,7 +87,7 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
 
         cout << "Podaj nazwe produktu: ";
         cin.sync();
-        item=wczytajLinie();
+        item=MetodyPomocnicze::wczytajLinie();
         income.ustawItem(item);
         cout << "Podaj kwote: ";
         cin.sync();
@@ -372,14 +372,6 @@ int IncomeMenager::pobierzIdNowegoItemu() {
         return 1;
     else
         return incomes.back().pobierzIncomeID() + 1;
-}
-
-string IncomeMenager::wczytajLinie() {
-    string wejscie;
-    getline(cin, wejscie);
-    //cin.ignore();
-    //cin.get();
-    return wejscie;
 }
 
 int IncomeMenager::konwersjaStringNaInt(string liczba)
