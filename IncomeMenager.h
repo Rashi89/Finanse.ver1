@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <sstream>
 
 #include "Income.h"
 #include "data.h"
@@ -23,7 +24,7 @@ class IncomeMenager{
 
     Income podajNowyItem(char znak, string wpisanaData);
     int pobierzIdNowegoItemu();
-    int konwersjaStringNaInt(string liczba);
+    //int konwersjaStringNaInt(string liczba);
     void wyswietlItem(Income income);
     void wyswietlIncomeZTegoMiesiaca(Income income);
     void wyswietlItemZPoprzedniegoMiesiaca(Income income);
@@ -51,8 +52,8 @@ public:
 
 
 
-    float zamianaStringNaFloat(string liczba);
-    string zamienKropkeNaPrzecinek(string liczba);
+    //float zamianaStringNaFloat(string liczba);
+    //string zamienPrzecinekNakropke(string liczba);
 
 
 

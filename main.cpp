@@ -20,7 +20,7 @@ int main() {
     //finanse.sortowanie();
     //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlItemyZTegoMiesiaca();
-    //finanse.obliczWydatkiZObecnegoMiesiaca();
+    finanse.obliczWydatkiZObecnegoMiesiaca();
     //finanse.obliczWydatkiZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPodanegoZakresu();

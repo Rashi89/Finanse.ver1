@@ -2,12 +2,14 @@
 #include <vector>
 #include <windows.h>
 #include <winbase.h>
+#include <sstream>
 
 #include "Income.h"
 #include "data.h"
 #include "IncomeMenager.h"
 #include "DataMenager.h"
 #include "Markup.h"
+//#include "MetodyPomocnicze.h"
 
 void IncomeMenager::dodajIncome() {
     Income income;
@@ -49,7 +51,8 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
     Income income;
     Data data;
 
-    int amount,dataJakoInt;
+    float amount;
+    int dataJakoInt;
     string amountJakoString,item,dataJakoString;
 
     if(znak=='n')
@@ -60,7 +63,7 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
             income.ustawUserID(ID_ZALOGOWANEGO_UZYTKOWNIKA);
             income.ustawDate(wpisanaData);
             dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(wpisanaData);
-            dataJakoInt=konwersjaStringNaInt(dataJakoString);
+            dataJakoInt=MetodyPomocnicze::konwersjaStringNaInt(dataJakoString);
             income.ustawDataJakoInt(dataJakoInt);
             cout << "Podaj nazwe produktu: ";
             cin.sync();
@@ -69,8 +72,9 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
             cout << "Podaj kwote: ";
             cin.sync();
             cin>>amountJakoString;
-            income.ustawAmountJakoString(zamienKropkeNaPrzecinek(amountJakoString));
-            amount = zamianaStringNaFloat(amountJakoString);
+            string amountZKropka = MetodyPomocnicze::zamienPrzecinekNakropke(amountJakoString);
+            income.ustawAmountJakoString(amountZKropka);
+            amount = MetodyPomocnicze::zamianaStringNaFloat(amountZKropka);
             income.ustawAmount(amount);
         }
 
@@ -83,8 +87,8 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
 
         income.ustawDate(wpisanaData);
         dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(wpisanaData);
-        dataJakoInt=konwersjaStringNaInt(dataJakoString);
-
+        dataJakoInt=MetodyPomocnicze::konwersjaStringNaInt(dataJakoString);
+        income.ustawDataJakoInt(dataJakoInt);
         cout << "Podaj nazwe produktu: ";
         cin.sync();
         item=MetodyPomocnicze::wczytajLinie();
@@ -92,8 +96,9 @@ Income IncomeMenager::podajNowyItem(char znak, string wpisanaData) {
         cout << "Podaj kwote: ";
         cin.sync();
         cin>>amountJakoString;
-        income.ustawAmountJakoString(zamienKropkeNaPrzecinek(amountJakoString));
-        amount = zamianaStringNaFloat(amountJakoString);
+        string amountZKropka = MetodyPomocnicze::zamienPrzecinekNakropke(amountJakoString);
+        income.ustawAmountJakoString(amountZKropka);
+        amount = MetodyPomocnicze::zamianaStringNaFloat(amountZKropka);
         income.ustawAmount(amount);
     }
     else
@@ -286,10 +291,10 @@ void IncomeMenager::wyswietlIncomeZPodanegoZakresu(string dataPoczatkowa, string
 void IncomeMenager::wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKoncowa)
 {
     string dataPoczatkowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataPoczatkowa);
-    int dataPoczatkowaJakoInt = konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
+    int dataPoczatkowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
     //cout<<dataPoczatkowaJakoInt<<endl;
     string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
-    int dataKoncowaJakoInt = konwersjaStringNaInt(dataKoncowaBezMyslnikow);
+    int dataKoncowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataKoncowaBezMyslnikow);
     //cout<<dataKoncowaJakoInt<<endl;
      if (!incomes.empty()) {
         cout << "             >>>PRZYCHODY<<<" << endl;
@@ -317,9 +322,9 @@ void IncomeMenager::wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKonc
 float IncomeMenager::obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa)
 {
     string dataPoczatkowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataPoczatkowa);
-    int dataPoczatkowaJakoInt = konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
+    int dataPoczatkowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
     string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
-    int dataKoncowaJakoInt = konwersjaStringNaInt(dataKoncowaBezMyslnikow);
+    int dataKoncowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataKoncowaBezMyslnikow);
     float sumaWydatkowZPodanegoOkresu=0;
     if (!incomes.empty()) {
         //cout<<incomes.size()<<endl;
@@ -374,15 +379,15 @@ int IncomeMenager::pobierzIdNowegoItemu() {
         return incomes.back().pobierzIncomeID() + 1;
 }
 
-int IncomeMenager::konwersjaStringNaInt(string liczba)
+/*int IncomeMenager::konwersjaStringNaInt(string liczba)
 {
     int liczbaInt;
     istringstream iss(liczba);
     iss >> liczbaInt;
     return liczbaInt;
-}
+}*/
 
-float IncomeMenager::zamianaStringNaFloat(string liczba)
+/*float IncomeMenager::zamianaStringNaFloat(string liczba)
 {
     string calosc="",ulamek="";
     int pozycjaPrzecinka=0;
@@ -418,9 +423,9 @@ float IncomeMenager::zamianaStringNaFloat(string liczba)
         wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
     }
     return wpisanaLiczbaJakoFloat;
-}
+}*/
 
-string IncomeMenager::zamienKropkeNaPrzecinek(string liczba)
+/*string IncomeMenager::zamienPrzecinekNakropke(string liczba)
 {
     string liczbaZKropka ="";
     for(int i=0;i<liczba.length();i++)
@@ -435,4 +440,4 @@ string IncomeMenager::zamienKropkeNaPrzecinek(string liczba)
         }
     }
     return liczbaZKropka;
-}
+}*/
