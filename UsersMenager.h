@@ -8,6 +8,7 @@
 #include "ExpenseMenager.h"
 #include "DataMenager.h"
 #include "Markup.h"
+#include "IncomeMenager.h"
 
 using namespace std;
 

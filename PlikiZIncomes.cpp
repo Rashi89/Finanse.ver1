@@ -1,93 +1,92 @@
 #include "Markup.h"
-#include "Expense.h"
-#include "PlikiZExpenses.h"
+#include "Income.h"
+#include "PlikiZIncomes.h"
 #include "data.h"
 #include "DataMenager.h"
 
 
-vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
+vector <Income> PlikiZIncomes::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
 {
-    vector <Expense> expenses;
-    Expense expense;
+    vector <Income> incomes;
+    Income income;
 
     string dataJakoString;
     int dataJakoInt;
 
     CMarkup xml;
-    xml.Load( "Expense.xml" );
-    xml.FindElem("EXPENSES"); // root ORDER element
+    xml.Load( "Income.xml" );
+    xml.FindElem("INCOMES"); // root ORDER element
     xml.IntoElem(); // inside ORDER
-    while ( xml.FindElem("EXPENSE") ) {
+    while ( xml.FindElem("INCOME") ) {
         xml.IntoElem();
         xml.FindElem( "USERID" );
         int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
         if(nUserID==idZalogowanegoUzytkownika){
-        expense.ustawUserID(nUserID);
-        xml.FindElem( "EXPENSEID" );
-        int nExpenseID =atoi( MCD_2PCSZ(xml.GetData()) );
-        expense.ustawExpenseID(nExpenseID);
+        income.ustawUserID(nUserID);
+        xml.FindElem( "INCOMEID" );
+        int nIncomeID =atoi( MCD_2PCSZ(xml.GetData()) );
+        income.ustawIncomeID(nIncomeID);
         xml.FindElem("DATE");
         MCD_STR strDate = xml.GetData();
-        expense.ustawDate(strDate);
+        income.ustawDate(strDate);
         dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(strDate);
         dataJakoInt=konwersjaStringNaInt(dataJakoString);
-        expense.ustawDataJakoInt(dataJakoInt);
+        income.ustawDataJakoInt(dataJakoInt);
         xml.FindElem("ITEM");
         MCD_STR strItem = xml.GetData();
-        expense.ustawItem(strItem);
+        income.ustawItem(strItem);
         xml.FindElem( "AMOUNT" );
         MCD_STR strAmount = xml.GetData();
-        expense.ustawAmountJakoString(strAmount);
+        income.ustawAmountJakoString(strAmount);
         float amountJakoFloat = zamianaStringNaFloat(strAmount);
-        expense.ustawAmount(amountJakoFloat);
+        income.ustawAmount(amountJakoFloat);
         xml.OutOfElem();
-        expenses.push_back(expense);
+        incomes.push_back(income);
         }
         else xml.OutOfElem();
     }
-    return expenses;
+    return incomes;
 }
 
-void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
+void PlikiZIncomes::dopiszItemDoPliku(Income income)
 {
     CMarkup xml;
-    if(xml.Load( "Expense.xml" )==false) {
-        xml.AddElem( "EXPENSES" );
+    if(xml.Load( "Income.xml" )==false) {
+        xml.AddElem( "INCOMES" );
         xml.IntoElem();
-        xml.AddElem( "EXPENSE" );
+        xml.AddElem( "INCOME" );
         xml.IntoElem();
-        xml.AddElem( "USERID", expense.pobierzUserID() );
-        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
-        xml.AddElem( "DATE", expense.pobierzDate() );
-        xml.AddElem( "ITEM", expense.pobierzItem() );
-        xml.AddElem( "AMOUNT", expense.pobierzAmountJakoString() );
+        xml.AddElem( "USERID", income.pobierzUserID() );
+        xml.AddElem( "INCOMEID", income.pobierzIncomeID() );
+        xml.AddElem( "DATE", income.pobierzDate() );
+        xml.AddElem( "ITEM", income.pobierzItem() );
+        xml.AddElem( "AMOUNT", income.pobierzAmountJakoString() );
 
         xml.OutOfElem();
-        xml.Save( "Expense.xml" );
+        xml.Save( "Income.xml" );
     } else {
         xml.FindElem();
         xml.IntoElem();
-        xml.AddElem( "EXPENSE" );
+        xml.AddElem( "INCOME" );
         xml.IntoElem();
-        xml.AddElem( "USERID", expense.pobierzUserID() );
-        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
-        xml.AddElem( "DATE", expense.pobierzDate() );
-        xml.AddElem( "ITEM", expense.pobierzItem() );
-        xml.AddElem( "AMOUNT", expense.pobierzAmountJakoString() );
+        xml.AddElem( "USERID", income.pobierzUserID() );
+        xml.AddElem( "INCOMEID", income.pobierzIncomeID() );
+        xml.AddElem( "DATE", income.pobierzDate() );
+        xml.AddElem( "ITEM", income.pobierzItem() );
+        xml.AddElem( "AMOUNT", income.pobierzAmountJakoString() );
         xml.OutOfElem();
-        xml.Save( "Expense.xml" );
+        xml.Save( "Income.xml" );
     }
 }
 
-int PlikiZExpenses::konwersjaStringNaInt(string liczba)
+int PlikiZIncomes::konwersjaStringNaInt(string liczba)
 {
     int liczbaInt;
     istringstream iss(liczba);
     iss >> liczbaInt;
     return liczbaInt;
 }
-
-float PlikiZExpenses::zamianaStringNaFloat(string liczba)
+float PlikiZIncomes::zamianaStringNaFloat(string liczba)
 {
     string calosc="",ulamek="";
     int pozycjaPrzecinka=0;

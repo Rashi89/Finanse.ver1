@@ -11,18 +11,20 @@ class Expense {
     int userID;
     string date;
     string item;
-    int amount;
+    float amount;
     int dataJakoInt;
+    string amountJakoString;
 
 public:
 
-    Expense(int expenseID=0, int userID=0, string date="", string item="",int amount=0, int dataJakoInt=0) {
+    Expense(int expenseID=0, int userID=0, string date="", string item="",float amount=0.0, int dataJakoInt=0, string amountJakoString="") {
         this->expenseID = expenseID;
         this->userID=userID;
         this->date=date;
         this->item=item;
         this->amount=amount;
         this->dataJakoInt=dataJakoInt;
+        this->amountJakoString=amountJakoString;
     }
     bool operator<(const Expense &other);
 
@@ -31,15 +33,17 @@ public:
     void ustawUserID(int newUserID);
     void ustawDate(string newDate);
     void ustawItem(string newItem);
-    void ustawAmount(int newAmount);
+    void ustawAmount(float newAmount);
     void ustawDataJakoInt(int newDataJakoInt);
+    void ustawAmountJakoString(string newAmountJakoString);
     //getery
     int pobierzExpenseID();
     int pobierzUserID();
     string pobierzDate();
     string pobierzItem();
-    int pobierzAmount();
+    float pobierzAmount();
     int pobierzDataJakoInt();
+    string pobierzAmountJakoString();
 
 };
 #endif

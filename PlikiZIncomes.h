@@ -1,25 +1,23 @@
-#ifndef PLIKIZEXPENSES_H
-#define PLIKIZEXPENSES_H
+#ifndef PLIKIZINCOMES_H
+#define PLIKIZINCOMES_H
 #include <iostream>
 #include <vector>
-#include <stdio.h>
-#include <stdlib.h>
 //
-#include "Expense.h"
+#include "Income.h"
 #include "Markup.h"
 #include "data.h"
 #include "DataMenager.h"
 
 using namespace std;
 
-class PlikiZExpenses
+class PlikiZIncomes
 {
     DataMenager dataMenager;
     int konwersjaStringNaInt(string liczba);
 public:
-    vector <Expense> wczytajItemyZPliku(int idZalogowanegoUzytkownika);
+    vector <Income> wczytajItemyZPliku(int idZalogowanegoUzytkownika);
     vector <Data> wczytajDatyZPliku(int idZalogowanegoUzytkownika);
-    void dopiszItemDoPliku(Expense expense);
+    void dopiszItemDoPliku(Income income);
     float zamianaStringNaFloat(string liczba);
 };
 #endif

@@ -44,13 +44,16 @@ public:
     void wyswietlItemyZBiezacegoMiesiaca();
     void wyswietlItemyZPoprzedniegoMiesiaca();
     void sortowanie();
-    int obliczWydatkiZObecnegoMiesiaca();
-    int obliczWydatkiZPoprzedniegoMiesiaca();
-    void wyswietlItemyZPodanegoZakresu();
-    int obliczWydatkiZPodanegoOkresu(int dataPoczatkowaJakoInt,int dataKoncowaJakoInt);
+    float obliczWydatkiZObecnegoMiesiaca();
+    float obliczWydatkiZPoprzedniegoMiesiaca();
+    void wyswietlItemyZPodanegoZakresu(string dataPoczatkowa,string dataKoncowa);
+    float obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
 
 
     string wczytajLinie();
+    float zamianaStringNaFloat(string liczba);
+    string zamienKropkeNaPrzecinek(string liczba);
+
 
 };
 
