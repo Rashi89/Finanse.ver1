@@ -51,7 +51,7 @@
 	"User.h"
 	"Markup.h"
 
-1587400116 source:d:\programowanie\projekty c++\finanse\main.cpp
+1587458978 source:d:\programowanie\projekty c++\finanse\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
@@ -108,7 +108,7 @@
 	"Markup.h"
 	"PlikiZUsers.h"
 
-1587398808 source:d:\programowanie\projekty c++\finanse\income.cpp
+1587400187 source:d:\programowanie\projekty c++\finanse\income.cpp
 	"Income.h"
 
 1587400197 d:\programowanie\projekty c++\finanse\income.h
@@ -116,7 +116,7 @@
 	<vector>
 	<algorithm>
 
-1587399267 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
+1587458830 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>
@@ -127,7 +127,7 @@
 	"DataMenager.h"
 	"Markup.h"
 
-1587398672 d:\programowanie\projekty c++\finanse\incomemenager.h
+1587458859 d:\programowanie\projekty c++\finanse\incomemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -143,7 +143,7 @@
 	"DataMenager.h"
 	"IncomeMenager.h"
 
-1587398580 source:d:\programowanie\projekty c++\finanse\finanse.cpp
+1587458883 source:d:\programowanie\projekty c++\finanse\finanse.cpp
 	"Finanse.h"
 	"UsersMenager.h"
 	"ExpenseMenager.h"
@@ -260,6 +260,6 @@
 1586492720 source:c:\users\rashi\desktop\new\user.cpp
 	"User.h"
 
-1588008554 c:\users\rashi\desktop\new\user.h
+1588008651 c:\users\rashi\desktop\new\user.h
 	<iostream>
 

@@ -155,10 +155,10 @@ void IncomeMenager::wyswietlIncomeZTegoMiesiaca(Income income)
     }
 }
 
-int IncomeMenager::obliczPrzychodyZObecnegoMiesiaca()
+float IncomeMenager::obliczPrzychodyZObecnegoMiesiaca()
 {
     int podanyMiesiac=pobierzbiezacyMiesiac();
-    int sumaWydatkow=0;
+    float sumaWydatkow=0;
     if (!incomes.empty()) {
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
             int dzien=itr->pobierzDataJakoInt()%100;
@@ -204,10 +204,10 @@ void IncomeMenager::wyswietlItemZPoprzedniegoMiesiaca(Income income)
     }
 }
 
-int IncomeMenager::obliczPrzychodyZPoprzedniegoMiesiaca()
+float IncomeMenager::obliczPrzychodyZPoprzedniegoMiesiaca()
 {
     int podanyMiesiac=pobierzbiezacyMiesiac()-1;
-    int sumaWydatkow=0;
+    float sumaWydatkow=0;
     if (!incomes.empty()) {
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
             int dzien=itr->pobierzDataJakoInt()%100;
@@ -314,13 +314,13 @@ void IncomeMenager::wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKonc
     }
 }
 
-int IncomeMenager::obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa)
+float IncomeMenager::obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa)
 {
     string dataPoczatkowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataPoczatkowa);
     int dataPoczatkowaJakoInt = konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
     string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
     int dataKoncowaJakoInt = konwersjaStringNaInt(dataKoncowaBezMyslnikow);
-    int sumaWydatkowZPodanegoOkresu=0;
+    float sumaWydatkowZPodanegoOkresu=0;
     if (!incomes.empty()) {
         //cout<<incomes.size()<<endl;
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
@@ -346,24 +346,19 @@ bool IncomeMenager::czyWpisanaDataJestPoprawna(string data)
         return true;
     else return false;
 }
+void IncomeMenager::sortowanie()
+{
+    //vector <Data> daty;
+    sortowanieItemow(incomes);
+    //dataMenager.sortowanie(daty);
+   //sort(daty.begin(),daty.end());
+}
 
+void IncomeMenager::sortowanieItemow(vector <Income> &incomes)
+{
+    sort(incomes.begin(),incomes.end());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 int IncomeMenager::pobierzbiezacyMiesiac()
 {

@@ -131,6 +131,7 @@ void Finanse::sortowanie()
 {
     if(usersMenager.czyUzytkownikJestZalogowany())
     {
+        incomeMenager->sortowanie();
         expenseMenager->sortowanie();
     }
 }

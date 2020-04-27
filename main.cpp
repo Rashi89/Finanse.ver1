@@ -15,9 +15,10 @@ int main() {
     //finanse.dodajIncome();
 
     //finanse.dodajItem();
-    finanse.wyswietlWszystkieItemy();
+    //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
-   // finanse.sortowanie();
+    finanse.sortowanie();
+    finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlItemyZTegoMiesiaca();
     //finanse.obliczWydatkiZObecnegoMiesiaca();
     //finanse.obliczWydatkiZPoprzedniegoMiesiaca();
