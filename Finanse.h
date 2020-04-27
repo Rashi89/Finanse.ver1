@@ -37,6 +37,7 @@ public:
     void wylogowanieZalogowanegoUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
     void dodajItem();
+    void dodajIncome();
     void wyswietlWszystkieItemy();
     void wyswietlWszystkieDaty();
     void wyswietlItemyZTegoMiesiaca();
@@ -47,5 +48,5 @@ public:
     void wyswietlItemyZPodanegoZakresu();
     void sortowanie();
 
-    void dodajIncome();
+
 };

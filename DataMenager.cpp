@@ -371,10 +371,3 @@ int DataMenager::pobierzbiezacyMiesiac()
     return st.wMonth;
 }
 
-
-
-/*void DataMenager::sortowanie(vector <Data> &daty)
-{
-
-    sort(daty.begin(),daty.end());
-}*/

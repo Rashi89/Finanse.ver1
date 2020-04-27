@@ -14,14 +14,14 @@ int main() {
 
     //finanse.dodajIncome();
 
-    //finanse.dodajItem();
-    //finanse.wyswietlWszystkieItemy();
+    finanse.dodajItem();
+    finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
     //finanse.sortowanie();
     //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlItemyZTegoMiesiaca();
     //finanse.obliczWydatkiZObecnegoMiesiaca();
-    finanse.obliczWydatkiZPoprzedniegoMiesiaca();
+    //finanse.obliczWydatkiZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPodanegoZakresu();
     //DataMenager dataMenager;

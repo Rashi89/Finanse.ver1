@@ -292,10 +292,8 @@ void IncomeMenager::wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKonc
 {
     string dataPoczatkowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataPoczatkowa);
     int dataPoczatkowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
-    //cout<<dataPoczatkowaJakoInt<<endl;
     string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
     int dataKoncowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataKoncowaBezMyslnikow);
-    //cout<<dataKoncowaJakoInt<<endl;
      if (!incomes.empty()) {
         cout << "             >>>PRZYCHODY<<<" << endl;
         cout << "-----------------------------------------------" << endl;

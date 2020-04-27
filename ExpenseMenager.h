@@ -1,8 +1,10 @@
 #ifndef EXPENSEMENAGER_H
 #define EXPENSEMENAGER_H
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <sstream>
 
 #include "Expense.h"
 #include "PlikiZExpenses.h"
@@ -13,7 +15,7 @@
 
 using namespace std;
 
-class ExpenseMenager //:public DataMenager
+class ExpenseMenager
 {
     const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
 
@@ -25,10 +27,8 @@ class ExpenseMenager //:public DataMenager
     Expense podajNowyItem(char znak, string wpisanaData);
     int pobierzIdNowegoItemu();
     void wyswietlItem(Expense expense);
-    int konwersjaStringNaInt(string liczba);
     void wyswietlItemZTegoMiesiaca(Expense expense);
     void wyswietlItemZPoprzedniegoMiesiaca(Expense expense);
-    int pobierzbiezacyMiesiac();
     void sortowanieItemow(vector <Expense> &expense);
     bool czyWpisanaDataJestPoprawna(string data);
     void wyswietlItemyZZakresu(string dataPoczatkowa,string dataKoncowa);
@@ -49,11 +49,6 @@ public:
     float obliczWydatkiZPoprzedniegoMiesiaca();
     void wyswietlItemyZPodanegoZakresu(string dataPoczatkowa,string dataKoncowa);
     float obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
-
-
-    float zamianaStringNaFloat(string liczba);
-    string zamienKropkeNaPrzecinek(string liczba);
-
 
 };
 

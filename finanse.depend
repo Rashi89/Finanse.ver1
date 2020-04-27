@@ -51,7 +51,7 @@
 	"User.h"
 	"Markup.h"
 
-1587463669 source:d:\programowanie\projekty c++\finanse\main.cpp
+1587465236 source:d:\programowanie\projekty c++\finanse\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
@@ -116,7 +116,7 @@
 	<vector>
 	<algorithm>
 
-1587463643 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
+1587464894 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>
@@ -128,7 +128,7 @@
 	"DataMenager.h"
 	"Markup.h"
 
-1587463733 d:\programowanie\projekty c++\finanse\incomemenager.h
+1587464187 d:\programowanie\projekty c++\finanse\incomemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -139,14 +139,14 @@
 	"PlikiZIncomes.h"
 	"MetodyPomocnicze.h"
 
-1587459161 d:\programowanie\projekty c++\finanse\finanse.h
+1587464676 d:\programowanie\projekty c++\finanse\finanse.h
 	<iostream>
 	"UsersMenager.h"
 	"ExpenseMenager.h"
 	"DataMenager.h"
 	"IncomeMenager.h"
 
-1587459161 source:d:\programowanie\projekty c++\finanse\finanse.cpp
+1587464187 source:d:\programowanie\projekty c++\finanse\finanse.cpp
 	"Finanse.h"
 	"UsersMenager.h"
 	"ExpenseMenager.h"
@@ -176,7 +176,7 @@
 	<vector>
 	<algorithm>
 
-1587463610 source:d:\programowanie\projekty c++\finanse\datamenager.cpp
+1587464187 source:d:\programowanie\projekty c++\finanse\datamenager.cpp
 	<iostream>
 	<vector>
 	<stdlib.h>
@@ -191,7 +191,7 @@
 	"Expense.h"
 	"Markup.h"
 
-1587463610 d:\programowanie\projekty c++\finanse\datamenager.h
+1587464187 d:\programowanie\projekty c++\finanse\datamenager.h
 	<iostream>
 	<vector>
 	<sstream>
@@ -200,10 +200,11 @@
 	"Expense.h"
 	"Income.h"
 
-1587459933 d:\programowanie\projekty c++\finanse\expensemenager.h
+1587464676 d:\programowanie\projekty c++\finanse\expensemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
+	<sstream>
 	"Expense.h"
 	"PlikiZExpenses.h"
 	"DataMenager.h"
@@ -211,7 +212,7 @@
 	"data.h"
 	"MetodyPomocnicze.h"
 
-1587459932 source:d:\programowanie\projekty c++\finanse\expensemenager.cpp
+1587465243 source:d:\programowanie\projekty c++\finanse\expensemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>
