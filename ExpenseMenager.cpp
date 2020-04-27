@@ -48,6 +48,30 @@ int ExpenseMenager::pobierzIdNowegoItemu() {
         return expenses.back().pobierzExpenseID() + 1;
 }
 
+void ExpenseMenager::wyswietlWszystkieItemy()
+{
+    if (!expenses.empty()) {
+        cout << "             >>>PRODUKTY<<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        //cout<<expenses.size()<<endl;
+        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
+            wyswietlItem(*itr);
+        }
+        cout << endl;
+    } else {
+        cout << endl << "Brak produktow." << endl << endl;
+    }
+}
+
+void ExpenseMenager::wyswietlItem(Expense expense)
+{
+    cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
+    cout<<"ID itemu: "<< expense.pobierzExpenseID()<<endl;
+    cout<<"Data: "<< expense.pobierzDate()<<endl;
+    cout<<"Nazwa itemu: "<< expense.pobierzItem()<<endl;
+    cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
+}
+
 string ExpenseMenager::wczytajLinie() {
     string wejscie;
     getline(cin, wejscie);

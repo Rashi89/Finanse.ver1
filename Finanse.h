@@ -26,4 +26,5 @@ public:
     void wylogowanieZalogowanegoUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
     void dodajItem();
+    void wyswietlWszystkieItemy();
 };

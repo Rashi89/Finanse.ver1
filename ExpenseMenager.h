@@ -19,12 +19,14 @@ class ExpenseMenager
 
     Expense podajNowyItem();
     int pobierzIdNowegoItemu();
+    void wyswietlItem(Expense expense);
 
 public:
     ExpenseMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
         expenses = plikiZExpenses.wczytajItemyZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
         };
     void dodajItem();
+    void wyswietlWszystkieItemy();
 
 
     string wczytajLinie();

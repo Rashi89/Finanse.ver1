@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1588000335 source:c:\users\rashi\desktop\new\main.cpp
+1588001994 source:c:\users\rashi\desktop\new\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
@@ -58,14 +58,14 @@
 	"Markup.h"
 	"PlikiZUsers.h"
 
-1587999433 source:c:\users\rashi\desktop\new\expensemenager.cpp
+1588001964 source:c:\users\rashi\desktop\new\expensemenager.cpp
 	<iostream>
 	<vector>
 	"Expense.h"
 	"ExpenseMenager.h"
 	"Markup.h"
 
-1588001438 c:\users\rashi\desktop\new\expensemenager.h
+1588001847 c:\users\rashi\desktop\new\expensemenager.h
 	<iostream>
 	<vector>
 	"Expense.h"
@@ -73,17 +73,17 @@
 	"PlikiZExpenses.h"
 	"Markup.h"
 
-1588001163 c:\users\rashi\desktop\new\finanse.h
+1588001786 c:\users\rashi\desktop\new\finanse.h
 	<iostream>
 	"UsersMenager.h"
 	"ExpenseMenager.h"
 
-1588001127 source:c:\users\rashi\desktop\new\finanse.cpp
+1588001757 source:c:\users\rashi\desktop\new\finanse.cpp
 	"Finanse.h"
 	"UsersMenager.h"
 	"ExpenseMenager.h"
 
-1588001390 source:c:\users\rashi\desktop\new\plikizexpenses.cpp
+1588001562 source:c:\users\rashi\desktop\new\plikizexpenses.cpp
 	"Markup.h"
 	"Expense.h"
 	"ExpenseMenager.h"
