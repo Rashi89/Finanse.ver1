@@ -188,6 +188,7 @@ void ExpenseMenager::wyswietlItemyZBiezacegoMiesiaca()
         cout << endl << "Brak produktow." << endl << endl;
     }
 }
+
 int ExpenseMenager::pobierzbiezacyMiesiac()
 {
     SYSTEMTIME st;

@@ -121,12 +121,42 @@ void IncomeMenager::wyswietlItem(Income income)
     cout<<"Data jako int: "<<income.pobierzDataJakoInt()<<endl;
 }
 
+void IncomeMenager::wyswietlIncomeZBiezacegoMiesiaca()
+{
+     if (!incomes.empty()) {
+        cout << "             >>>PRODUKTY<<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        //cout<<incomes.size()<<endl;
+        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
+            wyswietlIncomeZTegoMiesiaca(*itr);
+        }
+        cout << endl;
+    } else {
+        cout << endl << "Brak produktow." << endl << endl;
+    }
+}
+
+void IncomeMenager::wyswietlIncomeZTegoMiesiaca(Income income)
+{
+    int podanyMiesiac=pobierzbiezacyMiesiac();
+    int dzien=income.pobierzDataJakoInt()%100;
+    int miesiac=(income.pobierzDataJakoInt()%10000-dzien)/100;
+    if(miesiac==podanyMiesiac){
+    cout<<"ID uzytkownika: "<< income.pobierzUserID()<<endl;
+    cout<<"ID itemu: "<< income.pobierzIncomeID()<<endl;
+    cout<<"Data: "<< income.pobierzDate()<<endl;
+    cout<<"Nazwa itemu: "<< income.pobierzItem()<<endl;
+    cout<<"Koszt: "<< income.pobierzAmount()<<endl;
+    }
+}
 
 
-
-
-
-
+int IncomeMenager::pobierzbiezacyMiesiac()
+{
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    return st.wMonth;
+}
 
 int IncomeMenager::pobierzIdNowegoItemu() {
     if (incomes.empty() == true)

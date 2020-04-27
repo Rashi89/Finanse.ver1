@@ -62,6 +62,7 @@ void Finanse::wyswietlWszystkieItemy()
      if(usersMenager.czyUzytkownikJestZalogowany())
     {
         expenseMenager->wyswietlItemyZBiezacegoMiesiaca();
+        incomeMenager->wyswietlIncomeZBiezacegoMiesiaca();
     }
  }
   void Finanse::wyswietlItemyZPoprzedniegoMiesiaca()

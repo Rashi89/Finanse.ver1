@@ -15,10 +15,10 @@ int main() {
     //finanse.dodajIncome();
 
     //finanse.dodajItem();
-    finanse.wyswietlWszystkieItemy();
+    //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
    // finanse.sortowanie();
-   // finanse.wyswietlItemyZTegoMiesiaca();
+    finanse.wyswietlItemyZTegoMiesiaca();
     //finanse.wyswietlItemyZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPodanegoZakresu();
     //DataMenager dataMenager;

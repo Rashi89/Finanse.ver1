@@ -24,6 +24,8 @@ class IncomeMenager{
     int pobierzIdNowegoItemu();
     int konwersjaStringNaInt(string liczba);
     void wyswietlItem(Income income);
+    void wyswietlIncomeZTegoMiesiaca(Income income);
+    int pobierzbiezacyMiesiac();
 
 public:
     IncomeMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
@@ -33,6 +35,7 @@ public:
 
     void dodajIncome();
     void wyswietlWszystkieIncome();
+    void wyswietlIncomeZBiezacegoMiesiaca();
 
 
 
