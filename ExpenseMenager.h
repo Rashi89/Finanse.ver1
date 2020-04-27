@@ -1,5 +1,5 @@
-#ifndef INCOMEMENAGER_H
-#define INCOMEMENAGER_H
+#ifndef EXPENSEMENAGER_H
+#define EXPENSEMENAGER_H
 #include <iostream>
 #include <vector>
 
