@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1514144174 source:c:\users\rashi\desktop\new\main.cpp
+	<iostream>
+
+1586492720 source:c:\users\rashi\desktop\new\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1586149176 c:\users\rashi\desktop\new\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
