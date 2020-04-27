@@ -8,24 +8,69 @@
 using namespace std;
 
 int main() {
-    Finanse finanse;
 
-    finanse.logowanieUzytownika();
+    char wybor;
+    Finanse finanse("Users.xml","Income.xml","Expense.xml");
 
-    //finanse.dodajIncome();
+    while(true)
+    {
+        if(finanse.isUserLoggedIn()==false)
+        {
+            wybor = finanse.selectOptionFromMainMenu();
 
-    //finanse.dodajItem();
-    //finanse.wyswietlWszystkieItemy();
-    //finanse.wyswietlWszystkieDaty();
-    finanse.sortowanie();
-    finanse.wyswietlWszystkieItemy();
-    //finanse.wyswietlItemyZTegoMiesiaca();
-    //finanse.obliczWydatkiZObecnegoMiesiaca();
-    //finanse.obliczWydatkiZPoprzedniegoMiesiaca();
-    //finanse.wyswietlItemyZPoprzedniegoMiesiaca();
-    //finanse.wyswietlItemyZPodanegoZakresu();
-    //DataMenager dataMenager;
-    //dataMenager.dzisiejszaDataJakoInt();
-
+            switch (wybor)
+            {
+            case '1':
+                finanse.registerUser();
+                break;
+            case '2':
+                finanse.loginUser();
+                break;
+            case '9':
+                exit(0);
+                break;
+            default:
+                cout<<endl<<"Nie ma takiej opcji w menu."<<endl<<endl;
+                system("pause");
+                break;
+            }
+        }
+        else
+        {
+            wybor = finanse.selectOptionFromUserMenu();
+            switch (wybor)
+            {
+            case '1':
+                finanse.addIncome();
+                break;
+            case '2':
+                finanse.addExpense();
+                break;
+            case'3':
+                finanse.sorting();
+                finanse.showItemsFromThisMonth();
+                finanse.calculateBilansFromThisMonth();
+                system("pause");
+                break;
+            case '4':
+                finanse.sorting();
+                finanse.showItemsFromPreviousMonth();
+                finanse.calculateBilansFromPreviousMonth();
+                system("pause");
+                break;
+            case '5':
+                finanse.sorting();
+                finanse.showItemsFromRangeProvided();
+                system("pause");
+                break;
+            case '6':
+                finanse.changePasswordLoggedUser();
+                break;
+            case '7':
+                finanse.logoutUser();
+                break;
+            }
+        }
+    }
     return 0;
 }

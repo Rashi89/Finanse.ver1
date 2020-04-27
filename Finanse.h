@@ -5,6 +5,8 @@
 #include "DataMenager.h"
 #include "IncomeMenager.h"
 
+#include "AdditionalMethods.h"
+
 using namespace std;
 
 class Finanse
@@ -12,14 +14,16 @@ class Finanse
     UsersMenager usersMenager;
     ExpenseMenager *expenseMenager;
     IncomeMenager   *incomeMenager;
-    //DataMenager *dataMenager;
+    DataMenager *dataMenager;
+    const string NAME_FILE_INCOMES;
+    const string NAME_FILE_EXPENSES;
 
 public:
-    Finanse()
+    Finanse(string nameFileUsers,string nameFileIncomes, string nameFileExpenses) : usersMenager(nameFileUsers),NAME_FILE_INCOMES(nameFileIncomes), NAME_FILE_EXPENSES(nameFileExpenses)
     {
         expenseMenager=NULL;
         incomeMenager=NULL;
-        //dataMenager=NULL;
+        dataMenager=NULL;
     }
     ~Finanse()
     {
@@ -27,25 +31,26 @@ public:
         expenseMenager=NULL;
         delete incomeMenager;
         incomeMenager=NULL;
-        //delete dataMenager;
-        //dataMenager=NULL;
-
+        delete dataMenager;
+        dataMenager=NULL;
     }
-    void rejestracjaUzytkownika();
-    void wyswietlWszystkichUzytkownikow();
-    void logowanieUzytownika();
-    void wylogowanieZalogowanegoUzytkownika();
-    void zmianaHaslaZalogowanegoUzytkownika();
-    void dodajItem();
-    void wyswietlWszystkieItemy();
-    void wyswietlWszystkieDaty();
-    void wyswietlItemyZTegoMiesiaca();
-    void wyswietlItemyZPoprzedniegoMiesiaca();
-    void obliczWydatkiZObecnegoMiesiaca();
-    void obliczWydatkiZPoprzedniegoMiesiaca();
-    void obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
-    void wyswietlItemyZPodanegoZakresu();
-    void sortowanie();
-
-    void dodajIncome();
+    void registerUser();
+    //void wyswietlWszystkichUzytkownikow();
+    void loginUser();
+    void logoutUser();
+    void changePasswordLoggedUser();
+    void addExpense();
+    void addIncome();
+    //void wyswietlWszystkieItemy();
+    //void wyswietlWszystkieDaty();
+    void showItemsFromThisMonth();
+    void showItemsFromPreviousMonth();
+    void showItemsFromRangeProvided();
+    void calculateBilansFromThisMonth();
+    void calculateBilansFromPreviousMonth();
+    void calculateBilansFromRangeProvided(string startData,string endData);
+    void sorting();
+    bool isUserLoggedIn();
+    char selectOptionFromMainMenu();
+    char selectOptionFromUserMenu();
 };

@@ -1,57 +1,58 @@
 #include "Income.h"
 
-void Income::ustawIncomeID(int newIncomeID) {
+void Income::setIncomeID(int newIncomeID) {
     if(newIncomeID>=0)
         incomeID=newIncomeID;
 }
-void Income::ustawUserID(int newUserID) {
+void Income::setUserID(int newUserID) {
     if(newUserID>=0)
         userID=newUserID;
 }
-void Income::ustawDate(string newDate) {
+void Income::setDate(string newDate) {
     date=newDate;
 }
-void Income::ustawItem(string newItem) {
+void Income::setItem(string newItem) {
     item=newItem;
 }
-void Income::ustawAmount(float newAmount) {
+void Income::setAmount(float newAmount) {
     if(newAmount>=0)
     amount=newAmount;
 }
-void Income::ustawDataJakoInt(int newDataJakoInt)
+void Income::setDateAsInt(int newDateAsInt)
 {
-    dataJakoInt=newDataJakoInt;
+    dateAsInt=newDateAsInt;
 }
 
-    bool Income::operator<(const Income &other)
+void Income::setAmountAsString(string newAmountAsString)
 {
-    return dataJakoInt < other.dataJakoInt;
+    amountAsString=newAmountAsString;
+}
+
+bool Income::operator<(const Income &other)
+{
+    return dateAsInt < other.dateAsInt;
 }
 
 
-int Income::pobierzIncomeID() {
+int Income::getIncomeID() {
     return incomeID;
 }
-int Income::pobierzUserID() {
+int Income::getUserID() {
     return userID;
 }
-string Income::pobierzDate() {
+string Income::getDate() {
     return date;
 }
-string Income::pobierzItem() {
+string Income::getItem() {
     return item;
 }
-float Income::pobierzAmount() {
+float Income::getAmount() {
     return amount;
 }
+int Income::getDateAsInt() {
+    return dateAsInt;
+}
+string Income::getAmountAsString() {
+    return amountAsString;
+}
 
-int Income::pobierzDataJakoInt() {
-    return dataJakoInt;
-}
-string Income::pobierzAmountJakoString() {
-    return amountJakoString;
-}
-void Income::ustawAmountJakoString(string newAmountJakoString)
-{
-    amountJakoString=newAmountJakoString;
-}

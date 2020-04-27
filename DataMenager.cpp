@@ -5,114 +5,104 @@
 #include <windows.h>
 #include <winbase.h>
 
-#include <windows.h>
 #include "DataMenager.h"
-#include "ExpenseMenager.h"
-#include "IncomeMenager.h"
-#include "data.h"
-#include "Expense.h"
-#include "Markup.h"
 
-bool DataMenager::podajDate(string wpisanaData) {
+bool DataMenager::giveDate(string givenDate) {
     vector <Data> daty;
     Data data;
-    //string wpisanaData;
-    int id,rok,miesiac,dzien;
-    //cout<<"Podaj date: ";
-    //cin>> wpisanaData;
-    rok=zamienDateNaRok(wpisanaData);
-    miesiac=zamienDateNaMiesiac(wpisanaData);
-    dzien=zamienDateNaDzien(wpisanaData);
-    //cout<<rok<<" "<<miesiac<<" "<<dzien<<endl;
-    if(czyDataJestPoprawna(rok, miesiac, dzien)==true) {
-        data.ustawID(pobierzIDNowejDaty());
-        data.ustawRok(rok);
-        data.ustawMiesiac(miesiac);
-        data.ustawDzien(dzien);
-        data.ustawDataZMyslnikami(wpisanaData);
-        data.ustawDataBezMyslnikow(konwersjaStringNaInt(zamienDateNaNapisBezMyslnikow(wpisanaData)));
+    int id,year,month,day;
+    year=changeDateToYear(givenDate);
+    month=changeDateToMonth(givenDate);
+    day=changeDateToDay(givenDate);
+    if(isDateGood(year, month, day)==true) {
+        data.setID(getIDnewData());
+        data.setYear(year);
+        data.setMonth(month);
+        data.setDay(day);
+        data.setDateWithDashesAsString(givenDate);
+        data.setDateWithoutDasesAsInt(AdditionalMethods::swapStringForInt(swapDateWithStringWithoutDash(givenDate)));
         daty.push_back(data);
         return true;
     } else return false;
-        //cout<<"Bledna data!"<<endl;
 }
 
-Data DataMenager::pobierzDzisiejszaDate()
+Data DataMenager::loadTodayDate()
 {
     vector <Data> daty;
     Data data;
     SYSTEMTIME st;
     GetSystemTime(&st);
-        data.ustawID(pobierzIDNowejDaty());
-        data.ustawRok(st.wYear);
-        data.ustawMiesiac(st.wMonth);
-        data.ustawDzien(st.wDay);
-        string wpisanaData;
-        wpisanaData+=konwersjaIntNaString(st.wYear);
-        wpisanaData+="-";
+        data.setID(getIDnewData());
+        data.setYear(st.wYear);
+        data.setMonth(st.wMonth);
+        data.setDay(st.wDay);
+        string givenDate;
+        givenDate+=AdditionalMethods::swapIntForString(st.wYear);
+        givenDate+="-";
         if(st.wMonth<10)
         {
-            wpisanaData+="0";
-            wpisanaData+=konwersjaIntNaString(st.wMonth);
-            wpisanaData+="-";
+            givenDate+="0";
+            givenDate+=AdditionalMethods::swapIntForString(st.wMonth);
+            givenDate+="-";
         }
         else{
-            wpisanaData+=konwersjaIntNaString(st.wMonth);
-            wpisanaData+="-";
+            givenDate+=AdditionalMethods::swapIntForString(st.wMonth);
+            givenDate+="-";
         }
         if(st.wDay<10)
         {
-            wpisanaData+="0";
-            wpisanaData+=konwersjaIntNaString(st.wDay);
+            givenDate+="0";
+            givenDate+=AdditionalMethods::swapIntForString(st.wDay);
         }
         else{
-           wpisanaData+=konwersjaIntNaString(st.wDay);
+           givenDate+=AdditionalMethods::swapIntForString(st.wDay);
         }
 
-        data.ustawDataZMyslnikami(wpisanaData);
-        data.ustawDataBezMyslnikow(konwersjaStringNaInt(zamienDateNaNapisBezMyslnikow(wpisanaData)));
+        data.setDateWithDashesAsString(givenDate);
+        data.setDateWithoutDasesAsInt(AdditionalMethods::swapStringForInt(swapDateWithStringWithoutDash(givenDate)));
         daty.push_back(data);
         return data;
 }
 
-int DataMenager::pobierzIDNowejDaty() {
+int DataMenager::getIDnewData() {
     vector <Data> daty;
     if (daty.empty() == true)
         return 1;
     else
-        return daty.back().pobierzID() + 1;
+        return daty.back().getID() + 1;
 }
 
-bool DataMenager::czyRokJestPrzestepny(int rok) {
-    if(rok%4==0&&rok%100!=0) {
+bool DataMenager::isLapYear(int year) {
+    if(year%4==0&&year%100!=0) {
         return true;
-    } else if(rok%400==0) {
+    } else if(year%400==0) {
         return true;
     } else {
         return false;
     }
 }
-bool DataMenager::czyDataJestPoprawna(int rok, int miesiac, int dzien) {
-    if(miesiac>12)
+
+bool DataMenager::isDateGood(int year, int month, int day) {
+    if(month>12)
         return false;
-    if(miesiac==1||miesiac==3||miesiac==5||miesiac==7||miesiac==8||miesiac==10||miesiac==12) {
-        if(dzien<=31&&dzien>=1) {
+    if(month==1||month==3||month==5||month==7||month==8||month==10||month==12) {
+        if(day<=31&&day>=1) {
             return true;
         } else
             return false;
-    } else if(miesiac==4||miesiac==6||miesiac==9||miesiac==11) {
-        if(dzien<=30&&dzien>=1) {
+    } else if(month==4||month==6||month==9||month==11) {
+        if(day<=30&&day>=1) {
             return true;
         } else
             return false;
-    } else if(miesiac==2) {
-        if(czyRokJestPrzestepny(rok)==true) {
-            if(dzien<=29&&dzien>=1) {
+    } else if(month==2) {
+        if(isLapYear(year)==true) {
+            if(day<=29&&day>=1) {
                 return true;
             } else
                 return false;
         } else {
-            if(dzien<=28&&dzien>=1) {
+            if(day<=28&&day>=1) {
                 return true;
             } else
                 return false;
@@ -120,145 +110,139 @@ bool DataMenager::czyDataJestPoprawna(int rok, int miesiac, int dzien) {
     }
 }
 
-int DataMenager::zamienDateNaRok(string wpisanaData) {
-    int rok;
-    string pojedynczaDana = "";
-    int numerPojedynczejDanej = 1;
-    for(int pozycjaZnaku=0; pozycjaZnaku<wpisanaData.length(); pozycjaZnaku++) {
-        if (wpisanaData[pozycjaZnaku] != '-') {
-            pojedynczaDana += wpisanaData[pozycjaZnaku];
+int DataMenager::changeDateToYear(string givenDate) {
+    int year;
+    string singleData = "";
+    int numberSingleData = 1;
+    for(int signPosition=0; signPosition<givenDate.length(); signPosition++) {
+        if (givenDate[signPosition] != '-') {
+            singleData += givenDate[signPosition];
         } else {
-            switch(numerPojedynczejDanej) {
+            switch(numberSingleData) {
             case 1:
-                rok=(atoi(pojedynczaDana.c_str()));
+                year=(atoi(singleData.c_str()));
                 break;
             }
-            pojedynczaDana = "";
-            numerPojedynczejDanej++;
+            singleData = "";
+            numberSingleData++;
         }
     }
-    return rok;
+    return year;
 }
-int DataMenager::zamienDateNaMiesiac(string wpisanaData) {
-    int miesiac;
-    string pojedynczaDana = "";
-    int numerPojedynczejDanej = 1;
-    for(int pozycjaZnaku=0; pozycjaZnaku<wpisanaData.length(); pozycjaZnaku++) {
-        if (wpisanaData[pozycjaZnaku] != '-') {
-            pojedynczaDana += wpisanaData[pozycjaZnaku];
+
+int DataMenager::changeDateToMonth(string givenDate) {
+    int month;
+    string singleData = "";
+    int numberSingleData = 1;
+    for(int signPosition=0; signPosition<givenDate.length(); signPosition++) {
+        if (givenDate[signPosition] != '-') {
+            singleData += givenDate[signPosition];
         } else {
-            switch(numerPojedynczejDanej) {
+            switch(numberSingleData) {
             case 2:
-                miesiac=(atoi(pojedynczaDana.c_str()));
+                month=(atoi(singleData.c_str()));
                 break;
             }
-            pojedynczaDana = "";
-            numerPojedynczejDanej++;
+            singleData = "";
+            numberSingleData++;
         }
     }
-    return miesiac;
+    return month;
 }
-int DataMenager::zamienDateNaDzien(string wpisanaData) {
-    int dzien,liczba;
-    string pojedynczaDana = "";
-    int numerPojedynczejDanej = 1;
-    for(int pozycjaZnaku=wpisanaData.length()-1; pozycjaZnaku>0; pozycjaZnaku--) {
-        if (wpisanaData[pozycjaZnaku] != '-') {
-            pojedynczaDana += wpisanaData[pozycjaZnaku];
+
+int DataMenager::changeDateToDay(string givenDate) {
+    int day,number;
+    string singleData = "";
+    int numberSingleData = 1;
+    for(int signPosition=givenDate.length()-1; signPosition>0; signPosition--) {
+        if (givenDate[signPosition] != '-') {
+            singleData += givenDate[signPosition];
         } else {
-            switch(numerPojedynczejDanej) {
+            switch(numberSingleData) {
             case 1:
-                liczba=(atoi(pojedynczaDana.c_str()));
-                if(liczba%10==0) {
-                    dzien=liczba/10;
+                number=(atoi(singleData.c_str()));
+                if(number%10==0) {
+                    day=number/10;
                 } else
-                    dzien=liczba%10*10+(liczba-liczba%10)/10;
+                    day=number%10*10+(number-number%10)/10;
                 break;
             }
-            pojedynczaDana = "";
-            numerPojedynczejDanej++;
+            singleData = "";
+            numberSingleData++;
         }
     }
-    return dzien;
+    return day;
 }
 
-string DataMenager::zamienDateNaNapisBezMyslnikow(string wpisanaData) {
-    string dataBezMyslnikow="";
+string DataMenager::swapDateWithStringWithoutDash(string givenDate) {
+    string dateWithoutDash="";
 
-    int liczbaMyslinkow=0;
-    for(int pozycjaZnaku=0; pozycjaZnaku<wpisanaData.length(); pozycjaZnaku++) {
-        if(wpisanaData[pozycjaZnaku]=='-') {
+    int numberDash=0;
+    for(int signPosition=0; signPosition<givenDate.length(); signPosition++) {
+        if(givenDate[signPosition]=='-') {
             ;
         } else {
-            dataBezMyslnikow+=wpisanaData[pozycjaZnaku];
+            dateWithoutDash+=givenDate[signPosition];
         }
     }
-    return dataBezMyslnikow;
+    return dateWithoutDash;
 }
 
-string DataMenager::dzisiejszaData() {
-    //vector <Data> daty;
+string DataMenager::todayData() {
     Data data;
-    data=pobierzDzisiejszaDate();
-    string dataZMyslnikami="";
-    dataZMyslnikami=data.pobierzDataZMyslnikami();
+    data=loadTodayDate();
+    string dateWithDash="";
+    dateWithDash=data.getDateWithDashesAsString();
 
-    return dataZMyslnikami;
-
-    //vector <Data> :: iterator itr = daty.end()-1;
-    //pobierzDzisiejszaDateJakoString(*itr);
-    //cout <<pobierzDzisiejszaDateJakoString(*itr)<<endl;
-    //return pobierzDzisiejszaDateJakoString(*itr);
-
+    return dateWithDash;
 }
-string DataMenager::pobierzDzisiejszaDateJakoString(Data data)
+string DataMenager::getTodayDataAsString(Data data)
 {
-    string dataZMyslnikami="";
-    dataZMyslnikami=data.pobierzDataZMyslnikami();
+    string dateWithDash="";
+    dateWithDash=data.getDateWithDashesAsString();
 
-    return dataZMyslnikami;
+    return dateWithDash;
 }
 
-int DataMenager::dzisiejszaDataJakoInt()
+int DataMenager::todayDataAsInt()
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
 
-    string dzisiejszaDataJakoString;
-        dzisiejszaDataJakoString+=konwersjaIntNaString(st.wYear);
-        dzisiejszaDataJakoString+="-";
+    string todayDateAsString;
+        todayDateAsString+=AdditionalMethods::swapIntForString(st.wYear);
+        todayDateAsString+="-";
         if(st.wMonth<10)
         {
-            dzisiejszaDataJakoString+="0";
-            dzisiejszaDataJakoString+=konwersjaIntNaString(st.wMonth);
-            dzisiejszaDataJakoString+="-";
+            todayDateAsString+="0";
+            todayDateAsString+=AdditionalMethods::swapIntForString(st.wMonth);
+            todayDateAsString+="-";
         }
         else{
-            dzisiejszaDataJakoString+=konwersjaIntNaString(st.wMonth);
-            dzisiejszaDataJakoString+="-";
+            todayDateAsString+=AdditionalMethods::swapIntForString(st.wMonth);
+            todayDateAsString+="-";
         }
         if(st.wDay<10)
         {
-            dzisiejszaDataJakoString+="0";
-            dzisiejszaDataJakoString+=konwersjaIntNaString(st.wDay);
+            todayDateAsString+="0";
+            todayDateAsString+=AdditionalMethods::swapIntForString(st.wDay);
         }
         else{
-           dzisiejszaDataJakoString+=konwersjaIntNaString(st.wDay);
+           todayDateAsString+=AdditionalMethods::swapIntForString(st.wDay);
         }
 
-        dzisiejszaDataJakoString=zamienDateNaNapisBezMyslnikow(dzisiejszaDataJakoString);
-        //cout<<dzisiejszaDataJakoString<<endl;
+        todayDateAsString=swapDateWithStringWithoutDash(todayDateAsString);
 
-        int dzisiejszaDataJakoInt = konwersjaStringNaInt(dzisiejszaDataJakoString);
-        return dzisiejszaDataJakoInt;
+        int todayDateAsInt = AdditionalMethods::swapStringForInt(todayDateAsString);
+        return todayDateAsInt;
 }
 
-vector <Data> DataMenager::wczytajDaty(int idZalogowanegoUzytkownika)
+vector <Data> DataMenager::loadData(int idLoggedUser)
 {
     vector <Data> daty;
     Data data;
 
-    int id,rok,miesiac,dzien;
+    int id,year,month,day;
 
     CMarkup xml;
     xml.Load( "Expense.xml" );
@@ -268,108 +252,112 @@ vector <Data> DataMenager::wczytajDaty(int idZalogowanegoUzytkownika)
         xml.IntoElem();
         xml.FindElem( "USERID" );
         int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
-        //cout<<"id uzytkownika: "<<nUserID<<endl;
-        if(nUserID==idZalogowanegoUzytkownika){
+        if(nUserID==idLoggedUser){
         xml.FindElem( "EXPENSEID" );
         int nIncomeID =atoi( MCD_2PCSZ(xml.GetData()) );
-        //data.ustawIncomeID(nIncomeID);
         xml.FindElem("DATE");
         MCD_STR strDate = xml.GetData();
-        rok=zamienDateNaRok(strDate);
-        miesiac=zamienDateNaMiesiac(strDate);
-        dzien=zamienDateNaDzien(strDate);
-        data.ustawID(nIncomeID);
-        data.ustawRok(rok);
-        data.ustawMiesiac(miesiac);
-        data.ustawDzien(dzien);
-        data.ustawDataZMyslnikami(strDate);
-        data.ustawDataBezMyslnikow(konwersjaStringNaInt(zamienDateNaNapisBezMyslnikow(strDate)));
+        year=changeDateToYear(strDate);
+        month=changeDateToMonth(strDate);
+        day=changeDateToDay(strDate);
+        data.setID(nIncomeID);
+        data.setYear(year);
+        data.setMonth(month);
+        data.setDay(day);
+        data.setDateWithDashesAsString(strDate);
+        data.setDateWithoutDasesAsInt(AdditionalMethods::swapStringForInt(swapDateWithStringWithoutDash(strDate)));
         xml.OutOfElem();
         daty.push_back(data);
-        //incomes.push_back(income);
         }
         else xml.OutOfElem();
     }
     return daty;
 }
 
-
-int DataMenager::konwersjaStringNaInt(string liczba)
-{
-    int liczbaInt;
-    istringstream iss(liczba);
-    iss >> liczbaInt;
-    return liczbaInt;
-}
-
-string DataMenager::konwersjaIntNaString(int liczba)
-{
-    ostringstream ss;
-    ss << liczba;
-    string str = ss.str();
-    return str;
-}
-
-int DataMenager::obliczIleDniMaObecnyMiesiac()
+int DataMenager::calculateDaysCurrentMonth()
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
-    int obecnyMiesiac=st.wMonth;
-    int obecnyRok =st.wYear;
+    int currentMonth=st.wMonth;
+    int currentYear =st.wYear;
 
-    if(obecnyMiesiac==1||obecnyMiesiac==3||obecnyMiesiac==5||obecnyMiesiac==7||obecnyMiesiac==8||obecnyMiesiac==10||obecnyMiesiac==12) return 31;
-    else if(obecnyMiesiac==2)
+    if(currentMonth==1||currentMonth==3||currentMonth==5||currentMonth==7||currentMonth==8||currentMonth==10||currentMonth==12) return 31;
+    else if(currentMonth==2)
     {
-        if(czyRokJestPrzestepny(obecnyRok)==true) return 29;
+        if(isLapYear(currentYear)==true) return 29;
             else return 28;
     }
-    else if(obecnyMiesiac==4||obecnyMiesiac==6||obecnyMiesiac==9||obecnyMiesiac==11) return 30;
-
+    else if(currentMonth==4||currentMonth==6||currentMonth==9||currentMonth==11) return 30;
 }
 
-int DataMenager::ostatniaDataWObecnymMiesiacuJakoInt()
+int DataMenager::lastDateInCurrentMonthAsInt()
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
-    int maxymalnyDzien=obliczIleDniMaObecnyMiesiac();
-    int maxymalnaDataJakoInt = maxymalnyDzien+st.wMonth*100+st.wYear*10000;
-    //cout<<maxymalnaDataJakoInt<<endl;
-    return maxymalnaDataJakoInt;
+    int maxDay=calculateDaysCurrentMonth();
+    int maxDataAsInt = maxDay+st.wMonth*100+st.wYear*10000;
+    return maxDataAsInt;
 }
 
-bool DataMenager::czyDataJestZPrzedzialu(string wpisanaData)
+bool DataMenager::isDateInARange(string givenDate)
 {
     SYSTEMTIME st;
     GetSystemTime(&st);
-    int maxData=ostatniaDataWObecnymMiesiacuJakoInt();
-    string wpisanaDataBezMyslnikow=zamienDateNaNapisBezMyslnikow(wpisanaData);
-    int wpisanaDataJakoInt = konwersjaStringNaInt(wpisanaDataBezMyslnikow);
+    int maxData=lastDateInCurrentMonthAsInt();
+    string givenDateWithoutDash=swapDateWithStringWithoutDash(givenDate);
+    int givenDateAsInt = AdditionalMethods::swapStringForInt(givenDateWithoutDash);
     int minData= 20000101;
-    if(wpisanaDataJakoInt>maxData||wpisanaDataJakoInt<minData)
+    if(givenDateAsInt>maxData||givenDateAsInt<minData)
         {
             if(st.wMonth<10&&st.wDay<10){
                 cout<<"Minimalna data: 2000-01-01"<<endl;
-                cout<<"Maksymalna data: "<<st.wYear<<"-0"<<st.wMonth<<"-0"<<obliczIleDniMaObecnyMiesiac()<<endl;
+                cout<<"Maksymalna data: "<<st.wYear<<"-0"<<st.wMonth<<"-0"<<calculateDaysCurrentMonth()<<endl;
             }
             else if(st.wMonth<10&&st.wDay>=10){
                 cout<<"Minimalna data: 2000-01-01"<<endl;
-                cout<<"Maksymalna data: "<<st.wYear<<"-0"<<st.wMonth<<"-"<<obliczIleDniMaObecnyMiesiac()<<endl;
+                cout<<"Maksymalna data: "<<st.wYear<<"-0"<<st.wMonth<<"-"<<calculateDaysCurrentMonth()<<endl;
             }
             else if(st.wMonth>=10&&st.wDay>=10){
                 cout<<"Minimalna data: 2000-01-01"<<endl;
-                cout<<"Maksymalna data: "<<st.wYear<<"-"<<st.wMonth<<"-"<<obliczIleDniMaObecnyMiesiac()<<endl;
+                cout<<"Maksymalna data: "<<st.wYear<<"-"<<st.wMonth<<"-"<<calculateDaysCurrentMonth()<<endl;
             }
                 return false;
         }
     else return true;
 }
 
-
-
-
-
-/*void DataMenager::sortowanie(vector <Data> &daty)
+int DataMenager::thisMonth()
 {
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    return st.wMonth;
+}
 
-    sort(daty.begin(),daty.end());
-}*/
+bool DataMenager::isDateFormat(string givenDate)
+{
+    int isNumbersAndDashes=0;
+    for(int i=0;i<givenDate.length();i++)
+    {
+        if(givenDate[i]=='0'||givenDate[i]=='1'||givenDate[i]=='2'||givenDate[i]=='3'||givenDate[i]=='4'||givenDate[i]=='5'||givenDate[i]=='6'||givenDate[i]=='7'||givenDate[i]=='8'||givenDate[i]=='9'||givenDate[i]=='-')
+        {
+            isNumbersAndDashes+=1;
+        }
+        else isNumbersAndDashes=0;
+    }
+    if(givenDate.length()==10&&givenDate[4]=='-'&&givenDate[7]=='-'&&isNumbersAndDashes==10)
+    {
+        return true;
+    }
+    else return false;
+}
+
+bool DataMenager::isCorrectDate(string date)
+{
+    int year=changeDateToYear(date);
+    int month=changeDateToMonth(date);
+    int day=changeDateToDay(date);
+
+    if(isDateGood(year, month, day)==true)
+        return true;
+    else return false;
+}

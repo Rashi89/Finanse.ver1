@@ -4,57 +4,55 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <sstream>
 
 #include "Income.h"
 #include "data.h"
 #include "DataMenager.h"
-#include "PlikiZIncomes.h"
+#include "FilesWithIncomes.h"
+#include "AdditionalMethods.h"
+
+
+//#include "data.h"
+//#include "Income.h"
+//#include "DataMenager.h"
+//#include "Markup.h"
+//#include "MetodyPomocnicze.h"
 
 using namespace std;
 
 class IncomeMenager{
-    const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
+    const int ID_LOGGED_USER;
 
     vector <Income> incomes;
     vector <Data> daty;
     DataMenager dataMenager;
-    PlikiZIncomes plikiZIncomes;
+    FilesWithIncomes filesWithIncomes;
 
-    Income podajNowyItem(char znak, string wpisanaData);
-    int pobierzIdNowegoItemu();
-    int konwersjaStringNaInt(string liczba);
-    void wyswietlItem(Income income);
-    void wyswietlIncomeZTegoMiesiaca(Income income);
-    void wyswietlItemZPoprzedniegoMiesiaca(Income income);
-    int pobierzbiezacyMiesiac();
-    void sortowanieItemow(vector <Income> &income);
-    void wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKoncowa);
+    Income getNewItemData(char sign, string givenData);
+    int getIDNewIncome();
+    void showIncome(Income income);
+    void showIncomeFromThisMonth(Income income);
+    void showIncomeFromPreviousMonth(Income income);
+    void sortingIncomes(vector <Income> &income);
+    void showIncomeFromRangeProvided(string startingDate,string endDate);
 
 public:
-    IncomeMenager(int idZalogowanegoUzytkownika): ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
-        incomes= plikiZIncomes.wczytajItemyZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
-        daty = dataMenager.wczytajDaty(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+    IncomeMenager(string nameFileIncomes,int idLoggedUser): filesWithIncomes(nameFileIncomes),ID_LOGGED_USER(idLoggedUser){
+        incomes= filesWithIncomes.loadIncomesFromFile(ID_LOGGED_USER);
+        daty = dataMenager.loadData(ID_LOGGED_USER);
         };
 
-    void dodajIncome();
-    void wyswietlWszystkieIncome();
-    void wyswietlIncomeZBiezacegoMiesiaca();
-    void wyswietlIncomeZPoprzedniegoMiesiaca();
-    void wyswietlIncomeZPodanegoZakresu(string dataPoczatkowa, string dataKoncowa);
-    float obliczPrzychodyZObecnegoMiesiaca();
-    float obliczPrzychodyZPoprzedniegoMiesiaca();
-    float obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
-    bool czyWpisanaDataJestPoprawna(string data);
-    void sortowanie();
-
-
-
-
-    string wczytajLinie();
-    float zamianaStringNaFloat(string liczba);
-    string zamienKropkeNaPrzecinek(string liczba);
-
-
+    void addIncome();
+    //void wyswietlWszystkieIncome();
+    void showItemsFromThisMonth();
+    void showItemsFromPreviousMonth();
+    void showItemsFromRangeProvided(string startingDate, string endDate);
+    float calculateIncomesFromThisMonth();
+    float calculateIncomesFromPreviousMonth();
+    float calculateIncomesFromRangeProvided(string startingDate,string endDate);
+    bool isCorrectDate(string date);
+    void sorting();
 
 };
 #endif

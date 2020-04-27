@@ -8,38 +8,44 @@
 #include "data.h"
 #include "Expense.h"
 #include "Income.h"
+#include "AdditionalMethods.h"
 //#include "IncomeMenager.h"
+
+//#include "ExpenseMenager.h"
+//#include "IncomeMenager.h"
+//#include "PlikiZIncomes.h"
+//#include "data.h"
+//#include "Expense.h"
+#include "Markup.h"
 
 using namespace std;
 
 class DataMenager
 {
-    //vector <Data> daty;
-    bool czyRokJestPrzestepny(int rok);
-    int pobierzIDNowejDaty();
-    int konwersjaStringNaInt(string liczba);
-    string konwersjaIntNaString(int liczba);
-    string pobierzDzisiejszaDateJakoString(Data data);
-    //string zamienDateNaNapisBezMyslnikow(string wpisanaData);
-    string dzisiejszaData();
+    bool isLapYear(int year);
+    int getIDnewData();
+    string getTodayDataAsString(Data data);
+    string todayData();
+    int todayDataAsInt();
+    int calculateDaysCurrentMonth();
+    int lastDateInCurrentMonthAsInt();
 
-    int dzisiejszaDataJakoInt();
-    int obliczIleDniMaObecnyMiesiac();
-    int ostatniaDataWObecnymMiesiacuJakoInt();
 
 public:
-    DataMenager(){
-        //daty = wczytajDaty(int idZalogowanegoUzytkownika);
-    }
-    vector <Data> wczytajDaty(int idZalogowanegoUzytkownika);
-    string zamienDateNaNapisBezMyslnikow(string wpisanaData);
-    bool czyDataJestZPrzedzialu(string wpisanaData);
-    Data pobierzDzisiejszaDate();
-    bool podajDate(string wpisanaData);
-    int zamienDateNaRok(string wpisanaData);
-    int zamienDateNaMiesiac(string wpisanaData);
-    int zamienDateNaDzien(string wpisanaData);
-    bool czyDataJestPoprawna(int rok, int miesiac, int dzien);
+    DataMenager(){};
+    vector <Data> loadData(int idLoggedUser);
+    string swapDateWithStringWithoutDash(string givenDate);
+    bool isDateInARange(string givenDate);
+    Data loadTodayDate();
+    bool giveDate(string givenDate);
+    int changeDateToYear(string givenDate);
+    int changeDateToMonth(string givenDate);
+    int changeDateToDay(string givenDate);
+    bool isDateGood(int year, int month, int day);
+    int thisMonth();
+    bool isDateFormat(string givenDate);
+    bool isCorrectDate(string date);
+
 
 };
 #endif

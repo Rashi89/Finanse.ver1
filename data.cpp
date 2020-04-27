@@ -1,60 +1,55 @@
 #include "Data.h"
 
-    void Data::ustawDataZMyslnikami(string nowaData)
+    void Data::setDateWithDashesAsString(string newDateWithDashesAsString)
     {
-        dataZMyslnikami=nowaData;
+        dateWithDashesAsString=newDateWithDashesAsString;
     }
-    void Data::ustawID(int noweID)
+    void Data::setID(int newID)
     {
-        if(noweID>=0)
-            id=noweID;
+        if(newID>=0)
+            id=newID;
     }
-    void Data::ustawRok(int nowyRok)
+    void Data::setYear(int newYear)
     {
-        if(nowyRok>=0)
-        rok=nowyRok;
+        if(newYear>=0)
+        year=newYear;
     }
-    void Data::ustawMiesiac(int nowyMiesiac)
+    void Data::setMonth(int newMonth)
     {
-        if(nowyMiesiac>=1&&nowyMiesiac<=12)
-        miesiac=nowyMiesiac;
+        if(newMonth>=1&&newMonth<=12)
+        month=newMonth;
     }
-    void Data::ustawDzien(int nowyDzien)
+    void Data::setDay(int newDay)
     {
-        if(nowyDzien>=1&&nowyDzien<=31)
-            dzien=nowyDzien;
+        if(newDay>=1&&newDay<=31)
+            day=newDay;
     }
-    void Data::ustawDataBezMyslnikow(int nowaDataBezMyslnikow)
+    void Data::setDateWithoutDasesAsInt(int NewDateWithoutDasesAsInt)
     {
-        dataBezMyslnikow=nowaDataBezMyslnikow;
+        dateWithoutDasesAsInt=NewDateWithoutDasesAsInt;
     }
 
-    string Data::pobierzDataZMyslnikami()
+    string Data::getDateWithDashesAsString()
     {
-        return dataZMyslnikami;
+        return dateWithDashesAsString;
     }
-    int Data::pobierzID()
+    int Data::getID()
     {
         return id;
     }
-    int Data::pobierzRok()
+    int Data::getYear()
     {
-        return rok;
+        return year;
     }
-    int Data::pobierzMiesiac()
+    int Data::getMonth()
     {
-        return miesiac;
+        return month;
     }
-    int Data::pobierzDzien()
+    int Data::getDay()
     {
-        return dzien;
+        return day;
     }
-    int Data::pobierzDateBezMyslnikow()
+    int Data::getDateWithoutDasesAsInt()
     {
-        return dataBezMyslnikow;
+        return dateWithoutDasesAsInt;
     }
-
-    //bool Data::operator<(const Data &other)
-//{
-   // return dataBezMyslnikow < other.dataBezMyslnikow;
-//}

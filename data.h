@@ -6,43 +6,42 @@
 
 using namespace std;
 
-
 class Data
 {
-    string dataZMyslnikami;
+    string dateWithDashesAsString;
     int id;
-    int rok;
-    int miesiac;
-    int dzien;
-    int dataBezMyslnikow;
+    int year;
+    int month;
+    int day;
+    int dateWithoutDasesAsInt;
 
 public:
 
-    Data(string dataZMyslnikami="",int id=0, int rok=0, int miesiac=0, int dzien=0,int dataBezMyslnikow=0)
+    Data(string dateWithDashesAsString="",int id=0, int year=0, int month=0, int day=0,int dateWithoutDasesAsInt=0)
     {
-        this->dataZMyslnikami = dataZMyslnikami;
+        this->dateWithDashesAsString = dateWithDashesAsString;
         this->id = id;
-        this->rok = rok;
-        this->miesiac = miesiac;
-        this->dzien = dzien;
-        this->dataBezMyslnikow = dataBezMyslnikow;
+        this->year = year;
+        this->month = month;
+        this->day = day;
+        this->dateWithoutDasesAsInt = dateWithoutDasesAsInt;
     }
 
     //bool operator<(const Data &other);
     //setery
-    void ustawDataZMyslnikami(string nowaData);
-    void ustawID(int noweId);
-    void ustawRok(int nowyRok);
-    void ustawMiesiac(int nowyMiesiac);
-    void ustawDzien(int nowyDzien);
-    void ustawDataBezMyslnikow(int nowaDataBezMyslnikow);
+    void setDateWithDashesAsString(string newDateWithDashesAsString);
+    void setID(int newID);
+    void setYear(int newYear);
+    void setMonth(int newMonth);
+    void setDay(int newDay);
+    void setDateWithoutDasesAsInt(int NewDateWithoutDasesAsInt);
     //getery
-    string pobierzDataZMyslnikami();
-    int pobierzID();
-    int pobierzRok();
-    int pobierzMiesiac();
-    int pobierzDzien();
-    int pobierzDateBezMyslnikow();
+    string getDateWithDashesAsString();
+    int getID();
+    int getYear();
+    int getMonth();
+    int getDay();
+    int getDateWithoutDasesAsInt();
 
 };
-#endif // UZYTKOWNIK_H
+#endif
