@@ -2,6 +2,7 @@
 #include "UsersMenager.h"
 #include "ExpenseMenager.h"
 #include "DataMenager.h"
+#include "IncomeMenager.h"
 
 void Finanse::rejestracjaUzytkownika()
 {
@@ -20,6 +21,7 @@ void Finanse::logowanieUzytownika()
     {
         expenseMenager = new ExpenseMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
         //dataMenager = new DataMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
+        incomeMenager =  new IncomeMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
 
     }
 }

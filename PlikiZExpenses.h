@@ -1,5 +1,5 @@
 #ifndef PLIKIZEXPENSES_H
-#define PLIKIZEXPENSES_H
+#define PLIKIEXPENSES_H
 #include <iostream>
 #include <vector>
 //

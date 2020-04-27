@@ -10,9 +10,9 @@ using namespace std;
 int main() {
     Finanse finanse;
 
-    //finanse.logowanieUzytownika();
+    finanse.logowanieUzytownika();
 
-    //finanse.dodajItem();
+    finanse.dodajItem();
     //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlWszystkieDaty();
    // finanse.sortowanie();

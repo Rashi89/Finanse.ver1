@@ -33,7 +33,7 @@ void ExpenseMenager::dodajItem() {
     }
     else if(znak=='t')
     {
-        cout<<"Dzisiejsza data: "<<endl;
+        //cout<<"Dzisiejsza data: "<<endl;
         data =dataMenager.pobierzDzisiejszaDate();
 
         string wpisanaData=data.pobierzDataZMyslnikami();

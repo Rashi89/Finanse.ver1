@@ -16,7 +16,7 @@ class Income {
 
 public:
 
-    Expense(int incomeID=0, int userID=0, string date="", string item="",int amount=0, int dataJakoInt=0) {
+    Income(int incomeID=0, int userID=0, string date="", string item="",int amount=0, int dataJakoInt=0) {
         this->incomeID = incomeID;
         this->userID=userID;
         this->date=date;

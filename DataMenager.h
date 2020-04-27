@@ -7,6 +7,7 @@
 
 #include "data.h"
 #include "Expense.h"
+#include "Income.h"
 //#include "IncomeMenager.h"
 
 using namespace std;

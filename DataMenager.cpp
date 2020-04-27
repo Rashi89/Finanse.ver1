@@ -8,6 +8,7 @@
 #include <windows.h>
 #include "DataMenager.h"
 #include "ExpenseMenager.h"
+#include "IncomeMenager.h"
 #include "data.h"
 #include "Expense.h"
 #include "Markup.h"
