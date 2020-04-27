@@ -1,19 +1,20 @@
 #include <iostream>
 #include <vector>
 #include "Markup.h"
-#include "UsersMenager.h"
+#include "Finanse.h"
 
 using namespace std;
 
 int main() {
-    UsersMenager usersMenager;
-    usersMenager.rejestracjaUzytkownika();
-    usersMenager.rejestracjaUzytkownika();
-    usersMenager.wyswietlWszystkichUzytkownikow();
-    //usersMenager.logowanieUzytkownika();
-    //usersMenager.wylogowanieZalogowanegoUzytkownika();
-    //usersMenager.zmianaHaslaZalogowanegoUzytkownika();
-    //usersMenager.wyswietlWszystkichUzytkownikow();
+    Finanse finanse;
+    //finanse.rejestracjaUzytkownika();
+    //finanse.wyswietlWszystkichUzytkownikow();
+    //finanse.logowanieUzytownika();
+    //finanse.wylogowanieZalogowanegoUzytkownika();
+    //finanse.zmianaHaslaZalogowanegoUzytkownika();
+    //finanse.dodajItem();
+
+
 
     return 0;
 }

@@ -1,8 +1,11 @@
 # depslib dependency file v1.0
-1514144174 source:c:\users\rashi\desktop\new\main.cpp
+1587999559 source:c:\users\rashi\desktop\new\main.cpp
 	<iostream>
+	<vector>
+	"Markup.h"
+	"Finanse.h"
 
-1586492720 source:c:\users\rashi\desktop\new\markup.cpp
+1587997918 source:c:\users\rashi\desktop\new\markup.cpp
 	<stdio.h>
 	"Markup.h"
 	<errno.h>
@@ -10,15 +13,73 @@
 	<windows.h>
 	<mbstring.h>
 
-1586149176 c:\users\rashi\desktop\new\markup.h
+1587997918 c:\users\rashi\desktop\new\markup.h
 	<stdlib.h>
 	<string.h>
 	<string>
 	<afx.h>
 
-1587996837 source:c:\users\rashi\desktop\new\user.cpp
+1587997918 source:c:\users\rashi\desktop\new\user.cpp
 	"User.h"
 
-1587996818 c:\users\rashi\desktop\new\user.h
+1587997918 c:\users\rashi\desktop\new\user.h
 	<iostream>
+
+1587998610 source:c:\users\rashi\desktop\new\expense.cpp
+	"Expense.h"
+
+1587998584 c:\users\rashi\desktop\new\expense.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1587999706 c:\users\rashi\desktop\new\usersmenager.h
+	<iostream>
+	<vector>
+	"User.h"
+	"PlikiZUsers.h"
+	"ExpenseMenager.h"
+	"Markup.h"
+
+1587997918 c:\users\rashi\desktop\new\plikizusers.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Markup.h"
+
+1587997918 source:c:\users\rashi\desktop\new\plikizusers.cpp
+	"Markup.h"
+	"User.h"
+	"PlikiZUsers.h"
+
+1587999859 source:c:\users\rashi\desktop\new\usersmenager.cpp
+	<iostream>
+	<vector>
+	"User.h"
+	"UsersMenager.h"
+	"Markup.h"
+	"PlikiZUsers.h"
+
+1587999433 source:c:\users\rashi\desktop\new\expensemenager.cpp
+	<iostream>
+	<vector>
+	"Expense.h"
+	"ExpenseMenager.h"
+	"Markup.h"
+
+1587999270 c:\users\rashi\desktop\new\expensemenager.h
+	<iostream>
+	<vector>
+	"Expense.h"
+	"ExpenseMenager.h"
+
+1587999587 c:\users\rashi\desktop\new\finanse.h
+	<iostream>
+	"UsersMenager.h"
+	"ExpenseMenager.h"
+
+1587999795 source:c:\users\rashi\desktop\new\finanse.cpp
+	"Finanse.h"
+	"UsersMenager.h"
+	"ExpenseMenager.h"
 
