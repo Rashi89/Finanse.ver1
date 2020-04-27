@@ -16,20 +16,17 @@ void Income::setItem(string newItem) {
 }
 void Income::setAmount(float newAmount) {
     if(newAmount>=0)
-    amount=newAmount;
+        amount=newAmount;
 }
-void Income::setDateAsInt(int newDateAsInt)
-{
+void Income::setDateAsInt(int newDateAsInt) {
     dateAsInt=newDateAsInt;
 }
 
-void Income::setAmountAsString(string newAmountAsString)
-{
+void Income::setAmountAsString(string newAmountAsString) {
     amountAsString=newAmountAsString;
 }
 
-bool Income::operator<(const Income &other)
-{
+bool Income::operator<(const Income &other) {
     return dateAsInt < other.dateAsInt;
 }
 

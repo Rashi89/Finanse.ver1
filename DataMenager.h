@@ -9,19 +9,11 @@
 #include "Expense.h"
 #include "Income.h"
 #include "AdditionalMethods.h"
-//#include "IncomeMenager.h"
-
-//#include "ExpenseMenager.h"
-//#include "IncomeMenager.h"
-//#include "PlikiZIncomes.h"
-//#include "data.h"
-//#include "Expense.h"
 #include "Markup.h"
 
 using namespace std;
 
-class DataMenager
-{
+class DataMenager {
     bool isLapYear(int year);
     int getIDnewData();
     string getTodayDataAsString(Data data);
@@ -32,7 +24,7 @@ class DataMenager
 
 
 public:
-    DataMenager(){};
+    DataMenager() {};
     vector <Data> loadData(int idLoggedUser);
     string swapDateWithStringWithoutDash(string givenDate);
     bool isDateInARange(string givenDate);

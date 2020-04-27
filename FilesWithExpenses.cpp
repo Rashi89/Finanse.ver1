@@ -1,7 +1,6 @@
 #include "FilesWithExpenses.h"
 
-vector <Expense> FilesWithExpenses::loadExpensesFromFile(int idZalogowanegoUzytkownika)
-{
+vector <Expense> FilesWithExpenses::loadExpensesFromFile(int idZalogowanegoUzytkownika) {
     vector <Expense> expenses;
     Expense expense;
 
@@ -16,35 +15,34 @@ vector <Expense> FilesWithExpenses::loadExpensesFromFile(int idZalogowanegoUzytk
         xml.IntoElem();
         xml.FindElem( "USERID" );
         int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
-        if(nUserID==idZalogowanegoUzytkownika){
-        expense.setUserID(nUserID);
-        xml.FindElem( "EXPENSEID" );
-        int nExpenseID =atoi( MCD_2PCSZ(xml.GetData()) );
-        expense.setExpenseID(nExpenseID);
-        xml.FindElem("DATE");
-        MCD_STR strDate = xml.GetData();
-        expense.setDate(strDate);
-        dataJakoString=dataMenager.swapDateWithStringWithoutDash(strDate);
-        dataJakoInt=AdditionalMethods::swapStringForInt(dataJakoString);
-        expense.setDateAsInt(dataJakoInt);
-        xml.FindElem("ITEM");
-        MCD_STR strItem = xml.GetData();
-        expense.setItem(strItem);
-        xml.FindElem( "AMOUNT" );
-        MCD_STR strAmount = xml.GetData();
-        expense.setAmountAsString(strAmount);
-        float amountJakoFloat = AdditionalMethods::swapStringForFloat(strAmount);
-        expense.setAmount(amountJakoFloat);
-        xml.OutOfElem();
-        expenses.push_back(expense);
-        }
-        else xml.OutOfElem();
+        if(nUserID==idZalogowanegoUzytkownika) {
+            expense.setUserID(nUserID);
+            xml.FindElem( "EXPENSEID" );
+            int nExpenseID =atoi( MCD_2PCSZ(xml.GetData()) );
+            expense.setExpenseID(nExpenseID);
+            xml.FindElem("DATE");
+            MCD_STR strDate = xml.GetData();
+            expense.setDate(strDate);
+            dataJakoString=dataMenager.swapDateWithStringWithoutDash(strDate);
+            dataJakoInt=AdditionalMethods::swapStringForInt(dataJakoString);
+            expense.setDateAsInt(dataJakoInt);
+            xml.FindElem("ITEM");
+            MCD_STR strItem = xml.GetData();
+            expense.setItem(strItem);
+            xml.FindElem( "AMOUNT" );
+            MCD_STR strAmount = xml.GetData();
+            expense.setAmountAsString(strAmount);
+            float amountJakoFloat = AdditionalMethods::swapStringForFloat(strAmount);
+            expense.setAmount(amountJakoFloat);
+            xml.OutOfElem();
+            expenses.push_back(expense);
+        } else
+            xml.OutOfElem();
     }
     return expenses;
 }
 
-void FilesWithExpenses::appendExpenseToFile(Expense expense)
-{
+void FilesWithExpenses::appendExpenseToFile(Expense expense) {
     CMarkup xml;
     if(xml.Load( NAME_FILE_EXPENSES )==false) {
         xml.AddElem( "EXPENSES" );

@@ -16,7 +16,6 @@ class UsersMenager {
     vector <User> users;
     FilesWithUsers filesWithUsers;
 
-    //void showUser(User user);
     int getIDNewUser();
     User getDetailsNewUser();
 
@@ -26,7 +25,6 @@ public:
         users = filesWithUsers.loadUsersFromFile();
     };
     void registerUser();
-    //void wyswietlWszystkichUzytkownikow();
     void loginUser();
     void changePasswordLoggedUser();
     void logoutUser();

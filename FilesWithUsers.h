@@ -14,7 +14,7 @@ class FilesWithUsers {
     const string NAME_FILE_USERS;
 
 public:
-    FilesWithUsers(string nameFileUsers): NAME_FILE_USERS(nameFileUsers){};
+    FilesWithUsers(string nameFileUsers): NAME_FILE_USERS(nameFileUsers) {};
     vector <User> loadUsersFromFile();
     void appendUserToFile(User user);
     void saveAllUsersToFile(vector <User> &users);

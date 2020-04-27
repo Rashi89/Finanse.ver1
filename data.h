@@ -6,8 +6,7 @@
 
 using namespace std;
 
-class Data
-{
+class Data {
     string dateWithDashesAsString;
     int id;
     int year;
@@ -17,8 +16,7 @@ class Data
 
 public:
 
-    Data(string dateWithDashesAsString="",int id=0, int year=0, int month=0, int day=0,int dateWithoutDasesAsInt=0)
-    {
+    Data(string dateWithDashesAsString="",int id=0, int year=0, int month=0, int day=0,int dateWithoutDasesAsInt=0) {
         this->dateWithDashesAsString = dateWithDashesAsString;
         this->id = id;
         this->year = year;

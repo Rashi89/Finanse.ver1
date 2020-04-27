@@ -12,14 +12,11 @@ int main() {
     char wybor;
     Finanse finanse("Users.xml","Income.xml","Expense.xml");
 
-    while(true)
-    {
-        if(finanse.isUserLoggedIn()==false)
-        {
+    while(true) {
+        if(finanse.isUserLoggedIn()==false) {
             wybor = finanse.selectOptionFromMainMenu();
 
-            switch (wybor)
-            {
+            switch (wybor) {
             case '1':
                 finanse.registerUser();
                 break;
@@ -34,12 +31,9 @@ int main() {
                 system("pause");
                 break;
             }
-        }
-        else
-        {
+        } else {
             wybor = finanse.selectOptionFromUserMenu();
-            switch (wybor)
-            {
+            switch (wybor) {
             case '1':
                 finanse.addIncome();
                 break;
@@ -47,7 +41,7 @@ int main() {
                 finanse.addExpense();
                 break;
             case'3':
-                finanse.sorting();
+                    finanse.sorting();
                 finanse.showItemsFromThisMonth();
                 finanse.calculateBilansFromThisMonth();
                 system("pause");

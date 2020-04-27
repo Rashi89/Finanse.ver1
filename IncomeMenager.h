@@ -12,16 +12,9 @@
 #include "FilesWithIncomes.h"
 #include "AdditionalMethods.h"
 
-
-//#include "data.h"
-//#include "Income.h"
-//#include "DataMenager.h"
-//#include "Markup.h"
-//#include "MetodyPomocnicze.h"
-
 using namespace std;
 
-class IncomeMenager{
+class IncomeMenager {
     const int ID_LOGGED_USER;
 
     vector <Income> incomes;
@@ -38,13 +31,12 @@ class IncomeMenager{
     void showIncomeFromRangeProvided(string startingDate,string endDate);
 
 public:
-    IncomeMenager(string nameFileIncomes,int idLoggedUser): filesWithIncomes(nameFileIncomes),ID_LOGGED_USER(idLoggedUser){
+    IncomeMenager(string nameFileIncomes,int idLoggedUser): filesWithIncomes(nameFileIncomes),ID_LOGGED_USER(idLoggedUser) {
         incomes= filesWithIncomes.loadIncomesFromFile(ID_LOGGED_USER);
         daty = dataMenager.loadData(ID_LOGGED_USER);
-        };
+    };
 
     void addIncome();
-    //void wyswietlWszystkieIncome();
     void showItemsFromThisMonth();
     void showItemsFromPreviousMonth();
     void showItemsFromRangeProvided(string startingDate, string endDate);

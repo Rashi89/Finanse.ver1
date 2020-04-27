@@ -13,15 +13,9 @@
 #include "data.h"
 #include "AdditionalMethods.h"
 
-//#include "data.h"
-//#include "ExpenseMenager.h"
-//#include "DataMenager.h"
-//#include "Markup.h"
-
 using namespace std;
 
-class ExpenseMenager
-{
+class ExpenseMenager {
     const int ID_LOGGED_USER;
 
     vector <Expense> expenses;
@@ -40,10 +34,10 @@ class ExpenseMenager
     void wyswietlDate(Data data);
 
 public:
-    ExpenseMenager(string nameFileExpenses,int idLoggedUser): filesWithExpenses(nameFileExpenses),ID_LOGGED_USER(idLoggedUser){
+    ExpenseMenager(string nameFileExpenses,int idLoggedUser): filesWithExpenses(nameFileExpenses),ID_LOGGED_USER(idLoggedUser) {
         expenses = filesWithExpenses.loadExpensesFromFile(ID_LOGGED_USER);
         daty = dataMenager.loadData(ID_LOGGED_USER);
-        };
+    };
     void addExpense();
     void wyswietlWszystkieItemy();
     void wyswietlWszystkieDaty();

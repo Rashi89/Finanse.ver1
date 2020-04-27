@@ -98,35 +98,11 @@ int UsersMenager::getIDNewUser() {
         return users.back().pobierzID() + 1;
 }
 
-/*void UsersMenager::showUser(User user) {
-    cout<<"ID uzytkownika: "<< user.pobierzID()<<endl;
-    cout<<"Imie uzytkownika: "<< user.pobierzImie()<<endl;
-    cout<<"Nazwisko uzytkownika: "<< user.pobierzNazwisko()<<endl;
-    cout<<"Login uzytkownika: "<< user.pobierzLogin()<<endl;
-    cout<<"Haslo uzytkownika: "<< user.pobierzHaslo()<<endl;
-
-}
-void UsersMenager::wyswietlWszystkichUzytkownikow() {
-    if (!users.empty()) {
-        cout << "             >>> UZYTKOWNICY<<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout<<users.size()<<endl;
-        for (vector <User> :: iterator itr = users.begin(); itr != users.end(); itr++) {
-            showUser(*itr);
-        }
-        cout << endl;
-    } else {
-        cout << endl << "Brak uzytkownikow." << endl << endl;
-    }
-}*/
-
-int UsersMenager::loadIDLoggedUser()
-{
+int UsersMenager::loadIDLoggedUser() {
     return idLoggedUser;
 }
 
-bool UsersMenager::isUserLoggedIn()
-{
+bool UsersMenager::isUserLoggedIn() {
     if(idLoggedUser>0)
         return true;
     else
@@ -143,8 +119,7 @@ bool UsersMenager::isLoginExist(string login) {
     return false;
 }
 
-char UsersMenager::selectOptionFromUserMenu()
-{
+char UsersMenager::selectOptionFromUserMenu() {
     char choice;
 
     system("cls");

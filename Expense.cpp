@@ -16,19 +16,16 @@ void Expense::setItem(string newItem) {
 }
 void Expense::setAmount(float newAmount) {
     if(newAmount>=0)
-    amount=newAmount;
+        amount=newAmount;
 }
-void Expense::setDateAsInt(int newDateAsInt)
-{
+void Expense::setDateAsInt(int newDateAsInt) {
     dateAsInt=newDateAsInt;
 }
-void Expense::setAmountAsString(string newAmountAsString)
-{
+void Expense::setAmountAsString(string newAmountAsString) {
     amountAsString=newAmountAsString;
 }
 
-    bool Expense::operator<(const Expense &other)
-{
+bool Expense::operator<(const Expense &other) {
     return dateAsInt < other.dateAsInt;
 }
 

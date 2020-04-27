@@ -9,21 +9,14 @@
 #include "DataMenager.h"
 #include "AdditionalMethods.h"
 
-//#include "Markup.h"
-//#include "Income.h"
-//#include "data.h"
-//#include "DataMenager.h"
-//#include "MetodyPomocnicze.h"
-
 using namespace std;
 
-class FilesWithIncomes
-{
+class FilesWithIncomes {
     const string NAME_FILE_INCOMES;
     DataMenager dataMenager;
 
 public:
-    FilesWithIncomes(string nameFileIncomes): NAME_FILE_INCOMES(nameFileIncomes){};
+    FilesWithIncomes(string nameFileIncomes): NAME_FILE_INCOMES(nameFileIncomes) {};
     vector <Income> loadIncomesFromFile(int idLoggedUser);
     vector <Data> wczytajDatyZPliku(int idLoggedUser);
     void appendIncomeToFile(Income income);

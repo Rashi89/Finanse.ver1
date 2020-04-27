@@ -256,7 +256,7 @@
 	<windows.h>
 	<mbstring.h>
 
-1586149176 c:\users\rashi\desktop\new\markup.h
+1588011163 c:\users\rashi\desktop\new\markup.h
 	<stdlib.h>
 	<string.h>
 	<string>
@@ -268,7 +268,7 @@
 1588009861 c:\users\rashi\desktop\new\user.h
 	<iostream>
 
-1588009841 source:c:\users\rashi\desktop\new\additionalmethods.cpp
+1588010760 source:c:\users\rashi\desktop\new\additionalmethods.cpp
 	<iostream>
 	<vector>
 	<windows.h>
@@ -276,21 +276,21 @@
 	<sstream>
 	"AdditionalMethods.h"
 
-1588009861 c:\users\rashi\desktop\new\additionalmethods.h
+1588011075 c:\users\rashi\desktop\new\additionalmethods.h
 	<iostream>
 	<vector>
 	<algorithm>
 	<sstream>
 
-1588009841 source:c:\users\rashi\desktop\new\data.cpp
+1588010760 source:c:\users\rashi\desktop\new\data.cpp
 	"Data.h"
 
-1588009841 c:\users\rashi\desktop\new\data.h
+1588010760 c:\users\rashi\desktop\new\data.h
 	<iostream>
 	<vector>
 	<algorithm>
 
-1588009861 source:c:\users\rashi\desktop\new\datamenager.cpp
+1588010760 source:c:\users\rashi\desktop\new\datamenager.cpp
 	<iostream>
 	<vector>
 	<stdlib.h>
@@ -299,7 +299,7 @@
 	<winbase.h>
 	"DataMenager.h"
 
-1588009861 c:\users\rashi\desktop\new\datamenager.h
+1588011075 c:\users\rashi\desktop\new\datamenager.h
 	<iostream>
 	<vector>
 	<sstream>
@@ -310,23 +310,23 @@
 	"AdditionalMethods.h"
 	"Markup.h"
 
-1588009841 c:\users\rashi\desktop\new\expense.h
+1588010760 c:\users\rashi\desktop\new\expense.h
 	<iostream>
 	<vector>
 	<algorithm>
 
-1588009841 c:\users\rashi\desktop\new\income.h
+1588010760 c:\users\rashi\desktop\new\income.h
 	<iostream>
 	<vector>
 	<algorithm>
 
-1588009841 source:c:\users\rashi\desktop\new\expense.cpp
+1588010760 source:c:\users\rashi\desktop\new\expense.cpp
 	"Expense.h"
 
-1588010211 source:c:\users\rashi\desktop\new\fileswithexpenses.cpp
+1588010760 source:c:\users\rashi\desktop\new\fileswithexpenses.cpp
 	"FilesWithExpenses.h"
 
-1588010211 c:\users\rashi\desktop\new\fileswithexpenses.h
+1588011075 c:\users\rashi\desktop\new\fileswithexpenses.h
 	<iostream>
 	<vector>
 	<stdio.h>
@@ -337,10 +337,10 @@
 	"DataMenager.h"
 	"AdditionalMethods.h"
 
-1588009841 source:c:\users\rashi\desktop\new\income.cpp
+1588010760 source:c:\users\rashi\desktop\new\income.cpp
 	"Income.h"
 
-1588009861 source:c:\users\rashi\desktop\new\incomemenager.cpp
+1588010986 source:c:\users\rashi\desktop\new\incomemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>
@@ -348,7 +348,7 @@
 	<sstream>
 	"IncomeMenager.h"
 
-1588010483 c:\users\rashi\desktop\new\incomemenager.h
+1588011075 c:\users\rashi\desktop\new\incomemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -359,7 +359,7 @@
 	"FilesWithIncomes.h"
 	"AdditionalMethods.h"
 
-1588010369 c:\users\rashi\desktop\new\fileswithincomes.h
+1588011075 c:\users\rashi\desktop\new\fileswithincomes.h
 	<iostream>
 	<vector>
 	"Income.h"
@@ -368,22 +368,22 @@
 	"DataMenager.h"
 	"AdditionalMethods.h"
 
-1588010289 source:c:\users\rashi\desktop\new\fileswithusers.cpp
+1588010760 source:c:\users\rashi\desktop\new\fileswithusers.cpp
 	"FilesWithUsers.h"
 
-1588010349 c:\users\rashi\desktop\new\fileswithusers.h
+1588011162 c:\users\rashi\desktop\new\fileswithusers.h
 	<iostream>
 	<vector>
 	"User.h"
 	"Markup.h"
 
-1588010269 source:c:\users\rashi\desktop\new\fileswithincomes.cpp
+1588010986 source:c:\users\rashi\desktop\new\fileswithincomes.cpp
 	"FilesWithIncomes.h"
 
-1588009861 source:c:\users\rashi\desktop\new\finanse.cpp
+1588010986 source:c:\users\rashi\desktop\new\finanse.cpp
 	"Finanse.h"
 
-1588009861 c:\users\rashi\desktop\new\finanse.h
+1588011075 c:\users\rashi\desktop\new\finanse.h
 	<iostream>
 	"UsersMenager.h"
 	"ExpenseMenager.h"
@@ -391,7 +391,7 @@
 	"IncomeMenager.h"
 	"AdditionalMethods.h"
 
-1588010307 c:\users\rashi\desktop\new\usersmenager.h
+1588011075 c:\users\rashi\desktop\new\usersmenager.h
 	<iostream>
 	<vector>
 	"User.h"
@@ -399,7 +399,7 @@
 	"FilesWithUsers.h"
 	"AdditionalMethods.h"
 
-1588010417 c:\users\rashi\desktop\new\expensemenager.h
+1588011075 c:\users\rashi\desktop\new\expensemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -411,7 +411,7 @@
 	"data.h"
 	"AdditionalMethods.h"
 
-1588009841 source:c:\users\rashi\desktop\new\main.cpp
+1588010760 source:c:\users\rashi\desktop\new\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
@@ -419,12 +419,12 @@
 	"DataMenager.h"
 	"ExpenseMenager.h"
 
-1588010486 source:c:\users\rashi\desktop\new\usersmenager.cpp
+1588010986 source:c:\users\rashi\desktop\new\usersmenager.cpp
 	<iostream>
 	<vector>
 	"UsersMenager.h"
 
-1588010509 source:c:\users\rashi\desktop\new\expensemenager.cpp
+1588010986 source:c:\users\rashi\desktop\new\expensemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>

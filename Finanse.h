@@ -9,8 +9,7 @@
 
 using namespace std;
 
-class Finanse
-{
+class Finanse {
     UsersMenager usersMenager;
     ExpenseMenager *expenseMenager;
     IncomeMenager   *incomeMenager;
@@ -19,14 +18,12 @@ class Finanse
     const string NAME_FILE_EXPENSES;
 
 public:
-    Finanse(string nameFileUsers,string nameFileIncomes, string nameFileExpenses) : usersMenager(nameFileUsers),NAME_FILE_INCOMES(nameFileIncomes), NAME_FILE_EXPENSES(nameFileExpenses)
-    {
+    Finanse(string nameFileUsers,string nameFileIncomes, string nameFileExpenses) : usersMenager(nameFileUsers),NAME_FILE_INCOMES(nameFileIncomes), NAME_FILE_EXPENSES(nameFileExpenses) {
         expenseMenager=NULL;
         incomeMenager=NULL;
         dataMenager=NULL;
     }
-    ~Finanse()
-    {
+    ~Finanse() {
         delete expenseMenager;
         expenseMenager=NULL;
         delete incomeMenager;
@@ -35,14 +32,11 @@ public:
         dataMenager=NULL;
     }
     void registerUser();
-    //void wyswietlWszystkichUzytkownikow();
     void loginUser();
     void logoutUser();
     void changePasswordLoggedUser();
     void addExpense();
     void addIncome();
-    //void wyswietlWszystkieItemy();
-    //void wyswietlWszystkieDaty();
     void showItemsFromThisMonth();
     void showItemsFromPreviousMonth();
     void showItemsFromRangeProvided();
