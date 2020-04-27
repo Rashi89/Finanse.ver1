@@ -9,12 +9,12 @@
 #include "DataMenager.h"
 #include "data.h"
 
-Data DataMenager::podajDate() {
+Data DataMenager::podajDate(string wpisanaData) {
     Data data;
-    string wpisanaData;
+    //string wpisanaData;
     int id,rok,miesiac,dzien;
-    cout<<"Podaj date: ";
-    cin>> wpisanaData;
+    //cout<<"Podaj date: ";
+    //cin>> wpisanaData;
     rok=zamienDateNaRok(wpisanaData);
     miesiac=zamienDateNaMiesiac(wpisanaData);
     dzien=zamienDateNaDzien(wpisanaData);
@@ -220,6 +220,7 @@ string DataMenager::dzisiejszaData() {
 
     Data data;
     data=pobierzDzisiejszaDate();
+
     vector <Data> :: iterator itr = daty.end()-1;
     pobierzDzisiejszaDateJakoString(*itr);
     cout <<pobierzDzisiejszaDateJakoString(*itr)<<endl;

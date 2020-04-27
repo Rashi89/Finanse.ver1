@@ -3,6 +3,7 @@
 
 #include "Expense.h"
 #include "ExpenseMenager.h"
+#include "DataMenager.h"
 #include "Markup.h"
 
 void ExpenseMenager::dodajItem() {
@@ -31,6 +32,8 @@ Expense ExpenseMenager::podajNowyItem() {
         cout << "Podaj date: ";
         cin.sync();
         data1=wczytajLinie();
+        dataMenager.podajDate(data1);
+        dataMenager.wyswietlDaty();
         expense.ustawDate(data1);
         cout << "Podaj nazwe produktu: ";
         cin.sync();
@@ -41,10 +44,11 @@ Expense ExpenseMenager::podajNowyItem() {
         cin>>amount;
         expense.ustawAmount(amount);
     }
-    else{
+    else if(znak=='t')
+    {
         cout<<"Dzisiejsza data: "<<endl;
         data1=dataMenager.dzisiejszaData();
-        cout<<data1<<endl;
+        //cout<<data1<<endl;
         expense.ustawDate(data1);
         cout << "Podaj nazwe produktu: ";
         cin.sync();
@@ -55,7 +59,8 @@ Expense ExpenseMenager::podajNowyItem() {
         cin>>amount;
         expense.ustawAmount(amount);
     }
-
+    else
+        cout<<"Zly znak"<<endl;
 
     return expense;
 }

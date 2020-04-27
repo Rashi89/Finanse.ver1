@@ -43,6 +43,7 @@ void Finanse::dodajItem()
         system("pause");
     }
 }
+
 void Finanse::wyswietlWszystkieItemy()
 {
     if(usersMenager.czyUzytkownikJestZalogowany())

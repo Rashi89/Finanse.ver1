@@ -7,15 +7,15 @@
 using namespace std;
 
 int main() {
-
     Finanse finanse;
     //finanse.rejestracjaUzytkownika();
     //finanse.wyswietlWszystkichUzytkownikow();
-    //finanse.logowanieUzytownika();
+    finanse.logowanieUzytownika();
     //finanse.wyswietlWszystkieItemy();
     //finanse.wylogowanieZalogowanegoUzytkownika();
     //finanse.zmianaHaslaZalogowanegoUzytkownika();
-    //finanse.dodajItem();
+    finanse.dodajItem();
+    //finanse.wyswietlWszystkieItemy();
     //DataMenager dataMenager;
     //dataMenager.pobierzDzisiejszaDate();
     //dataMenager.wyswietlDaty();

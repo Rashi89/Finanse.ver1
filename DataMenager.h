@@ -27,7 +27,7 @@ class DataMenager
 
 
 public:
-    Data podajDate();
+    Data podajDate(string wpisanaData);
     void wyswietlDaty();
     void sortowanie();
     Data pobierzDzisiejszaDate();
