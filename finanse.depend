@@ -1,9 +1,322 @@
 # depslib dependency file v1.0
-1588001994 source:c:\users\rashi\desktop\new\main.cpp
+1586525121 source:d:\programowanie\xml_teoria\xml_lekcja1\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1586181576 d:\programowanie\xml_teoria\xml_lekcja1\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1586525121 source:d:\programowanie\xml_teoria\xml_lekcja1\main.cpp
+	<iostream>
+	<vector>
+	"Markup.h"
+	"UsersMenager.h"
+
+1586525238 source:d:\programowanie\xml_teoria\xml_lekcja1\usersmenager.cpp
+	<iostream>
+	<vector>
+	"User.h"
+	"UsersMenager.h"
+	"Markup.h"
+	"PlikiZUsers.h"
+
+1586525121 source:d:\programowanie\xml_teoria\xml_lekcja1\user.cpp
+	"User.h"
+
+1586525121 d:\programowanie\xml_teoria\xml_lekcja1\user.h
+	<iostream>
+
+1586525121 d:\programowanie\xml_teoria\xml_lekcja1\usersmenager.h
+	<iostream>
+	<vector>
+	"User.h"
+	"PlikiZUsers.h"
+	"Markup.h"
+
+1586525121 source:d:\programowanie\xml_teoria\xml_lekcja1\plikizusers.cpp
+	"Markup.h"
+	"User.h"
+	"PlikiZUsers.h"
+
+1586525685 d:\programowanie\xml_teoria\xml_lekcja1\plikizusers.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Markup.h"
+
+1587136614 source:d:\programowanie\projekty c++\finanse\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
 	"Finanse.h"
+	"DataMenager.h"
+	"ExpenseMenager.h"
+
+1586181576 d:\programowanie\projekty c++\finanse\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1587125341 d:\programowanie\projekty c++\finanse\usersmenager.h
+	<iostream>
+	<vector>
+	"User.h"
+	"PlikiZUsers.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+	"Markup.h"
+
+1586525121 d:\programowanie\projekty c++\finanse\user.h
+	<iostream>
+
+1586525685 d:\programowanie\projekty c++\finanse\plikizusers.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Markup.h"
+
+1586525121 source:d:\programowanie\projekty c++\finanse\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1586525121 source:d:\programowanie\projekty c++\finanse\plikizusers.cpp
+	"Markup.h"
+	"User.h"
+	"PlikiZUsers.h"
+
+1586525121 source:d:\programowanie\projekty c++\finanse\user.cpp
+	"User.h"
+
+1586871481 source:d:\programowanie\projekty c++\finanse\usersmenager.cpp
+	<iostream>
+	<vector>
+	"User.h"
+	"UsersMenager.h"
+	"Markup.h"
+	"PlikiZUsers.h"
+
+1587378088 source:d:\programowanie\projekty c++\finanse\income.cpp
+
+1587125986 d:\programowanie\projekty c++\finanse\income.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1587124644 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<winbase.h>
+	"Income.h"
+	"data.h"
+	"IncomeMenager.h"
+	"DataMenager.h"
+	"Markup.h"
+
+1587124629 d:\programowanie\projekty c++\finanse\incomemenager.h
+	<iostream>
+	<vector>
+	<algorithm>
+	"Income.h"
+	"PlikiZIncomes.h"
+	"DataMenager.h"
+	"Markup.h"
+	"data.h"
+
+1587125333 d:\programowanie\projekty c++\finanse\finanse.h
+	<iostream>
+	"UsersMenager.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+
+1587125353 source:d:\programowanie\projekty c++\finanse\finanse.cpp
+	"Finanse.h"
+	"UsersMenager.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+
+1587126226 d:\programowanie\projekty c++\finanse\plikizincomes.h
+	<iostream>
+	<vector>
+	"Expense.h"
+	"Markup.h"
+	"data.h"
+	"DataMenager.h"
+
+1587126441 source:d:\programowanie\projekty c++\finanse\plikizincomes.cpp
+	"Markup.h"
+	"Expense.h"
+	"PlikiZIncomes.h"
+	"data.h"
+	"DataMenager.h"
+
+1586971099 source:d:\programowanie\projekty c++\finanse\data.cpp
+	"Data.h"
+
+1586971099 d:\programowanie\projekty c++\finanse\data.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1587136170 source:d:\programowanie\projekty c++\finanse\datamenager.cpp
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<algorithm>
+	<windows.h>
+	<winbase.h>
+	<windows.h>
+	"DataMenager.h"
+	"ExpenseMenager.h"
+	"data.h"
+	"Expense.h"
+	"Markup.h"
+
+1587136708 d:\programowanie\projekty c++\finanse\datamenager.h
+	<iostream>
+	<vector>
+	<sstream>
+	<algorithm>
+	"data.h"
+	"Expense.h"
+
+1587135345 d:\programowanie\projekty c++\finanse\expensemenager.h
+	<iostream>
+	<vector>
+	<algorithm>
+	"Expense.h"
+	"PlikiZIncomes.h"
+	"DataMenager.h"
+	"Markup.h"
+	"data.h"
+
+1587136139 source:d:\programowanie\projekty c++\finanse\expensemenager.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<winbase.h>
+	"Expense.h"
+	"data.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+	"Markup.h"
+
+1587378430 source:d:\programowanie\projekty c++\finanse\expense.cpp
+	"Expense.h"
+
+1587126079 d:\programowanie\projekty c++\finanse\expense.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1588006221 source:c:\users\rashi\desktop\new\data.cpp
+	"Data.h"
+
+1588006221 c:\users\rashi\desktop\new\data.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1588006221 source:c:\users\rashi\desktop\new\datamenager.cpp
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<algorithm>
+	<windows.h>
+	<winbase.h>
+	<windows.h>
+	"DataMenager.h"
+	"ExpenseMenager.h"
+	"data.h"
+	"Expense.h"
+	"Markup.h"
+
+1588006221 c:\users\rashi\desktop\new\datamenager.h
+	<iostream>
+	<vector>
+	<sstream>
+	<algorithm>
+	"data.h"
+	"Expense.h"
+
+1588006221 c:\users\rashi\desktop\new\expense.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1588006840 c:\users\rashi\desktop\new\expensemenager.h
+	<iostream>
+	<vector>
+	<algorithm>
+	"Expense.h"
+	"PlikiZExpenses.h"
+	"DataMenager.h"
+	"Markup.h"
+	"data.h"
+
+1588006221 c:\users\rashi\desktop\new\plikizincomes.h
+	<iostream>
+	<vector>
+	"Expense.h"
+	"Markup.h"
+	"data.h"
+	"DataMenager.h"
+
+1586149176 c:\users\rashi\desktop\new\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1588006221 source:c:\users\rashi\desktop\new\finanse.cpp
+	"Finanse.h"
+	"UsersMenager.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+
+1588006221 c:\users\rashi\desktop\new\finanse.h
+	<iostream>
+	"UsersMenager.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+
+1588006221 c:\users\rashi\desktop\new\usersmenager.h
+	<iostream>
+	<vector>
+	"User.h"
+	"PlikiZUsers.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+	"Markup.h"
+
+1588006221 c:\users\rashi\desktop\new\user.h
+	<iostream>
+
+1588006221 c:\users\rashi\desktop\new\plikizusers.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Markup.h"
+
+1588006818 source:c:\users\rashi\desktop\new\main.cpp
+	<iostream>
+	<vector>
+	"Markup.h"
+	"Finanse.h"
+	"DataMenager.h"
+	"ExpenseMenager.h"
 
 1586492720 source:c:\users\rashi\desktop\new\markup.cpp
 	<stdio.h>
@@ -13,44 +326,10 @@
 	<windows.h>
 	<mbstring.h>
 
-1586149176 c:\users\rashi\desktop\new\markup.h
-	<stdlib.h>
-	<string.h>
-	<string>
-	<afx.h>
-
 1586492720 source:c:\users\rashi\desktop\new\user.cpp
 	"User.h"
 
-1588000335 c:\users\rashi\desktop\new\user.h
-	<iostream>
-
-1588000748 source:c:\users\rashi\desktop\new\expense.cpp
-	"Expense.h"
-
-1588000748 c:\users\rashi\desktop\new\expense.h
-	<iostream>
-
-1588000963 c:\users\rashi\desktop\new\usersmenager.h
-	<iostream>
-	<vector>
-	"User.h"
-	"PlikiZUsers.h"
-	"ExpenseMenager.h"
-	"Markup.h"
-
-1588000335 c:\users\rashi\desktop\new\plikizusers.h
-	<iostream>
-	<vector>
-	"User.h"
-	"Markup.h"
-
-1588000335 source:c:\users\rashi\desktop\new\plikizusers.cpp
-	"Markup.h"
-	"User.h"
-	"PlikiZUsers.h"
-
-1588000335 source:c:\users\rashi\desktop\new\usersmenager.cpp
+1588006221 source:c:\users\rashi\desktop\new\usersmenager.cpp
 	<iostream>
 	<vector>
 	"User.h"
@@ -58,39 +337,52 @@
 	"Markup.h"
 	"PlikiZUsers.h"
 
-1588001964 source:c:\users\rashi\desktop\new\expensemenager.cpp
+1588006221 source:c:\users\rashi\desktop\new\income.cpp
+	"Income.h"
+
+1588006221 c:\users\rashi\desktop\new\income.h
 	<iostream>
 	<vector>
+	<algorithm>
+
+1588006221 source:c:\users\rashi\desktop\new\plikizincomes.cpp
+	"Markup.h"
 	"Expense.h"
+	"PlikiZIncomes.h"
+	"data.h"
+	"DataMenager.h"
+
+1588006221 source:c:\users\rashi\desktop\new\plikizusers.cpp
+	"Markup.h"
+	"User.h"
+	"PlikiZUsers.h"
+
+1588006221 source:c:\users\rashi\desktop\new\expense.cpp
+	"Expense.h"
+
+1588006221 source:c:\users\rashi\desktop\new\expensemenager.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<winbase.h>
+	"Expense.h"
+	"data.h"
 	"ExpenseMenager.h"
+	"DataMenager.h"
 	"Markup.h"
 
-1588001847 c:\users\rashi\desktop\new\expensemenager.h
-	<iostream>
-	<vector>
+1588006764 source:c:\users\rashi\desktop\new\plikizexpenses.cpp
+	"Markup.h"
 	"Expense.h"
-	"ExpenseMenager.h"
 	"PlikiZExpenses.h"
-	"Markup.h"
+	"data.h"
+	"DataMenager.h"
 
-1588001786 c:\users\rashi\desktop\new\finanse.h
-	<iostream>
-	"UsersMenager.h"
-	"ExpenseMenager.h"
-
-1588001757 source:c:\users\rashi\desktop\new\finanse.cpp
-	"Finanse.h"
-	"UsersMenager.h"
-	"ExpenseMenager.h"
-
-1588001562 source:c:\users\rashi\desktop\new\plikizexpenses.cpp
-	"Markup.h"
-	"Expense.h"
-	"ExpenseMenager.h"
-
-1588001390 c:\users\rashi\desktop\new\plikizexpenses.h
+1588006764 c:\users\rashi\desktop\new\plikizexpenses.h
 	<iostream>
 	<vector>
 	"Expense.h"
 	"Markup.h"
+	"data.h"
+	"DataMenager.h"
 

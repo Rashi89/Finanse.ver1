@@ -1,12 +1,17 @@
 #include "Markup.h"
 #include "Expense.h"
-#include "ExpenseMenager.h"
+#include "PlikiZExpenses.h"
+#include "data.h"
+#include "DataMenager.h"
 
 
 vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
 {
     vector <Expense> expenses;
     Expense expense;
+
+    string dataJakoString;
+    int dataJakoInt;
 
     CMarkup xml;
     xml.Load( "Expense.xml" );
@@ -24,6 +29,9 @@ vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownik
         xml.FindElem("DATE");
         MCD_STR strDate = xml.GetData();
         expense.ustawDate(strDate);
+        dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(strDate);
+        dataJakoInt=konwersjaStringNaInt(dataJakoString);
+        expense.ustawDataJakoInt(dataJakoInt);
         xml.FindElem("ITEM");
         MCD_STR strItem = xml.GetData();
         expense.ustawItem(strItem);
@@ -33,6 +41,7 @@ vector <Expense> PlikiZExpenses::wczytajItemyZPliku(int idZalogowanegoUzytkownik
         xml.OutOfElem();
         expenses.push_back(expense);
         }
+        else xml.OutOfElem();
     }
     return expenses;
 }
@@ -41,12 +50,12 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
 {
     CMarkup xml;
     if(xml.Load( "Expense.xml" )==false) {
-        xml.AddElem( "EXPENSE" );
+        xml.AddElem( "EXPENSES" );
         xml.IntoElem();
         xml.AddElem( "EXPENSE" );
         xml.IntoElem();
-        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
         xml.AddElem( "USERID", expense.pobierzUserID() );
+        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
         xml.AddElem( "DATE", expense.pobierzDate() );
         xml.AddElem( "ITEM", expense.pobierzItem() );
         xml.AddElem( "AMOUNT", expense.pobierzAmount() );
@@ -58,8 +67,8 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
         xml.IntoElem();
         xml.AddElem( "EXPENSE" );
         xml.IntoElem();
-        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
         xml.AddElem( "USERID", expense.pobierzUserID() );
+        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
         xml.AddElem( "DATE", expense.pobierzDate() );
         xml.AddElem( "ITEM", expense.pobierzItem() );
         xml.AddElem( "AMOUNT", expense.pobierzAmount() );
@@ -68,3 +77,10 @@ void PlikiZExpenses::dopiszItemDoPliku(Expense expense)
     }
 }
 
+int PlikiZExpenses::konwersjaStringNaInt(string liczba)
+{
+    int liczbaInt;
+    istringstream iss(liczba);
+    iss >> liczbaInt;
+    return liczbaInt;
+}

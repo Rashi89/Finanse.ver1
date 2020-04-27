@@ -2,20 +2,25 @@
 #include <vector>
 #include "Markup.h"
 #include "Finanse.h"
+#include "DataMenager.h"
+#include "ExpenseMenager.h"
 
 using namespace std;
 
 int main() {
     Finanse finanse;
-    //finanse.rejestracjaUzytkownika();
-    //finanse.wyswietlWszystkichUzytkownikow();
+
     //finanse.logowanieUzytownika();
-    //finanse.wyswietlWszystkieItemy();
-    //finanse.wylogowanieZalogowanegoUzytkownika();
-    //finanse.zmianaHaslaZalogowanegoUzytkownika();
+
     //finanse.dodajItem();
-
-
+    //finanse.wyswietlWszystkieItemy();
+    //finanse.wyswietlWszystkieDaty();
+   // finanse.sortowanie();
+   // finanse.wyswietlItemyZTegoMiesiaca();
+    //finanse.wyswietlItemyZPoprzedniegoMiesiaca();
+    //finanse.wyswietlItemyZPodanegoZakresu();
+    //DataMenager dataMenager;
+    //dataMenager.dzisiejszaDataJakoInt();
 
     return 0;
 }

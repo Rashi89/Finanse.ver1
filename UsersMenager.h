@@ -6,6 +6,7 @@
 #include "User.h"
 #include "PlikiZUsers.h"
 #include "ExpenseMenager.h"
+#include "DataMenager.h"
 #include "Markup.h"
 
 using namespace std;
