@@ -7,48 +7,53 @@
 #include <sstream>
 
 #include "Expense.h"
-#include "PlikiZExpenses.h"
+#include "FilesWithExpenses.h"
 #include "DataMenager.h"
 #include "Markup.h"
 #include "data.h"
-#include "MetodyPomocnicze.h"
+#include "AdditionalMethods.h"
+
+//#include "data.h"
+//#include "ExpenseMenager.h"
+//#include "DataMenager.h"
+//#include "Markup.h"
 
 using namespace std;
 
 class ExpenseMenager
 {
-    const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
+    const int ID_LOGGED_USER;
 
     vector <Expense> expenses;
     vector <Data> daty;
-    PlikiZExpenses plikiZExpenses;
+    FilesWithExpenses filesWithExpenses;
     DataMenager dataMenager;
 
-    Expense podajNowyItem(char znak, string wpisanaData);
-    int pobierzIdNowegoItemu();
-    void wyswietlItem(Expense expense);
-    void wyswietlItemZTegoMiesiaca(Expense expense);
-    void wyswietlItemZPoprzedniegoMiesiaca(Expense expense);
-    void sortowanieItemow(vector <Expense> &expense);
-    bool czyWpisanaDataJestPoprawna(string data);
-    void wyswietlItemyZZakresu(string dataPoczatkowa,string dataKoncowa);
+    Expense getNewItemData(char sign, string givenData);
+    int getIDNewExpense();
+    void showExpense(Expense expense);
+    void showExpenseFromThisMonth(Expense expense);
+    void showExpenseFromPreviousMonth(Expense expense);
+    void sortingExpense(vector <Expense> &expense);
+    bool isCorrectDate(string data);
+    void showExpenseFromRangeProvided(string dataPoczatkowa,string dataKoncowa);
     void wyswietlDate(Data data);
 
 public:
-    ExpenseMenager(string nazwaPlikuZExpenses,int idZalogowanegoUzytkownika): plikiZExpenses(nazwaPlikuZExpenses),ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika){
-        expenses = plikiZExpenses.wczytajItemyZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
-        daty = dataMenager.wczytajDaty(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+    ExpenseMenager(string nameFileExpenses,int idLoggedUser): filesWithExpenses(nameFileExpenses),ID_LOGGED_USER(idLoggedUser){
+        expenses = filesWithExpenses.loadExpensesFromFile(ID_LOGGED_USER);
+        daty = dataMenager.loadData(ID_LOGGED_USER);
         };
-    void dodajItem();
+    void addExpense();
     void wyswietlWszystkieItemy();
     void wyswietlWszystkieDaty();
-    void wyswietlItemyZBiezacegoMiesiaca();
-    void wyswietlItemyZPoprzedniegoMiesiaca();
-    void sortowanie();
-    float obliczWydatkiZObecnegoMiesiaca();
-    float obliczWydatkiZPoprzedniegoMiesiaca();
-    void wyswietlItemyZPodanegoZakresu(string dataPoczatkowa,string dataKoncowa);
-    float obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
+    void showItemsFromThisMonth();
+    void showItemsFromPreviousMonth();
+    void sorting();
+    float calculateExpensesFromThisMonth();
+    float calculateExpensesFromPreviousMonth();
+    void showItemsFromRangeProvided(string dataPoczatkowa,string dataKoncowa);
+    float calculateExpensesFromRangeProvided(string dataPoczatkowa,string dataKoncowa);
 
 };
 

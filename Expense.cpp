@@ -1,57 +1,56 @@
 #include "Expense.h"
 
-void Expense::ustawExpenseID(int newExpenseID) {
+void Expense::setExpenseID(int newExpenseID) {
     if(newExpenseID>=0)
         expenseID=newExpenseID;
 }
-void Expense::ustawUserID(int newUserID) {
+void Expense::setUserID(int newUserID) {
     if(newUserID>=0)
         userID=newUserID;
 }
-void Expense::ustawDate(string newDate) {
+void Expense::setDate(string newDate) {
     date=newDate;
 }
-void Expense::ustawItem(string newItem) {
+void Expense::setItem(string newItem) {
     item=newItem;
 }
-void Expense::ustawAmount(float newAmount) {
+void Expense::setAmount(float newAmount) {
     if(newAmount>=0)
     amount=newAmount;
 }
-void Expense::ustawDataJakoInt(int newDataJakoInt)
+void Expense::setDateAsInt(int newDateAsInt)
 {
-    dataJakoInt=newDataJakoInt;
+    dateAsInt=newDateAsInt;
 }
-void Expense::ustawAmountJakoString(string newAmountJakoString)
+void Expense::setAmountAsString(string newAmountAsString)
 {
-    amountJakoString=newAmountJakoString;
+    amountAsString=newAmountAsString;
 }
 
     bool Expense::operator<(const Expense &other)
 {
-    return dataJakoInt < other.dataJakoInt;
+    return dateAsInt < other.dateAsInt;
 }
 
-
-int Expense::pobierzExpenseID() {
+int Expense::getExpenseID() {
     return expenseID;
 }
-int Expense::pobierzUserID() {
+int Expense::getUserID() {
     return userID;
 }
-string Expense::pobierzDate() {
+string Expense::getDate() {
     return date;
 }
-string Expense::pobierzItem() {
+string Expense::getItem() {
     return item;
 }
-float Expense::pobierzAmount() {
+float Expense::getAmount() {
     return amount;
 }
 
-int Expense::pobierzDataJakoInt() {
-    return dataJakoInt;
+int Expense::getDateAsInt() {
+    return dateAsInt;
 }
-string Expense::pobierzAmountJakoString() {
-    return amountJakoString;
+string Expense::getAmountAsString() {
+    return amountAsString;
 }

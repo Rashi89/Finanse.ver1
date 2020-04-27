@@ -12,38 +12,38 @@ class Income {
     string date;
     string item;
     float amount;
-    int dataJakoInt;
-    string amountJakoString;
+    int dateAsInt;
+    string amountAsString;
 
 public:
 
-    Income(int incomeID=0, int userID=0, string date="", string item="",float amount=0.0, int dataJakoInt=0,string amountJakoString="") {
+    Income(int incomeID=0, int userID=0, string date="", string item="",float amount=0.0, int dateAsInt=0,string amountAsString="") {
         this->incomeID = incomeID;
         this->userID=userID;
         this->date=date;
         this->item=item;
         this->amount=amount;
-        this->dataJakoInt=dataJakoInt;
-        this->amountJakoString=amountJakoString;
+        this->dateAsInt=dateAsInt;
+        this->amountAsString=amountAsString;
     }
     bool operator<(const Income &other);
 
     //setery
-    void ustawIncomeID(int newIncomeID);
-    void ustawUserID(int newUserID);
-    void ustawDate(string newDate);
-    void ustawItem(string newItem);
-    void ustawAmount(float newAmount);
-    void ustawDataJakoInt(int newDataJakoInt);
+    void setIncomeID(int newIncomeID);
+    void setUserID(int newUserID);
+    void setDate(string newDate);
+    void setItem(string newItem);
+    void setAmount(float newAmount);
+    void setDateAsInt(int newDateAsInt);
+    void setAmountAsString(string newAmountAsString);
     //getery
-    int pobierzIncomeID();
-    int pobierzUserID();
-    string pobierzDate();
-    string pobierzItem();
-    float pobierzAmount();
-    int pobierzDataJakoInt();
-    void ustawAmountJakoString(string newAmountJakoString);
-    string pobierzAmountJakoString();
+    int getIncomeID();
+    int getUserID();
+    string getDate();
+    string getItem();
+    float getAmount();
+    int getDateAsInt();
+    string getAmountAsString();
 
 };
 #endif

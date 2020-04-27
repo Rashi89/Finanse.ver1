@@ -14,17 +14,17 @@ int main() {
 
     while(true)
     {
-        if(finanse.czyUzytkownikJestZalogowany()==false)
+        if(finanse.isUserLoggedIn()==false)
         {
-            wybor = finanse.wybierzOpcjeZMenuGlownego();
+            wybor = finanse.selectOptionFromMainMenu();
 
             switch (wybor)
             {
             case '1':
-                finanse.rejestracjaUzytkownika();
+                finanse.registerUser();
                 break;
             case '2':
-                finanse.logowanieUzytownika();
+                finanse.loginUser();
                 break;
             case '9':
                 exit(0);
@@ -37,37 +37,37 @@ int main() {
         }
         else
         {
-            wybor = finanse.wybierzOpcjeZMenuUzytkownika();
+            wybor = finanse.selectOptionFromUserMenu();
             switch (wybor)
             {
             case '1':
-                finanse.dodajIncome();
+                finanse.addIncome();
                 break;
             case '2':
-                finanse.dodajItem();
+                finanse.addExpense();
                 break;
             case'3':
-                finanse.sortowanie();
-                finanse.wyswietlItemyZTegoMiesiaca();
-                finanse.obliczWydatkiZObecnegoMiesiaca();
+                finanse.sorting();
+                finanse.showItemsFromThisMonth();
+                finanse.calculateBilansFromThisMonth();
                 system("pause");
                 break;
             case '4':
-                finanse.sortowanie();
-                finanse.wyswietlItemyZPoprzedniegoMiesiaca();
-                finanse.obliczWydatkiZPoprzedniegoMiesiaca();
+                finanse.sorting();
+                finanse.showItemsFromPreviousMonth();
+                finanse.calculateBilansFromPreviousMonth();
                 system("pause");
                 break;
             case '5':
-                finanse.sortowanie();
-                finanse.wyswietlItemyZPodanegoZakresu();
+                finanse.sorting();
+                finanse.showItemsFromRangeProvided();
                 system("pause");
                 break;
             case '6':
-                finanse.zmianaHaslaZalogowanegoUzytkownika();
+                finanse.changePasswordLoggedUser();
                 break;
             case '7':
-                finanse.wylogowanieZalogowanegoUzytkownika();
+                finanse.logoutUser();
                 break;
             }
         }

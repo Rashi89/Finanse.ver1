@@ -4,39 +4,36 @@
 #include <vector>
 
 #include "User.h"
-#include "PlikiZUsers.h"
-#include "ExpenseMenager.h"
-#include "DataMenager.h"
 #include "Markup.h"
-#include "IncomeMenager.h"
-#include "MetodyPomocnicze.h"
+#include "FilesWithUsers.h"
+#include "AdditionalMethods.h"
 
 using namespace std;
 
 class UsersMenager {
 
-    int idZalogowanegoUzytkownika;
+    int idLoggedUser;
     vector <User> users;
-    PlikiZUsers plikiZUsers;
+    FilesWithUsers filesWithUsers;
 
-    void wyswietlUzytkownika(User user);
-    int pobierzIdNowegoUzytkownika();
-    User podajDaneNowegoUzytkownika();
+    //void showUser(User user);
+    int getIDNewUser();
+    User getDetailsNewUser();
 
 public:
-    UsersMenager(string nazwaPlikuZUzytkownikami) : plikiZUsers(nazwaPlikuZUzytkownikami) {
-        idZalogowanegoUzytkownika=0;
-        users = plikiZUsers.wczytajUzytkownikowZPliku();
+    UsersMenager(string nameFileUsers) : filesWithUsers(nameFileUsers) {
+        idLoggedUser=0;
+        users = filesWithUsers.loadUsersFromFile();
     };
-    void rejestracjaUzytkownika();
-    void wyswietlWszystkichUzytkownikow();
-    void logowanieUzytkownika();
-    void zmianaHaslaZalogowanegoUzytkownika();
-    void wylogowanieZalogowanegoUzytkownika();
-    bool czyUzytkownikJestZalogowany();
-    int pobierzIdZalogowanegoUzytkownika();
-    char wybierzOpcjeZMenuUzytkownika();
-    bool czyIstniejeLogin(string login);
+    void registerUser();
+    //void wyswietlWszystkichUzytkownikow();
+    void loginUser();
+    void changePasswordLoggedUser();
+    void logoutUser();
+    bool isUserLoggedIn();
+    int loadIDLoggedUser();
+    char selectOptionFromUserMenu();
+    bool isLoginExist(string login);
 
 };
 #endif

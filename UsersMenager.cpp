@@ -1,32 +1,29 @@
 #include <iostream>
 #include <vector>
 
-#include "User.h"
 #include "UsersMenager.h"
-#include "Markup.h"
-#include "PlikiZUsers.h"
 
-void UsersMenager::rejestracjaUzytkownika() {
-    User user=podajDaneNowegoUzytkownika();
+void UsersMenager::registerUser() {
+    User user=getDetailsNewUser();
     users.push_back(user);
-    plikiZUsers.dopiszUzytkownikaDoPliku(user);
+    filesWithUsers.appendUserToFile(user);
 }
-void UsersMenager::logowanieUzytkownika() {
+void UsersMenager::loginUser() {
     User user;
-    string login="", haslo="";
+    string login="", password="";
 
     cout<<"Podaj login: ";
-    login=MetodyPomocnicze::wczytajLinie();
+    login=AdditionalMethods::loadLines();
 
     vector <User>::iterator itr = users.begin();
     while (itr != users.end()) {
         if (itr -> pobierzLogin() == login) {
-            for (int iloscProb = 3; iloscProb > 0; iloscProb--) {
-                cout << "Podaj haslo. Pozostalo prob: " << iloscProb << ": ";
-                haslo = MetodyPomocnicze::wczytajLinie();
+            for (int i = 3; i > 0; i--) {
+                cout << "Podaj haslo. Pozostalo prob: " << i << ": ";
+                password = AdditionalMethods::loadLines();
 
-                if (itr -> pobierzHaslo() == haslo) {
-                    idZalogowanegoUzytkownika=itr -> pobierzID();
+                if (itr -> pobierzHaslo() == password) {
+                    idLoggedUser=itr -> pobierzID();
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     return;
@@ -43,65 +40,65 @@ void UsersMenager::logowanieUzytkownika() {
     return;
 }
 
-void UsersMenager::wylogowanieZalogowanegoUzytkownika() {
-    idZalogowanegoUzytkownika=0;
+void UsersMenager::logoutUser() {
+    idLoggedUser=0;
     cout<<"Wylogowales sie!"<<endl;
 }
 
-void UsersMenager::zmianaHaslaZalogowanegoUzytkownika() {
-    string noweHaslo = "";
+void UsersMenager::changePasswordLoggedUser() {
+    string newPassword = "";
     cout << "Podaj nowe haslo: ";
     cin.sync();
-    noweHaslo = MetodyPomocnicze::wczytajLinie();
+    newPassword = AdditionalMethods::loadLines();
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++) {
-        if (itr -> pobierzID() == idZalogowanegoUzytkownika) {
+        if (itr -> pobierzID() == idLoggedUser) {
 
-            itr -> ustawHaslo(noweHaslo);
+            itr -> ustawHaslo(newPassword);
             cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
         }
     }
-    plikiZUsers.zapiszWszystkichUzytkownikowDoPliku(users);
+    filesWithUsers.saveAllUsersToFile(users);
 }
 
-User UsersMenager::podajDaneNowegoUzytkownika() {
+User UsersMenager::getDetailsNewUser() {
     User user;
 
-    user.ustawID(pobierzIdNowegoUzytkownika());
+    user.ustawID(getIDNewUser());
 
-    string imie,nazwisko,login,haslo;
+    string name,surname,login,password;
 
     do {
         cout << "Podaj imie: ";
         cin.sync();
-        imie=MetodyPomocnicze::wczytajLinie();
-        user.ustawImie(imie);
+        name=AdditionalMethods::loadLines();
+        user.ustawImie(name);
         cout << "Podaj nazwisko: ";
         cin.sync();
-        nazwisko=MetodyPomocnicze::wczytajLinie();
-        user.ustawNazwisko(nazwisko);
+        surname=AdditionalMethods::loadLines();
+        user.ustawNazwisko(surname);
         cout << "Podaj login: ";
         cin.sync();
-        login=MetodyPomocnicze::wczytajLinie();
+        login=AdditionalMethods::loadLines();
         user.ustawLogin(login);
-    } while (czyIstniejeLogin(user.pobierzLogin()) == true);
+    } while (isLoginExist(user.pobierzLogin()) == true);
     cout << "Podaj haslo: ";
     cin.sync();
-    haslo=MetodyPomocnicze::wczytajLinie();
-    user.ustawHaslo(haslo);
+    password=AdditionalMethods::loadLines();
+    user.ustawHaslo(password);
 
     return user;
 }
 
-int UsersMenager::pobierzIdNowegoUzytkownika() {
+int UsersMenager::getIDNewUser() {
     if (users.empty() == true)
         return 1;
     else
         return users.back().pobierzID() + 1;
 }
 
-void UsersMenager::wyswietlUzytkownika(User user) {
+/*void UsersMenager::showUser(User user) {
     cout<<"ID uzytkownika: "<< user.pobierzID()<<endl;
     cout<<"Imie uzytkownika: "<< user.pobierzImie()<<endl;
     cout<<"Nazwisko uzytkownika: "<< user.pobierzNazwisko()<<endl;
@@ -115,31 +112,28 @@ void UsersMenager::wyswietlWszystkichUzytkownikow() {
         cout << "-----------------------------------------------" << endl;
         cout<<users.size()<<endl;
         for (vector <User> :: iterator itr = users.begin(); itr != users.end(); itr++) {
-            wyswietlUzytkownika(*itr);
+            showUser(*itr);
         }
         cout << endl;
     } else {
         cout << endl << "Brak uzytkownikow." << endl << endl;
     }
+}*/
+
+int UsersMenager::loadIDLoggedUser()
+{
+    return idLoggedUser;
 }
 
-int UsersMenager::pobierzIdZalogowanegoUzytkownika()
+bool UsersMenager::isUserLoggedIn()
 {
-    return idZalogowanegoUzytkownika;
-}
-
-
-bool UsersMenager::czyUzytkownikJestZalogowany()
-{
-    if(idZalogowanegoUzytkownika>0)
+    if(idLoggedUser>0)
         return true;
     else
         return false;
 }
 
-
-bool UsersMenager::czyIstniejeLogin(string login) {
-    //refaktoryzacja kodu
+bool UsersMenager::isLoginExist(string login) {
     for(int i=0; i<users.size(); i++) {
         if(users[i].pobierzLogin()==login) {
             cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
@@ -149,10 +143,9 @@ bool UsersMenager::czyIstniejeLogin(string login) {
     return false;
 }
 
-char UsersMenager::wybierzOpcjeZMenuUzytkownika()
+char UsersMenager::selectOptionFromUserMenu()
 {
-
-    char wybor;
+    char choice;
 
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
@@ -167,7 +160,7 @@ char UsersMenager::wybierzOpcjeZMenuUzytkownika()
     cout << "7. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    wybor = MetodyPomocnicze::wczytajZnak();
+    choice = AdditionalMethods::loadSign();
 
-    return wybor;
+    return choice;
 }

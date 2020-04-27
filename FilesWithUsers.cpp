@@ -1,14 +1,12 @@
-#include "Markup.h"
-#include "User.h"
-#include "PlikiZUsers.h"
+#include "FilesWithUsers.h"
 
-vector <User> PlikiZUsers::wczytajUzytkownikowZPliku() {
+vector <User> FilesWithUsers::loadUsersFromFile() {
     User user;
     vector <User> users;
     CMarkup xml;
-    xml.Load( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
-    xml.FindElem("USERS"); // root ORDER element
-    xml.IntoElem(); // inside ORDER
+    xml.Load( NAME_FILE_USERS );
+    xml.FindElem("USERS");
+    xml.IntoElem();
     while ( xml.FindElem("USER") ) {
         xml.IntoElem();
         xml.FindElem( "USERID" );
@@ -31,9 +29,9 @@ vector <User> PlikiZUsers::wczytajUzytkownikowZPliku() {
     }
     return users;
 }
-void PlikiZUsers::dopiszUzytkownikaDoPliku(User user) {
+void FilesWithUsers::appendUserToFile(User user) {
     CMarkup xml;
-    if(xml.Load( NAZWA_PLIKU_Z_UZYTKOWNIKAMI )==false) {
+    if(xml.Load( NAME_FILE_USERS )==false) {
         xml.AddElem( "USERS" );
         xml.IntoElem();
         xml.AddElem( "USER" );
@@ -45,7 +43,7 @@ void PlikiZUsers::dopiszUzytkownikaDoPliku(User user) {
         xml.AddElem( "PASSWORD", user.pobierzHaslo() );
 
         xml.OutOfElem();
-        xml.Save( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
+        xml.Save( NAME_FILE_USERS );
     } else {
         xml.FindElem();
         xml.IntoElem();
@@ -57,11 +55,11 @@ void PlikiZUsers::dopiszUzytkownikaDoPliku(User user) {
         xml.AddElem( "LOGIN", user.pobierzLogin() );
         xml.AddElem( "PASSWORD", user.pobierzHaslo() );
         xml.OutOfElem();
-        xml.Save( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
+        xml.Save( NAME_FILE_USERS );
     }
 }
 
-void PlikiZUsers::zapiszWszystkichUzytkownikowDoPliku(vector <User> &users) {
+void FilesWithUsers::saveAllUsersToFile(vector <User> &users) {
     vector <User>::iterator itrKoniec = --users.end();
     CMarkup xml;
     xml.AddElem( "USERS" );
@@ -76,5 +74,5 @@ void PlikiZUsers::zapiszWszystkichUzytkownikowDoPliku(vector <User> &users) {
         xml.AddElem( "PASSWORD", itr ->pobierzHaslo() );
         xml.OutOfElem();
     }
-    xml.Save( NAZWA_PLIKU_Z_UZYTKOWNIKAMI );
+    xml.Save( NAME_FILE_USERS );
 }

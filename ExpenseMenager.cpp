@@ -3,101 +3,102 @@
 #include <windows.h>
 #include <winbase.h>
 
-#include "Expense.h"
-#include "data.h"
 #include "ExpenseMenager.h"
-#include "DataMenager.h"
-#include "Markup.h"
 
-void ExpenseMenager::dodajItem() {
+void ExpenseMenager::addExpense() {
     Expense expense;
     Data data;
 
-    char znak;
+    char sign;
 
     cout << " >>> DODAWANIE NOWEGO ITEMU <<<" << endl << endl;
     cout<<"Czy chcesz dodac nowy produkt z dzisiejsza data? <t/n>"<<endl;
-    cin>>znak;
-    if(znak=='n')
+    cin>>sign;
+    if(sign=='n')
     {
         cout << "Podaj date: ";
         cin.sync();
-        string wpisanaData=MetodyPomocnicze::wczytajLinie();
-        if(dataMenager.czyDataJestZPrzedzialu(wpisanaData)==true)
+        string givenData=AdditionalMethods::loadLines();
+        if(dataMenager.isDateFormat(givenData)==true&&dataMenager.isCorrectDate(givenData)==true){
+        if(dataMenager.isDateInARange(givenData)==true)
         {
-            expense=podajNowyItem(znak,wpisanaData);
+            expense=getNewItemData(sign,givenData);
             expenses.push_back(expense);
-            plikiZExpenses.dopiszItemDoPliku(expense);
+            filesWithExpenses.appendExpenseToFile(expense);
         }
         else cout<<"Zla data!"<<endl;
     }
-    else if(znak=='t')
+    else if(dataMenager.isDateFormat(givenData)==false) cout<<"Zly format daty!"<<endl;
+    else if(dataMenager.isCorrectDate(givenData)==false) cout<<"Zla data"<<endl;
+    system("pause");
+    }
+    else if(sign=='t')
     {
-        data =dataMenager.pobierzDzisiejszaDate();
+        data =dataMenager.loadTodayDate();
 
-        string wpisanaData=data.pobierzDataZMyslnikami();
-        expense=podajNowyItem(znak,wpisanaData);
+        string givenData=data.getDateWithDashesAsString();
+        expense=getNewItemData(sign,givenData);
         expenses.push_back(expense);
-        plikiZExpenses.dopiszItemDoPliku(expense);
+        filesWithExpenses.appendExpenseToFile(expense);
     }
 }
 
-Expense ExpenseMenager::podajNowyItem(char znak, string wpisanaData) {
+Expense ExpenseMenager::getNewItemData(char sign, string givenData) {
 
     vector <Data> daty;
     Expense expense;
     Data data;
 
-    int dataJakoInt;
+    int dateAsInt;
     float amount;
-    string amountJakoString,item,dataJakoString;
+    string amountAsString,itemName,dateAsString;
 
-    if(znak=='n')
+    if(sign=='n')
     {
-        if(dataMenager.podajDate(wpisanaData)==true)
+        if(dataMenager.giveDate(givenData)==true)
         {
-            expense.ustawExpenseID(pobierzIdNowegoItemu());
-            expense.ustawUserID(ID_ZALOGOWANEGO_UZYTKOWNIKA);
-            expense.ustawDate(wpisanaData);
-            dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(wpisanaData);
-            dataJakoInt=MetodyPomocnicze::konwersjaStringNaInt(dataJakoString);
-            expense.ustawDataJakoInt(dataJakoInt);
+            expense.setExpenseID(getIDNewExpense());
+            expense.setUserID(ID_LOGGED_USER);
+            expense.setDate(givenData);
+            dateAsString=dataMenager.swapDateWithStringWithoutDash(givenData);
+            dateAsInt=AdditionalMethods::swapStringForInt(dateAsString);
+            expense.setDateAsInt(dateAsInt);
             cout << "Podaj nazwe produktu: ";
             cin.sync();
-            item=MetodyPomocnicze::wczytajLinie();
-            expense.ustawItem(item);
+            itemName=AdditionalMethods::loadLines();
+            expense.setItem(itemName);
             cout << "Podaj kwote: ";
             cin.sync();
-            cin>>amountJakoString;
-            string amountZKropka = MetodyPomocnicze::zamienPrzecinekNakropke(amountJakoString);
-            expense.ustawAmountJakoString(amountZKropka);
-            amount = MetodyPomocnicze::zamianaStringNaFloat(amountZKropka);
-            expense.ustawAmount(amount);
+            cin>>amountAsString;
+            string amountWithDot = AdditionalMethods::swapCommaToDot(amountAsString);
+            expense.setAmountAsString(amountWithDot);
+            amount = AdditionalMethods::swapStringForFloat(amountWithDot);
+            expense.setAmount(amount);
 
         }
 
         else cout<<"Zle dane!"<<endl;
                 }
-    else if(znak=='t')
+    else if(sign=='t')
     {
-        expense.ustawExpenseID(pobierzIdNowegoItemu());
-        expense.ustawUserID(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+        expense.setExpenseID(getIDNewExpense());
+        expense.setUserID(ID_LOGGED_USER);
 
-        expense.ustawDate(wpisanaData);
-        dataJakoString=dataMenager.zamienDateNaNapisBezMyslnikow(wpisanaData);
-        dataJakoInt=MetodyPomocnicze::konwersjaStringNaInt(dataJakoString);
-        expense.ustawDataJakoInt(dataJakoInt);
+        expense.setDate(givenData);
+        dateAsString=dataMenager.swapDateWithStringWithoutDash(givenData);
+        dateAsInt=AdditionalMethods::swapStringForInt(dateAsString);
+        expense.setDateAsInt(dateAsInt);
         cout << "Podaj nazwe produktu: ";
         cin.sync();
-        item=MetodyPomocnicze::wczytajLinie();
-        expense.ustawItem(item);
+        itemName=AdditionalMethods::loadLines();
+        expense.setItem(itemName);
         cout << "Podaj kwote: ";
         cin.sync();
-        cin>>amountJakoString;
-        string amountZKropka = MetodyPomocnicze::zamienPrzecinekNakropke(amountJakoString);
-        expense.ustawAmountJakoString(amountZKropka);
-        amount = MetodyPomocnicze::zamianaStringNaFloat(amountZKropka);
-        expense.ustawAmount(amount);
+        cin>>amountAsString;
+        string amountWithDot = AdditionalMethods::swapCommaToDot(amountAsString);
+        expense.setAmountAsString(amountWithDot);
+        amount = AdditionalMethods::swapStringForFloat(amountWithDot);
+        expense.setAmount(amount);
 
     }
     else
@@ -105,11 +106,11 @@ Expense ExpenseMenager::podajNowyItem(char znak, string wpisanaData) {
         return expense;
 }
 
-int ExpenseMenager::pobierzIdNowegoItemu() {
+int ExpenseMenager::getIDNewExpense() {
     if (expenses.empty() == true)
         return 1;
     else
-        return expenses.back().pobierzExpenseID() + 1;
+        return expenses.back().getExpenseID() + 1;
 }
 
 void ExpenseMenager::wyswietlWszystkieItemy()
@@ -118,7 +119,7 @@ void ExpenseMenager::wyswietlWszystkieItemy()
         cout << "             >>>WYDATKI<<<" << endl;
         cout << "-----------------------------------------------" << endl;
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            wyswietlItem(*itr);
+            showExpense(*itr);
         }
         cout << endl;
     } else {
@@ -126,7 +127,7 @@ void ExpenseMenager::wyswietlWszystkieItemy()
     }
 }
 
-void ExpenseMenager::wyswietlWszystkieDaty()
+/*void ExpenseMenager::wyswietlWszystkieDaty()
 {
     if (!daty.empty()) {
         cout << "             >>> DATY <<<" << endl;
@@ -155,85 +156,35 @@ void ExpenseMenager::wyswietlDate(Data data) {
         cout<<"Nr daty "<<data.pobierzID()<<": "<<data.pobierzRok()<<"-"<<data.pobierzMiesiac()<<"-"<<data.pobierzDzien();
         cout<<" data jako napis: "<<data.pobierzDataZMyslnikami()<<" data jako liczba: "<<data.pobierzDateBezMyslnikow()<<endl;
     }
-}
+}*/
 
-void ExpenseMenager::sortowanie()
+void ExpenseMenager::sorting()
 {
-    sortowanieItemow(expenses);
+    sortingExpense(expenses);
 }
 
-void ExpenseMenager::sortowanieItemow(vector <Expense> &expenses)
+void ExpenseMenager::sortingExpense(vector <Expense> &expenses)
 {
     sort(expenses.begin(),expenses.end());
-
 }
 
-void ExpenseMenager::wyswietlItem(Expense expense)
+void ExpenseMenager::showExpense(Expense expense)
 {
-    cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
-    cout<<"ID itemu: "<< expense.pobierzExpenseID()<<endl;
-    cout<<"Data: "<< expense.pobierzDate()<<endl;
-    cout<<"Nazwa itemu: "<< expense.pobierzItem()<<endl;
-    cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
-    cout<<"Data jako int: "<<expense.pobierzDataJakoInt()<<endl;
+    //cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
+    cout<<"ID itemu: "<< expense.getExpenseID()<<endl;
+    cout<<"Data: "<< expense.getDate()<<endl;
+    cout<<"Nazwa itemu: "<< expense.getItem()<<endl;
+    cout<<"Koszt: "<< expense.getAmount()<<endl;
+    //cout<<"Data jako int: "<<expense.getDateAsInt()<<endl;
 }
 
-void ExpenseMenager::wyswietlItemyZBiezacegoMiesiaca()
-{
-     if (!expenses.empty()) {
-        cout << "             >>>WYDATKI<<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            wyswietlItemZTegoMiesiaca(*itr);
-        }
-        cout << endl;
-    } else {
-        cout << endl << "Brak produktow." << endl << endl;
-    }
-}
-
-void ExpenseMenager::wyswietlItemZTegoMiesiaca(Expense expense)
-{
-    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac();
-    int dzien=expense.pobierzDataJakoInt()%100;
-    int miesiac=(expense.pobierzDataJakoInt()%10000-dzien)/100;
-    if(miesiac==podanyMiesiac){
-    cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
-    cout<<"ID itemu: "<< expense.pobierzExpenseID()<<endl;
-    cout<<"Data: "<< expense.pobierzDate()<<endl;
-    cout<<"Nazwa itemu: "<< expense.pobierzItem()<<endl;
-    cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
-    cout << endl;
-    }
-}
-
-float ExpenseMenager::obliczWydatkiZObecnegoMiesiaca()
-{
-    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac();
-    float sumaWydatkow=0;
-    if (!expenses.empty()) {
-        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            int dzien=itr->pobierzDataJakoInt()%100;
-            int miesiac=(itr->pobierzDataJakoInt()%10000-dzien)/100;
-            if(miesiac==podanyMiesiac){
-                sumaWydatkow+=itr->pobierzAmount();
-            }
-        }
-        cout<<"Suma wydatkow z obecnego miesiaca: "<<sumaWydatkow<<endl;
-        return sumaWydatkow;
-        cout << endl;
-    } else {
-        cout << endl << "Brak produktow." << endl << endl;
-    }
-}
-
-void ExpenseMenager::wyswietlItemyZPoprzedniegoMiesiaca()
+void ExpenseMenager::showItemsFromThisMonth()
 {
      if (!expenses.empty()) {
         cout << "             >>>WYDATKI<<<" << endl;
         cout << "-----------------------------------------------" << endl;
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            wyswietlItemZPoprzedniegoMiesiaca(*itr);
+            showExpenseFromThisMonth(*itr);
         }
         cout << endl;
     } else {
@@ -241,122 +192,173 @@ void ExpenseMenager::wyswietlItemyZPoprzedniegoMiesiaca()
     }
 }
 
-void ExpenseMenager::wyswietlItemZPoprzedniegoMiesiaca(Expense expense)
+void ExpenseMenager::showExpenseFromThisMonth(Expense expense)
 {
-    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac()-1;
-    int dzien=expense.pobierzDataJakoInt()%100;
-    int miesiac=(expense.pobierzDataJakoInt()%10000-dzien)/100;
-    if(miesiac==podanyMiesiac){
-    cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
-    cout<<"ID itemu: "<< expense.pobierzExpenseID()<<endl;
-    cout<<"Data: "<< expense.pobierzDate()<<endl;
-    cout<<"Nazwa itemu: "<< expense.pobierzItem()<<endl;
-    cout<<"Koszt: "<< expense.pobierzAmount()<<endl;
+    int thisMonth=dataMenager.thisMonth();
+    int day=expense.getDateAsInt()%100;
+    int month=(expense.getDateAsInt()%10000-day)/100;
+    if(month==thisMonth){
+    //cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
+    cout<<"ID itemu: "<< expense.getExpenseID()<<endl;
+    cout<<"Data: "<< expense.getDate()<<endl;
+    cout<<"Nazwa itemu: "<< expense.getItem()<<endl;
+    cout<<"Koszt: "<< expense.getAmount()<<endl;
     cout << endl;
     }
 }
 
-float ExpenseMenager::obliczWydatkiZPoprzedniegoMiesiaca()
+float ExpenseMenager::calculateExpensesFromThisMonth()
 {
-    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac()-1;
-    float sumaWydatkow=0;
+    int thisMonth=dataMenager.thisMonth();
+    float sumExpenses=0;
     if (!expenses.empty()) {
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            int dzien=itr->pobierzDataJakoInt()%100;
-            int miesiac=(itr->pobierzDataJakoInt()%10000-dzien)/100;
-            if(miesiac==podanyMiesiac){
-                sumaWydatkow+=itr->pobierzAmount();
+            int day=itr->getDateAsInt()%100;
+            int month=(itr->getDateAsInt()%10000-day)/100;
+            if(month==thisMonth){
+                sumExpenses+=itr->getAmount();
             }
         }
-        cout<<"Suma wydatkow z poprzedniego miesiaca: "<<sumaWydatkow<<endl;
-        return sumaWydatkow;
+        cout<<"Suma wydatkow z obecnego miesiaca: "<<sumExpenses<<endl;
+        return sumExpenses;
         cout << endl;
     } else {
         cout << endl << "Brak produktow." << endl << endl;
     }
 }
-bool ExpenseMenager::czyWpisanaDataJestPoprawna(string data)
-{
-    int rok=dataMenager.zamienDateNaRok(data);
-    int miesiac=dataMenager.zamienDateNaMiesiac(data);
-    int dzien=dataMenager.zamienDateNaDzien(data);
 
-    if(dataMenager.czyDataJestPoprawna(rok, miesiac, dzien)==true)
+void ExpenseMenager::showItemsFromPreviousMonth()
+{
+     if (!expenses.empty()) {
+        cout << "             >>>WYDATKI<<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
+            showExpenseFromPreviousMonth(*itr);
+        }
+        cout << endl;
+    } else {
+        cout << endl << "Brak produktow." << endl << endl;
+    }
+}
+
+void ExpenseMenager::showExpenseFromPreviousMonth(Expense expense)
+{
+    int previousMonth=dataMenager.thisMonth()-1;
+    int day=expense.getDateAsInt()%100;
+    int month=(expense.getDateAsInt()%10000-day)/100;
+    if(month==previousMonth){
+    //cout<<"ID uzytkownika: "<< expense.pobierzUserID()<<endl;
+    cout<<"ID itemu: "<< expense.getExpenseID()<<endl;
+    cout<<"Data: "<< expense.getDate()<<endl;
+    cout<<"Nazwa itemu: "<< expense.getItem()<<endl;
+    cout<<"Koszt: "<< expense.getAmount()<<endl;
+    cout << endl;
+    }
+}
+
+float ExpenseMenager::calculateExpensesFromPreviousMonth()
+{
+    int previousMonth=dataMenager.thisMonth()-1;
+    float sumExpenses=0;
+    if (!expenses.empty()) {
+        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
+            int day=itr->getDateAsInt()%100;
+            int month=(itr->getDateAsInt()%10000-day)/100;
+            if(month==previousMonth){
+                sumExpenses+=itr->getAmount();
+            }
+        }
+        cout<<"Suma wydatkow z poprzedniego miesiaca: "<<sumExpenses<<endl;
+        return sumExpenses;
+        cout << endl;
+    } else {
+        cout << endl << "Brak produktow." << endl << endl;
+    }
+}
+
+bool ExpenseMenager::isCorrectDate(string date)
+{
+    int year=dataMenager.changeDateToYear(date);
+    int month=dataMenager.changeDateToMonth(date);
+    int day=dataMenager.changeDateToDay(date);
+
+    if(dataMenager.isDateGood(year, month, day)==true)
         return true;
     else return false;
 }
-void ExpenseMenager::wyswietlItemyZPodanegoZakresu(string dataPoczatkowa,string dataKoncowa)
-{
-    int rokDatyPoczatkowej=0;
-    int miesiacDatyPoczatkowej=0;
-    int dzienDatyPoczatkowej=0;
-    int rokDatyKoncowej=0;
-    int miesiacDatyKoncowej=0;
-    int dzienDatyKoncowej=0;
 
-    if(czyWpisanaDataJestPoprawna(dataPoczatkowa)==true){
-        rokDatyPoczatkowej=dataMenager.zamienDateNaRok(dataPoczatkowa);
-        miesiacDatyPoczatkowej=dataMenager.zamienDateNaMiesiac(dataPoczatkowa);
-        dzienDatyPoczatkowej=dataMenager.zamienDateNaDzien(dataPoczatkowa);
+void ExpenseMenager::showItemsFromRangeProvided(string startingDate,string endDate)
+{
+    int yearStartingDate=0;
+    int monthStartingDate=0;
+    int dayStartingDate=0;
+    int yearEndDate=0;
+    int monthEndDate=0;
+    int dayEndDate=0;
+
+    if(isCorrectDate(startingDate)==true){
+        yearStartingDate=dataMenager.changeDateToYear(startingDate);
+        monthStartingDate=dataMenager.changeDateToMonth(startingDate);
+        dayStartingDate=dataMenager.changeDateToDay(startingDate);
     }
     else cout<<"Bledna data poczatkowa!"<<endl;
 
-    if(czyWpisanaDataJestPoprawna(dataKoncowa)==true){
-        rokDatyKoncowej=dataMenager.zamienDateNaRok(dataKoncowa);
-        miesiacDatyKoncowej=dataMenager.zamienDateNaMiesiac(dataKoncowa);
-        dzienDatyKoncowej=dataMenager.zamienDateNaDzien(dataKoncowa);
+    if(isCorrectDate(endDate)==true){
+        yearEndDate=dataMenager.changeDateToYear(endDate);
+        monthEndDate=dataMenager.changeDateToMonth(endDate);
+        dayEndDate=dataMenager.changeDateToDay(endDate);
     }
      else
      {
          cout<<"Bledna data koncowa!"<<endl;
      }
 
-     if(czyWpisanaDataJestPoprawna(dataKoncowa)==true&&czyWpisanaDataJestPoprawna(dataPoczatkowa)==true)
+     if(isCorrectDate(endDate)==true&&isCorrectDate(startingDate)==true)
      {
-             if(rokDatyPoczatkowej<rokDatyKoncowej){
-             wyswietlItemyZZakresu(dataPoczatkowa,dataKoncowa);
+             if(yearStartingDate<yearEndDate){
+             showExpenseFromRangeProvided(startingDate,endDate);
              }
-             else if(rokDatyPoczatkowej==rokDatyKoncowej)
+             else if(yearStartingDate==yearEndDate)
              {
-                 if(miesiacDatyPoczatkowej<miesiacDatyKoncowej)
+                 if(monthStartingDate<monthEndDate)
                  {
-                    wyswietlItemyZZakresu(dataPoczatkowa,dataKoncowa);
+                    showExpenseFromRangeProvided(startingDate,endDate);
                  }
-                 else if(miesiacDatyPoczatkowej==miesiacDatyKoncowej)
+                 else if(monthStartingDate==monthEndDate)
                  {
-                     if(dzienDatyPoczatkowej<dzienDatyKoncowej)
+                     if(dayStartingDate<dayEndDate)
                      {
-                        wyswietlItemyZZakresu(dataPoczatkowa,dataKoncowa);
+                        showExpenseFromRangeProvided(startingDate,endDate);
                      }
-                     else if(dzienDatyPoczatkowej==dzienDatyKoncowej)
+                     else if(dayStartingDate==dayEndDate)
                      {
-                        wyswietlItemyZZakresu(dataPoczatkowa,dataKoncowa);
+                        showExpenseFromRangeProvided(startingDate,endDate);
                      }
-                     else if(dzienDatyPoczatkowej>dzienDatyKoncowej) cout<<"Data koncowa nie moze byc wczesniej niz poczatkowa!"<<endl;
+                     else if(dayStartingDate>dayEndDate) cout<<"Data koncowa nie moze byc wczesniej niz poczatkowa!"<<endl;
                  }
-                 else if(miesiacDatyPoczatkowej>miesiacDatyKoncowej) cout<<"Data koncowa nie moze byc wczesniej niz poczatkowa!"<<endl;
+                 else if(monthStartingDate>monthEndDate) cout<<"Data koncowa nie moze byc wczesniej niz poczatkowa!"<<endl;
              }
-             else if(rokDatyPoczatkowej>rokDatyKoncowej) cout<<"Data koncowa nie moze byc wczesniej niz poczatkowa!"<<endl;
+             else if(yearStartingDate>yearEndDate) cout<<"Data koncowa nie moze byc wczesniej niz poczatkowa!"<<endl;
      }
 }
 
-void ExpenseMenager::wyswietlItemyZZakresu(string dataPoczatkowa,string dataKoncowa)
+void ExpenseMenager::showExpenseFromRangeProvided(string startingDate,string endDate)
 {
-    string dataPoczatkowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataPoczatkowa);
-    int dataPoczatkowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
-    string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
-    int dataKoncowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataKoncowaBezMyslnikow);
+    string startingDateWithoutDash=dataMenager.swapDateWithStringWithoutDash(startingDate);
+    int startingDataIsInt = AdditionalMethods::swapStringForInt(startingDateWithoutDash);
+    string endDateWithoutDash=dataMenager.swapDateWithStringWithoutDash(endDate);
+    int endDateIsInt = AdditionalMethods::swapStringForInt(endDateWithoutDash);
      if (!expenses.empty()) {
         cout << "             >>>WYDATKI<<<" << endl;
         cout << "-----------------------------------------------" << endl;
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            if(dataPoczatkowaJakoInt<=itr->pobierzDataJakoInt()&&itr->pobierzDataJakoInt()<=dataKoncowaJakoInt)
+            if(startingDataIsInt<=itr->getDateAsInt()&&itr->getDateAsInt()<=endDateIsInt)
             {
-                cout<<"ID uzytkownika: "<< itr->pobierzUserID()<<endl;
-                cout<<"ID itemu: "<< itr->pobierzExpenseID()<<endl;
-                cout<<"Data: "<< itr->pobierzDate()<<endl;
-                cout<<"Nazwa itemu: "<< itr->pobierzItem()<<endl;
-                cout<<"Koszt: "<< itr->pobierzAmount()<<endl;
+                //cout<<"ID uzytkownika: "<< itr->pobierzUserID()<<endl;
+                cout<<"ID itemu: "<< itr->getExpenseID()<<endl;
+                cout<<"Data: "<< itr->getDate()<<endl;
+                cout<<"Nazwa itemu: "<< itr->getItem()<<endl;
+                cout<<"Koszt: "<< itr->getAmount()<<endl;
                 cout << endl;
             }
         }
@@ -366,23 +368,20 @@ void ExpenseMenager::wyswietlItemyZZakresu(string dataPoczatkowa,string dataKonc
     }
 }
 
-float ExpenseMenager::obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa)
+float ExpenseMenager::calculateExpensesFromRangeProvided(string startingData,string endDate)
 {
-    string dataPoczatkowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataPoczatkowa);
-    int dataPoczatkowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataPoczatkowaBezMyslnikow);
-    string dataKoncowaBezMyslnikow=dataMenager.zamienDateNaNapisBezMyslnikow(dataKoncowa);
-    int dataKoncowaJakoInt = MetodyPomocnicze::konwersjaStringNaInt(dataKoncowaBezMyslnikow);
-    float sumaWydatkowZPodanegoOkresu=0;
+    string startingDateWithoutDash=dataMenager.swapDateWithStringWithoutDash(startingData);
+    int startingDataIsInt = AdditionalMethods::swapStringForInt(startingDateWithoutDash);
+    string endDateWithoutDash=dataMenager.swapDateWithStringWithoutDash(endDate);
+    int endDateIsInt = AdditionalMethods::swapStringForInt(endDateWithoutDash);
+    float sumExpenseFromRangeProvided=0;
 
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            if(dataPoczatkowaJakoInt<=itr->pobierzDataJakoInt()&&itr->pobierzDataJakoInt()<=dataKoncowaJakoInt)
+            if(startingDataIsInt<=itr->getDateAsInt()&&itr->getDateAsInt()<=endDateIsInt)
             {
-                sumaWydatkowZPodanegoOkresu+=itr->pobierzAmount();
+                sumExpenseFromRangeProvided+=itr->getAmount();
             }
         }
-        return sumaWydatkowZPodanegoOkresu;
+        return sumExpenseFromRangeProvided;
         cout << endl;
 }
-
-
-

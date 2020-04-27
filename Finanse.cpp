@@ -1,47 +1,41 @@
 #include "Finanse.h"
-#include "UsersMenager.h"
-#include "ExpenseMenager.h"
-#include "DataMenager.h"
-#include "IncomeMenager.h"
-#include "MetodyPomocnicze.h"
 
-void Finanse::rejestracjaUzytkownika()
+void Finanse::registerUser()
 {
-    usersMenager.rejestracjaUzytkownika();
+    usersMenager.registerUser();
 }
 
-void Finanse::wyswietlWszystkichUzytkownikow()
+/*void Finanse::wyswietlWszystkichUzytkownikow()
 {
     usersMenager.wyswietlWszystkichUzytkownikow();
-}
+}*/
 
-void Finanse::logowanieUzytownika()
+void Finanse::loginUser()
 {
-    usersMenager.logowanieUzytkownika();
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    usersMenager.loginUser();
+    if(usersMenager.isUserLoggedIn())
     {
-        expenseMenager = new ExpenseMenager(NAZWA_PLIKU_Z_EXPENSES,usersMenager.pobierzIdZalogowanegoUzytkownika());
-        //dataMenager = new DataMenager(usersMenager.pobierzIdZalogowanegoUzytkownika());
-        incomeMenager =  new IncomeMenager(NAZWA_PLIKU_Z_INCOMES,usersMenager.pobierzIdZalogowanegoUzytkownika());
-
+        expenseMenager = new ExpenseMenager(NAME_FILE_EXPENSES,usersMenager.loadIDLoggedUser());
+        incomeMenager =  new IncomeMenager(NAME_FILE_INCOMES,usersMenager.loadIDLoggedUser());
+        dataMenager = new DataMenager();
     }
 }
 
-void Finanse::wylogowanieZalogowanegoUzytkownika()
+void Finanse::logoutUser()
 {
-    usersMenager.wylogowanieZalogowanegoUzytkownika();
+    usersMenager.logoutUser();
 }
 
-void Finanse::zmianaHaslaZalogowanegoUzytkownika()
+void Finanse::changePasswordLoggedUser()
 {
-    usersMenager.zmianaHaslaZalogowanegoUzytkownika();
+    usersMenager.changePasswordLoggedUser();
 }
 
-void Finanse::dodajItem()
+void Finanse::addExpense()
 {
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    if(usersMenager.isUserLoggedIn())
     {
-        expenseMenager->dodajItem();
+        expenseMenager->addExpense();
     }
     else
     {
@@ -50,100 +44,105 @@ void Finanse::dodajItem()
     }
 }
 
-void Finanse::wyswietlWszystkieItemy()
+/*void Finanse::wyswietlWszystkieItemy()
 {
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    if(usersMenager.isUserLoggedIn())
     {
         expenseMenager->wyswietlWszystkieItemy();
         incomeMenager->wyswietlWszystkieIncome();
     }
-}
- void Finanse::wyswietlItemyZTegoMiesiaca()
+}*/
+ void Finanse::showItemsFromThisMonth()
  {
-     if(usersMenager.czyUzytkownikJestZalogowany())
+     if(usersMenager.isUserLoggedIn())
     {
-        incomeMenager->wyswietlIncomeZBiezacegoMiesiaca();
-        expenseMenager->wyswietlItemyZBiezacegoMiesiaca();
+        incomeMenager->showItemsFromThisMonth();
+        expenseMenager->showItemsFromThisMonth();
     }
  }
-  void Finanse::wyswietlItemyZPoprzedniegoMiesiaca()
+  void Finanse::showItemsFromPreviousMonth()
  {
-     if(usersMenager.czyUzytkownikJestZalogowany())
+     if(usersMenager.isUserLoggedIn())
     {
-        incomeMenager->wyswietlIncomeZPoprzedniegoMiesiaca();
-        expenseMenager->wyswietlItemyZPoprzedniegoMiesiaca();
+        incomeMenager->showItemsFromPreviousMonth();
+        expenseMenager->showItemsFromPreviousMonth();
     }
  }
 
- void Finanse::obliczWydatkiZObecnegoMiesiaca()
+ void Finanse::calculateBilansFromThisMonth()
  {
-     if(usersMenager.czyUzytkownikJestZalogowany())
+     if(usersMenager.isUserLoggedIn())
     {
-        float bilans = incomeMenager->obliczPrzychodyZObecnegoMiesiaca()-expenseMenager->obliczWydatkiZObecnegoMiesiaca();
+        float bilans = incomeMenager->calculateIncomesFromThisMonth()-expenseMenager->calculateExpensesFromThisMonth();
        cout<<"Bilans z obecnego miesiaca: "<<bilans<<endl;
     }
  }
- void Finanse::obliczWydatkiZPoprzedniegoMiesiaca()
+ void Finanse::calculateBilansFromPreviousMonth()
  {
-     if(usersMenager.czyUzytkownikJestZalogowany())
+     if(usersMenager.isUserLoggedIn())
     {
-        float bilans = incomeMenager->obliczPrzychodyZPoprzedniegoMiesiaca()-expenseMenager->obliczWydatkiZPoprzedniegoMiesiaca();
+        float bilans = incomeMenager->calculateIncomesFromPreviousMonth()-expenseMenager->calculateExpensesFromPreviousMonth();
         cout<<"Bilans z poprzedniego miesiaca: "<<bilans<<endl;
     }
  }
 
-  void Finanse::wyswietlItemyZPodanegoZakresu()
+  void Finanse::showItemsFromRangeProvided()
  {
-     if(usersMenager.czyUzytkownikJestZalogowany())
+     if(usersMenager.isUserLoggedIn())
     {
-        string dataPoczatkowa;
-        string dataKoncowa;
+        string startingDate;
+        string endDate;
         cout<<"Podaj date poczatkowa: ";
-        cin>>dataPoczatkowa;
+        cin>>startingDate;
         cout<<"Podaj date koncowa: ";
-        cin>>dataKoncowa;
-        incomeMenager->wyswietlIncomeZPodanegoZakresu(dataPoczatkowa,dataKoncowa);
-        expenseMenager->wyswietlItemyZPodanegoZakresu(dataPoczatkowa,dataKoncowa);
-        if(incomeMenager->czyWpisanaDataJestPoprawna(dataPoczatkowa)==true && incomeMenager->czyWpisanaDataJestPoprawna(dataKoncowa)==true)
+        cin>>endDate;
+        if(dataMenager->isDateFormat(startingDate)==true&&dataMenager->isDateFormat(endDate)==true){
+        if(incomeMenager->isCorrectDate(startingDate)==true && incomeMenager->isCorrectDate(endDate)==true)
         {
-           obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
+        incomeMenager->showItemsFromRangeProvided(startingDate,endDate);
+        expenseMenager->showItemsFromRangeProvided(startingDate,endDate);
+
+           calculateBilansFromRangeProvided(startingDate,endDate);
         }
+        }
+        else cout<<"Zly format daty!"<<endl;
     }
  }
- void Finanse::obliczWydatkiZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa)
+ void Finanse::calculateBilansFromRangeProvided(string startingDate,string endDate)
  {
-     if(usersMenager.czyUzytkownikJestZalogowany())
+     if(usersMenager.isUserLoggedIn())
     {
-        float przychodyZTegoOkresu=incomeMenager->obliczPrzychodyZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
-       cout<<"Suma przychodow w podanym okresie: "<<przychodyZTegoOkresu<<endl;
-       float wydatkiZTegoOkresu=expenseMenager->obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
-       cout<<"Suma wydatkow w podanym okresie: "<<wydatkiZTegoOkresu<<endl;
-        float bilans = incomeMenager->obliczPrzychodyZPodanegoOkresu(dataPoczatkowa,dataKoncowa)-expenseMenager->obliczWydatkiZPodanegoOkresu(dataPoczatkowa,dataKoncowa);
+        float incomeFromRangeProvided=incomeMenager->calculateIncomesFromRangeProvided(startingDate,endDate);
+       cout<<"Suma przychodow w podanym okresie: "<<incomeFromRangeProvided<<endl;
+       float expenseFromRangeProvided=expenseMenager->calculateExpensesFromRangeProvided(startingDate,endDate);
+       cout<<"Suma wydatkow w podanym okresie: "<<expenseFromRangeProvided<<endl;
+        float bilans = incomeMenager->calculateIncomesFromRangeProvided(startingDate,endDate)-expenseMenager->calculateExpensesFromRangeProvided(startingDate,endDate);
         cout<<"Bilans z wybranego okresu: "<<bilans<<endl;
     }
  }
 
-void Finanse::wyswietlWszystkieDaty()
+/*void Finanse::wyswietlWszystkieDaty()
 {
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    if(usersMenager.isUserLoggedIn())
     {
         expenseMenager->wyswietlWszystkieDaty();
     }
-}
-void Finanse::sortowanie()
+}*/
+
+void Finanse::sorting()
 {
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    if(usersMenager.isUserLoggedIn())
     {
-        incomeMenager->sortowanie();
-        expenseMenager->sortowanie();
+        incomeMenager->sorting();
+        expenseMenager->sorting();
     }
 }
 
-void Finanse::dodajIncome()
+void Finanse::addIncome()
 {
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    if(usersMenager.isUserLoggedIn())
     {
-        incomeMenager->dodajIncome();
+        incomeMenager->addIncome();
     }
     else
     {
@@ -152,17 +151,17 @@ void Finanse::dodajIncome()
     }
 }
 
-bool Finanse::czyUzytkownikJestZalogowany()
+bool Finanse::isUserLoggedIn()
 {
-    if(usersMenager.czyUzytkownikJestZalogowany())
+    if(usersMenager.isUserLoggedIn())
         return true;
     else
         return false;
 }
 
-char Finanse::wybierzOpcjeZMenuGlownego()
+char Finanse::selectOptionFromMainMenu()
 {
-    char wybor;
+    char choice;
 
     system("cls");
     cout << "    >>> MENU  GLOWNE <<<" << endl;
@@ -172,11 +171,12 @@ char Finanse::wybierzOpcjeZMenuGlownego()
     cout << "9. Koniec programu" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
-    wybor = MetodyPomocnicze::wczytajZnak();
+    choice = AdditionalMethods::loadSign();
 
-    return wybor;
+    return choice;
 }
-char Finanse::wybierzOpcjeZMenuUzytkownika()
+
+char Finanse::selectOptionFromUserMenu()
 {
-    usersMenager.wybierzOpcjeZMenuUzytkownika();
+    usersMenager.selectOptionFromUserMenu();
 }
