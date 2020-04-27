@@ -364,7 +364,12 @@ bool DataMenager::czyDataJestZPrzedzialu(string wpisanaData)
     else return true;
 }
 
-
+int DataMenager::pobierzbiezacyMiesiac()
+{
+    SYSTEMTIME st;
+    GetSystemTime(&st);
+    return st.wMonth;
+}
 
 
 

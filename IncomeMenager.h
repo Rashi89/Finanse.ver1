@@ -24,11 +24,9 @@ class IncomeMenager{
 
     Income podajNowyItem(char znak, string wpisanaData);
     int pobierzIdNowegoItemu();
-    //int konwersjaStringNaInt(string liczba);
     void wyswietlItem(Income income);
     void wyswietlIncomeZTegoMiesiaca(Income income);
     void wyswietlItemZPoprzedniegoMiesiaca(Income income);
-    int pobierzbiezacyMiesiac();
     void sortowanieItemow(vector <Income> &income);
     void wyswietlIncomeZZakresu(string dataPoczatkowa,string dataKoncowa);
 
@@ -48,14 +46,6 @@ public:
     float obliczPrzychodyZPodanegoOkresu(string dataPoczatkowa,string dataKoncowa);
     bool czyWpisanaDataJestPoprawna(string data);
     void sortowanie();
-
-
-
-
-    //float zamianaStringNaFloat(string liczba);
-    //string zamienPrzecinekNakropke(string liczba);
-
-
 
 };
 #endif

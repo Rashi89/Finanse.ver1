@@ -20,8 +20,8 @@ int main() {
     //finanse.sortowanie();
     //finanse.wyswietlWszystkieItemy();
     //finanse.wyswietlItemyZTegoMiesiaca();
-    finanse.obliczWydatkiZObecnegoMiesiaca();
-    //finanse.obliczWydatkiZPoprzedniegoMiesiaca();
+    //finanse.obliczWydatkiZObecnegoMiesiaca();
+    finanse.obliczWydatkiZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPoprzedniegoMiesiaca();
     //finanse.wyswietlItemyZPodanegoZakresu();
     //DataMenager dataMenager;

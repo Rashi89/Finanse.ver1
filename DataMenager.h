@@ -14,15 +14,12 @@ using namespace std;
 
 class DataMenager
 {
-    //vector <Data> daty;
     bool czyRokJestPrzestepny(int rok);
     int pobierzIDNowejDaty();
     int konwersjaStringNaInt(string liczba);
     string konwersjaIntNaString(int liczba);
     string pobierzDzisiejszaDateJakoString(Data data);
-    //string zamienDateNaNapisBezMyslnikow(string wpisanaData);
     string dzisiejszaData();
-
     int dzisiejszaDataJakoInt();
     int obliczIleDniMaObecnyMiesiac();
     int ostatniaDataWObecnymMiesiacuJakoInt();
@@ -40,6 +37,7 @@ public:
     int zamienDateNaMiesiac(string wpisanaData);
     int zamienDateNaDzien(string wpisanaData);
     bool czyDataJestPoprawna(int rok, int miesiac, int dzien);
+    int pobierzbiezacyMiesiac();
 
 };
 #endif

@@ -51,7 +51,7 @@
 	"User.h"
 	"Markup.h"
 
-1587461217 source:d:\programowanie\projekty c++\finanse\main.cpp
+1587463669 source:d:\programowanie\projekty c++\finanse\main.cpp
 	<iostream>
 	<vector>
 	"Markup.h"
@@ -116,7 +116,7 @@
 	<vector>
 	<algorithm>
 
-1587461180 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
+1587463643 source:d:\programowanie\projekty c++\finanse\incomemenager.cpp
 	<iostream>
 	<vector>
 	<windows.h>
@@ -128,7 +128,7 @@
 	"DataMenager.h"
 	"Markup.h"
 
-1587462078 d:\programowanie\projekty c++\finanse\incomemenager.h
+1587463733 d:\programowanie\projekty c++\finanse\incomemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -176,7 +176,7 @@
 	<vector>
 	<algorithm>
 
-1587459161 source:d:\programowanie\projekty c++\finanse\datamenager.cpp
+1587463610 source:d:\programowanie\projekty c++\finanse\datamenager.cpp
 	<iostream>
 	<vector>
 	<stdlib.h>
@@ -191,7 +191,7 @@
 	"Expense.h"
 	"Markup.h"
 
-1587459161 d:\programowanie\projekty c++\finanse\datamenager.h
+1587463610 d:\programowanie\projekty c++\finanse\datamenager.h
 	<iostream>
 	<vector>
 	<sstream>
@@ -262,24 +262,4 @@
 	<sstream>
 	"MetodyPomocnicze.h"
 	"IncomeMenager.h"
-
-1586492720 source:c:\users\rashi\desktop\new\markup.cpp
-	<stdio.h>
-	"Markup.h"
-	<errno.h>
-	<iconv.h>
-	<windows.h>
-	<mbstring.h>
-
-1586149176 c:\users\rashi\desktop\new\markup.h
-	<stdlib.h>
-	<string.h>
-	<string>
-	<afx.h>
-
-1586492720 source:c:\users\rashi\desktop\new\user.cpp
-	"User.h"
-
-1588009202 c:\users\rashi\desktop\new\user.h
-	<iostream>
 

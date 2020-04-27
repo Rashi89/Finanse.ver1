@@ -148,7 +148,7 @@ void IncomeMenager::wyswietlIncomeZBiezacegoMiesiaca()
 
 void IncomeMenager::wyswietlIncomeZTegoMiesiaca(Income income)
 {
-    int podanyMiesiac=pobierzbiezacyMiesiac();
+    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac();
     int dzien=income.pobierzDataJakoInt()%100;
     int miesiac=(income.pobierzDataJakoInt()%10000-dzien)/100;
     if(miesiac==podanyMiesiac){
@@ -162,7 +162,7 @@ void IncomeMenager::wyswietlIncomeZTegoMiesiaca(Income income)
 
 float IncomeMenager::obliczPrzychodyZObecnegoMiesiaca()
 {
-    int podanyMiesiac=pobierzbiezacyMiesiac();
+    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac();
     float sumaWydatkow=0;
     if (!incomes.empty()) {
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
@@ -197,7 +197,7 @@ void IncomeMenager::wyswietlIncomeZPoprzedniegoMiesiaca()
 }
 void IncomeMenager::wyswietlItemZPoprzedniegoMiesiaca(Income income)
 {
-    int podanyMiesiac=pobierzbiezacyMiesiac()-1;
+    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac()-1;
     int dzien=income.pobierzDataJakoInt()%100;
     int miesiac=(income.pobierzDataJakoInt()%10000-dzien)/100;
     if(miesiac==podanyMiesiac){
@@ -211,7 +211,7 @@ void IncomeMenager::wyswietlItemZPoprzedniegoMiesiaca(Income income)
 
 float IncomeMenager::obliczPrzychodyZPoprzedniegoMiesiaca()
 {
-    int podanyMiesiac=pobierzbiezacyMiesiac()-1;
+    int podanyMiesiac=dataMenager.pobierzbiezacyMiesiac()-1;
     float sumaWydatkow=0;
     if (!incomes.empty()) {
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++) {
@@ -353,10 +353,7 @@ bool IncomeMenager::czyWpisanaDataJestPoprawna(string data)
 }
 void IncomeMenager::sortowanie()
 {
-    //vector <Data> daty;
     sortowanieItemow(incomes);
-    //dataMenager.sortowanie(daty);
-   //sort(daty.begin(),daty.end());
 }
 
 void IncomeMenager::sortowanieItemow(vector <Income> &incomes)
@@ -365,12 +362,6 @@ void IncomeMenager::sortowanieItemow(vector <Income> &incomes)
 
 }
 
-int IncomeMenager::pobierzbiezacyMiesiac()
-{
-    SYSTEMTIME st;
-    GetSystemTime(&st);
-    return st.wMonth;
-}
 
 int IncomeMenager::pobierzIdNowegoItemu() {
     if (incomes.empty() == true)
@@ -378,66 +369,3 @@ int IncomeMenager::pobierzIdNowegoItemu() {
     else
         return incomes.back().pobierzIncomeID() + 1;
 }
-
-/*int IncomeMenager::konwersjaStringNaInt(string liczba)
-{
-    int liczbaInt;
-    istringstream iss(liczba);
-    iss >> liczbaInt;
-    return liczbaInt;
-}*/
-
-/*float IncomeMenager::zamianaStringNaFloat(string liczba)
-{
-    string calosc="",ulamek="";
-    int pozycjaPrzecinka=0;
-    for(int i=0;i<liczba.length();i++)
-    {
-        if(liczba[i]!=','&&liczba[i]!='.')
-        {
-            calosc+=liczba[i];
-            pozycjaPrzecinka+=1;
-        }
-        else if(liczba[i]==',')
-        {
-            i=liczba.length()-1;
-        }
-        else if(liczba[i]=='.')
-        {
-             i=liczba.length()-1;
-        }
-    }
-    for(int i = pozycjaPrzecinka+1;i<liczba.length();i++)
-    {
-        ulamek+=liczba[i];
-    }
-
-    int caloscLiczby = konwersjaStringNaInt(calosc);
-    float ulamkowaLiczby = konwersjaStringNaInt(ulamek);
-    float wpisanaLiczbaJakoFloat;
-    if(ulamek[0]=='0'){
-    wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
-    }
-    else
-    {
-        wpisanaLiczbaJakoFloat = caloscLiczby+ulamkowaLiczby/100;
-    }
-    return wpisanaLiczbaJakoFloat;
-}*/
-
-/*string IncomeMenager::zamienPrzecinekNakropke(string liczba)
-{
-    string liczbaZKropka ="";
-    for(int i=0;i<liczba.length();i++)
-    {
-        if(liczba[i]!=',')
-        {
-            liczbaZKropka+=liczba[i];
-        }
-        else if(liczba[i]==',')
-        {
-            liczbaZKropka+='.';
-        }
-    }
-    return liczbaZKropka;
-}*/
