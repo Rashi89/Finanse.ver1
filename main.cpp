@@ -9,10 +9,10 @@ int main() {
     Finanse finanse;
     //finanse.rejestracjaUzytkownika();
     //finanse.wyswietlWszystkichUzytkownikow();
-    //finanse.logowanieUzytownika();
+    finanse.logowanieUzytownika();
     //finanse.wylogowanieZalogowanegoUzytkownika();
     //finanse.zmianaHaslaZalogowanegoUzytkownika();
-    //finanse.dodajItem();
+    finanse.dodajItem();
 
 
 

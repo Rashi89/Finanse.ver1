@@ -28,10 +28,11 @@ public:
     void rejestracjaUzytkownika();
     void wyswietlWszystkichUzytkownikow();
     void logowanieUzytkownika();
-    void wylogowanieZalogowanegoUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();
+    void wylogowanieZalogowanegoUzytkownika();
     bool czyUzytkownikJestZalogowany();
     int pobierzIdZalogowanegoUzytkownika();
+
 
 
     string wczytajLinie();

@@ -11,7 +11,7 @@ void ExpenseMenager::dodajItem() {
     cout << " >>> DODAWANIE NOWEGO ITEMU <<<" << endl << endl;
     expense=podajNowyItem();
     expenses.push_back(expense);
-    dopiszItemDoPliku(expense);
+    plikiZExpenses.dopiszItemDoPliku(expense);
 
     //plikiZUsers.dopiszUzytkownikaDoPliku(user);
 }
@@ -46,70 +46,6 @@ int ExpenseMenager::pobierzIdNowegoItemu() {
         return 1;
     else
         return expenses.back().pobierzExpenseID() + 1;
-}
-
-void ExpenseMenager::dopiszItemDoPliku(Expense expense)
-{
-    CMarkup xml;
-    if(xml.Load( "Expense.xml" )==false) {
-        xml.AddElem( "EXPENSES" );
-        xml.IntoElem();
-        xml.AddElem( "EXPENSE" );
-        xml.IntoElem();
-        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
-        xml.AddElem( "USERID", expense.pobierzUserID() );
-        xml.AddElem( "DATE", expense.pobierzDate() );
-        xml.AddElem( "ITEM", expense.pobierzItem() );
-        xml.AddElem( "AMOUNT", expense.pobierzAmount() );
-
-        xml.OutOfElem();
-        xml.Save( "Expense.xml" );
-    } else {
-        xml.FindElem();
-        xml.IntoElem();
-        xml.AddElem( "EXPENSE" );
-        xml.IntoElem();
-        xml.AddElem( "EXPENSEID", expense.pobierzExpenseID() );
-        xml.AddElem( "USERID", expense.pobierzUserID() );
-        xml.AddElem( "DATE", expense.pobierzDate() );
-        xml.AddElem( "ITEM", expense.pobierzItem() );
-        xml.AddElem( "AMOUNT", expense.pobierzAmount() );
-        xml.OutOfElem();
-        xml.Save( "Expense.xml" );
-    }
-}
-
-vector <Expense> ExpenseMenager::wczytajItemyZPliku(int idZalogowanegoUzytkownika)
-{
-    vector <Expense> expenses;
-    Expense expense;
-
-    CMarkup xml;
-    xml.Load( "Expense.xml" );
-    xml.FindElem("ExpenseS"); // root ORDER element
-    xml.IntoElem(); // inside ORDER
-    while ( xml.FindElem("Expense") ) {
-        xml.IntoElem();
-        xml.FindElem( "USERID" );
-        int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
-        if(nUserID==idZalogowanegoUzytkownika){
-        expense.ustawUserID(nUserID);
-        xml.FindElem( "ExpenseID" );
-        int nExpenseID =atoi( MCD_2PCSZ(xml.GetData()) );
-        expense.ustawExpenseID(nExpenseID);
-        xml.FindElem("DATE");
-        MCD_STR strDate = xml.GetData();
-        expense.ustawDate(strDate);
-        xml.FindElem("ITEM");
-        MCD_STR strItem = xml.GetData();
-        expense.ustawItem(strItem);
-        xml.FindElem( "AMOUNT" );
-        int nAmount =atoi( MCD_2PCSZ(xml.GetData()) );
-        expense.ustawAmount(nAmount);
-        xml.OutOfElem();
-        expenses.push_back(expense);
-        }
-    }
 }
 
 string ExpenseMenager::wczytajLinie() {

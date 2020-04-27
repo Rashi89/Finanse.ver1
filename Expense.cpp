@@ -18,15 +18,6 @@ void Expense::ustawAmount(int newAmount) {
     if(newAmount>=0)
     amount=newAmount;
 }
-void Expense::ustawDataJakoInt(int newDataJakoInt)
-{
-    dataJakoInt=newDataJakoInt;
-}
-
-    bool Expense::operator<(const Expense &other)
-{
-    return dataJakoInt < other.dataJakoInt;
-}
 
 
 int Expense::pobierzExpenseID() {
@@ -43,8 +34,4 @@ string Expense::pobierzItem() {
 }
 int Expense::pobierzAmount() {
     return amount;
-}
-
-int Expense::pobierzDataJakoInt() {
-    return dataJakoInt;
 }
