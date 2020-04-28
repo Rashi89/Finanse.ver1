@@ -20,5 +20,6 @@ public:
     vector <Income> loadIncomesFromFile(int idLoggedUser);
     vector <Data> wczytajDatyZPliku(int idLoggedUser);
     void appendIncomeToFile(Income income);
+    int getLastID();
 };
 #endif

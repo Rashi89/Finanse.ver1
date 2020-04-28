@@ -29,6 +29,7 @@ class IncomeMenager {
     void showIncomeFromPreviousMonth(Income income);
     void sortingIncomes(vector <Income> &income);
     void showIncomeFromRangeProvided(string startingDate,string endDate);
+    int getIDLastIncome();
 
 public:
     IncomeMenager(string nameFileIncomes,int idLoggedUser): filesWithIncomes(nameFileIncomes),ID_LOGGED_USER(idLoggedUser) {

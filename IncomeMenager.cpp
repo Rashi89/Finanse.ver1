@@ -295,8 +295,18 @@ void IncomeMenager::sortingIncomes(vector <Income> &incomes) {
 }
 
 int IncomeMenager::getIDNewIncome() {
-    if (incomes.empty() == true)
+    if(getIDLastIncome()==0)
+    {
         return 1;
-    else
-        return incomes.back().getIncomeID() + 1;
+    }
+    else if(getIDLastIncome()!=0)
+    {
+        return getIDLastIncome()+1;
+    }
+}
+
+int IncomeMenager::getIDLastIncome()
+{
+    int idLastIncome = filesWithIncomes.getLastID();
+    return idLastIncome;
 }

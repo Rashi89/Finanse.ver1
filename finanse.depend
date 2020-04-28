@@ -431,3 +431,186 @@
 	<winbase.h>
 	"ExpenseMenager.h"
 
+1588011162 source:d:\programowanie\projekty c++\finanse_english\additionalmethods.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<winbase.h>
+	<sstream>
+	"AdditionalMethods.h"
+
+1588011163 d:\programowanie\projekty c++\finanse_english\additionalmethods.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<sstream>
+
+1588011163 source:d:\programowanie\projekty c++\finanse_english\data.cpp
+	"Data.h"
+
+1588011162 d:\programowanie\projekty c++\finanse_english\data.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\datamenager.cpp
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<algorithm>
+	<windows.h>
+	<winbase.h>
+	"DataMenager.h"
+
+1588011162 d:\programowanie\projekty c++\finanse_english\datamenager.h
+	<iostream>
+	<vector>
+	<sstream>
+	<algorithm>
+	"data.h"
+	"Expense.h"
+	"Income.h"
+	"AdditionalMethods.h"
+	"Markup.h"
+
+1588010760 d:\programowanie\projekty c++\finanse_english\expense.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1588010760 d:\programowanie\projekty c++\finanse_english\income.h
+	<iostream>
+	<vector>
+	<algorithm>
+
+1588011163 d:\programowanie\projekty c++\finanse_english\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\expense.cpp
+	"Expense.h"
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\expensemenager.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<winbase.h>
+	"ExpenseMenager.h"
+
+1588011162 d:\programowanie\projekty c++\finanse_english\expensemenager.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<sstream>
+	"Expense.h"
+	"FilesWithExpenses.h"
+	"DataMenager.h"
+	"Markup.h"
+	"data.h"
+	"AdditionalMethods.h"
+
+1588011162 d:\programowanie\projekty c++\finanse_english\fileswithexpenses.h
+	<iostream>
+	<vector>
+	<stdio.h>
+	<stdlib.h>
+	"Expense.h"
+	"Markup.h"
+	"data.h"
+	"DataMenager.h"
+	"AdditionalMethods.h"
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\fileswithexpenses.cpp
+	"FilesWithExpenses.h"
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\fileswithincomes.cpp
+	"FilesWithIncomes.h"
+
+1588080437 d:\programowanie\projekty c++\finanse_english\fileswithincomes.h
+	<iostream>
+	<vector>
+	"Income.h"
+	"Markup.h"
+	"data.h"
+	"DataMenager.h"
+	"AdditionalMethods.h"
+
+1588010760 source:d:\programowanie\projekty c++\finanse_english\fileswithusers.cpp
+	"FilesWithUsers.h"
+
+1588011162 d:\programowanie\projekty c++\finanse_english\fileswithusers.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Markup.h"
+
+1588009861 d:\programowanie\projekty c++\finanse_english\user.h
+	<iostream>
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\finanse.cpp
+	"Finanse.h"
+
+1588011162 d:\programowanie\projekty c++\finanse_english\finanse.h
+	<iostream>
+	"UsersMenager.h"
+	"ExpenseMenager.h"
+	"DataMenager.h"
+	"IncomeMenager.h"
+	"AdditionalMethods.h"
+
+1588011075 d:\programowanie\projekty c++\finanse_english\usersmenager.h
+	<iostream>
+	<vector>
+	"User.h"
+	"Markup.h"
+	"FilesWithUsers.h"
+	"AdditionalMethods.h"
+
+1588080384 d:\programowanie\projekty c++\finanse_english\incomemenager.h
+	<iostream>
+	<vector>
+	<algorithm>
+	<sstream>
+	"Income.h"
+	"data.h"
+	"DataMenager.h"
+	"FilesWithIncomes.h"
+	"AdditionalMethods.h"
+
+1588011163 source:d:\programowanie\projekty c++\finanse_english\income.cpp
+	"Income.h"
+
+1588011163 source:d:\programowanie\projekty c++\finanse_english\main.cpp
+	<iostream>
+	<vector>
+	"Markup.h"
+	"Finanse.h"
+	"DataMenager.h"
+	"ExpenseMenager.h"
+
+1586492720 source:d:\programowanie\projekty c++\finanse_english\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1586492720 source:d:\programowanie\projekty c++\finanse_english\user.cpp
+	"User.h"
+
+1588011162 source:d:\programowanie\projekty c++\finanse_english\usersmenager.cpp
+	<iostream>
+	<vector>
+	"UsersMenager.h"
+
+1588080437 source:d:\programowanie\projekty c++\finanse_english\incomemenager.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<winbase.h>
+	<sstream>
+	"IncomeMenager.h"
+
