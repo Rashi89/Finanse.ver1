@@ -21,5 +21,6 @@ public:
     vector <Expense> loadExpensesFromFile(int idZalogowanegoUzytkownika);
     vector <Data> wczytajDatyZPliku(int idZalogowanegoUzytkownika);
     void appendExpenseToFile(Expense expense);
+    int getLastID();
 };
 #endif

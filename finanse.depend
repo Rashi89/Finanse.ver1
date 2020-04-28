@@ -499,7 +499,7 @@
 	<winbase.h>
 	"ExpenseMenager.h"
 
-1588011162 d:\programowanie\projekty c++\finanse_english\expensemenager.h
+1588080904 d:\programowanie\projekty c++\finanse_english\expensemenager.h
 	<iostream>
 	<vector>
 	<algorithm>
@@ -511,7 +511,7 @@
 	"data.h"
 	"AdditionalMethods.h"
 
-1588011162 d:\programowanie\projekty c++\finanse_english\fileswithexpenses.h
+1588081097 d:\programowanie\projekty c++\finanse_english\fileswithexpenses.h
 	<iostream>
 	<vector>
 	<stdio.h>
@@ -525,7 +525,7 @@
 1588011162 source:d:\programowanie\projekty c++\finanse_english\fileswithexpenses.cpp
 	"FilesWithExpenses.h"
 
-1588011162 source:d:\programowanie\projekty c++\finanse_english\fileswithincomes.cpp
+1588080450 source:d:\programowanie\projekty c++\finanse_english\fileswithincomes.cpp
 	"FilesWithIncomes.h"
 
 1588080437 d:\programowanie\projekty c++\finanse_english\fileswithincomes.h
