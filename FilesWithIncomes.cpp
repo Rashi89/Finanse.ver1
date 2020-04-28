@@ -71,3 +71,33 @@ void FilesWithIncomes::appendIncomeToFile(Income income) {
         xml.Save( NAME_FILE_INCOMES );
     }
 }
+
+int FilesWithIncomes::getLastID()
+{
+    int lastID=0;
+    CMarkup xml;
+    if(xml.Load( NAME_FILE_INCOMES )==false)
+    {
+        return 0;
+    }
+    else {
+    xml.FindElem("INCOMES"); // root ORDER element
+    xml.IntoElem(); // inside ORDER
+    while ( xml.FindElem("INCOME") ) {
+        xml.IntoElem();
+        xml.FindElem( "USERID" );
+        int nUserID =atoi( MCD_2PCSZ(xml.GetData()) );
+        xml.FindElem( "INCOMEID" );
+        int nIncomeID =atoi( MCD_2PCSZ(xml.GetData()) );
+        lastID=nIncomeID;
+        xml.FindElem("DATE");
+        MCD_STR strDate = xml.GetData();
+        xml.FindElem("ITEM");
+        MCD_STR strItem = xml.GetData();
+        xml.FindElem( "AMOUNT" );
+        MCD_STR strAmount = xml.GetData();
+        xml.OutOfElem();
+    }
+    }
+    return lastID;
+}

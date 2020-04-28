@@ -30,8 +30,8 @@ class ExpenseMenager {
     void showExpenseFromPreviousMonth(Expense expense);
     void sortingExpense(vector <Expense> &expense);
     bool isCorrectDate(string data);
-    void showExpenseFromRangeProvided(string dataPoczatkowa,string dataKoncowa);
-    void wyswietlDate(Data data);
+    void showExpenseFromRangeProvided(string startingDate,string endDate);
+    int getIDLastExpense();
 
 public:
     ExpenseMenager(string nameFileExpenses,int idLoggedUser): filesWithExpenses(nameFileExpenses),ID_LOGGED_USER(idLoggedUser) {

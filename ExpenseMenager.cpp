@@ -99,26 +99,6 @@ Expense ExpenseMenager::getNewItemData(char sign, string givenData) {
     return expense;
 }
 
-int ExpenseMenager::getIDNewExpense() {
-    if (expenses.empty() == true)
-        return 1;
-    else
-        return expenses.back().getExpenseID() + 1;
-}
-
-void ExpenseMenager::wyswietlWszystkieItemy() {
-    if (!expenses.empty()) {
-        cout << "             >>>WYDATKI<<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++) {
-            showExpense(*itr);
-        }
-        cout << endl;
-    } else {
-        cout << endl << "Brak produktow." << endl << endl;
-    }
-}
-
 void ExpenseMenager::sorting() {
     sortingExpense(expenses);
 }
@@ -315,4 +295,21 @@ float ExpenseMenager::calculateExpensesFromRangeProvided(string startingData,str
     }
     return sumExpenseFromRangeProvided;
     cout << endl;
+}
+
+int ExpenseMenager::getIDNewExpense() {
+    if(getIDLastExpense()==0)
+    {
+        return 1;
+    }
+    else if(getIDLastExpense()!=0)
+    {
+        return getIDLastExpense()+1;
+    }
+}
+
+int ExpenseMenager::getIDLastExpense()
+{
+    int idLastExpense = filesWithExpenses.getLastID();
+    return idLastExpense;
 }
